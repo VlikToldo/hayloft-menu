@@ -1,6 +1,6 @@
 const HomePage = () => {
   return <div>
-    HomePage h
+    Концепція
   </div>;
 };
 
