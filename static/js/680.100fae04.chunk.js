@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkhayloft_menu=self.webpackChunkhayloft_menu||[]).push([[680],{680:function(e,n,u){u.r(n);var t=u(184);n.default=function(){return(0,t.jsx)("div",{children:"\u041a\u043e\u043d\u0446\u0435\u043f\u0446\u0456\u044f"})}}}]);
+//# sourceMappingURL=680.100fae04.chunk.js.map
