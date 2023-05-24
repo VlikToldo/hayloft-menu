@@ -1,0 +1,8 @@
+.listBtnMenu{
+    display: flex;
+}
+
+.itemBtnMenu:not(:last-child){
+    margin-right: 15px;
+}
+
