@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/805.4d2bf4e8.chunk.css","mappings":"AAAA,8BACI,aAGJ,+CACI","sources":["pages/MenuPage/menu-page.module.scss"],"sourcesContent":[".listBtnMenu{\n    display: flex;\n}\n\n.itemBtnMenu:not(:last-child){\n    margin-right: 15px;\n}\n\n"],"names":[],"sourceRoot":""}
