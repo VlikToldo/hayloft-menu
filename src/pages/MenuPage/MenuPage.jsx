@@ -3,13 +3,20 @@ import { Outlet, NavLink } from 'react-router-dom';
 import { Button } from '@chakra-ui/react';
 
 import styles from './menu-page.module.scss';
+import {getAllBar} from '../../shared/api/bar'
+
 
 const MenuPage = () => {
+
+  function handleClick() {
+    getAllBar()
+  }
+
   return (
     <div>
       <ul className={styles.listBtnMenu}>
         <li className={styles.itemBtnMenu}>
-        <Button>
+        <Button onClick={handleClick}>
           <NavLink to="bar">бар</NavLink>
         </Button>
         </li>
