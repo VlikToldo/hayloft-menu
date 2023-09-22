@@ -5,7 +5,20 @@ const instance = axios.create({
 });
 
 export const getAllBar = async () => {
-    const {data} = await instance.get('');
-    console.log(data);
-    return data;
+    const {data: result} = await instance.get('');
+    console.log(result);
+    return result;
 }
+
+export const addBarProduct = async (data) => {
+    const {data: result} = await instance.post('', data);
+    console.log(result);
+    return result;
+}
+
+export const deleteBarProduct = async () => {
+    const {data: result} = await instance.get('');
+    console.log(result);
+    return result;
+}
+

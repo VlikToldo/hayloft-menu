@@ -1,3 +1,7 @@
+h2{
+  margin: 0;
+}
+
 .header {
    position:sticky;
     top: -1;
@@ -5,13 +9,18 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-height: 64px;
+    height: 80px;
     margin-bottom: 20px;
     color: #fff;
-    border-radius: 10px;
-    background-color: rgb(84, 86, 119);
+    background-image: url(./image/gradient-dynamic-purple-lines-background_23-2148995757.avif);
     box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
       0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  }
+
+  .spanTitle{
+    font-family: 'Brush Script MT';
+    font-weight: 400;
+    
   }
 
   .navHeader{
@@ -23,8 +32,10 @@
 
   .navList{
     display: flex;
-    justify-content: center;
-    gap: 30px;
+
+    align-items: center;
+    padding: 0;
+    margin: 0
   }
   
   .navLink {
@@ -41,11 +52,6 @@
     font-style: normal;
     font-weight: 500;
   }
-
-  .navLink:global(.active){
-    color:rgba(254, 206, 233);
-}
-  
   
   .main{
     background-color: white;

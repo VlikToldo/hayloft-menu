@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy } from 'react';
+import './App.scss';
 
 import Navbar from './Navbar/Navbar';
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));

@@ -1,0 +1,14 @@
+
+
+.navLists{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.title{
+    border-bottom: solid 1px;
+    padding: 5px 5px 5px 0 ;
+}
+.subTitle{
+    margin-left: 10px;
+}
