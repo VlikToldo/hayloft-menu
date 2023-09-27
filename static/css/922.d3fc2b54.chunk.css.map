@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/922.d3fc2b54.chunk.css","mappings":"AAAA,8BACI,kBAGJ,iCACI","sources":["components/KitchenList/KitchenItem/kitchen-item.module.scss"],"sourcesContent":[".cardBody{\n    overflow-y: scroll;\n}\n\n.btnDetailes{\n    border-radius: 0px 0px 5px 5px !important ;\n}"],"names":[],"sourceRoot":""}

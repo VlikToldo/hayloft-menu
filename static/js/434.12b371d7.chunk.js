@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkhayloft_menu=self.webpackChunkhayloft_menu||[]).push([[434],{434:function(n,e,t){t.r(e);var u=t(184);e.default=function(){return(0,u.jsx)("div",{children:"Kitcnen List"})}}}]);
-//# sourceMappingURL=434.12b371d7.chunk.js.map

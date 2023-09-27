@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/434.12b371d7.chunk.js","mappings":"oIAMA,UANoB,WAClB,OAAQA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,gBAGf,C","sources":["components/KitchenList/KitchenList.jsx"],"sourcesContent":["const KitchenList = () => {\n  return (<div>\n    Kitcnen List\n  </div>);\n}\n\nexport default KitchenList;\n"],"names":["_jsx","children"],"sourceRoot":""}
