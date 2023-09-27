@@ -3,9 +3,23 @@
 }
 
 .listItem{
-    
-}
 
+}
+.title{
+    // white-space: nowrap;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+    // max-width: 100%;
+    // display: block;
+    line-height: 1.2em;
+    height: 2.4em;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    // text-overflow: ellipsis;
+    max-width: 100%;
+}
 .btnDetailes{
     border-radius: 0px 0px 5px 5px !important ;
 }

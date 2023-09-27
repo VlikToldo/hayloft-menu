@@ -10,7 +10,7 @@
     border-bottom: solid 1px;
     padding: 5px 5px 5px 3px ;
     &:hover,
-    :global(.active) {
+    :focus {
         border-bottom: none;
         border-radius: 5px;
         border-color: #DCCAE9;
@@ -18,13 +18,22 @@
         box-shadow: 0 0 3px 1px;
     }
 }
+:localS(.active) {
+    border-bottom: none;
+    border-radius: 5px;
+    border-color: #DCCAE9;
+    background-color: #DCCAE9;
+    box-shadow: 0 0 3px 1px;
+}
 .subTitle{
+    width: 100%;
     margin-left: 10px;
     font-weight: bold;
     border-bottom: solid 1px;
     padding: 5px 5px 5px 3px ;
 
-    &:hover {
+    &:hover,
+    :focus {
         border-bottom: none;
         border-radius: 5px;
         border-color: #DCCAE9;

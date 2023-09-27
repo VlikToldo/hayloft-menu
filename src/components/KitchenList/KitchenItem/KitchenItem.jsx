@@ -15,7 +15,7 @@ const PageItem = ({ name, id, ingridients }) => {
       <Card style={{ width: 'auto', height: '100%' }}>
         <Card.Img  variant="top" src={defaultPhoto} alt='qwe'/>
         <Card.Body className={styles.cardBody}>
-          <Card.Title>{name}</Card.Title>
+          <Card.Title className={styles.title}>{name}</Card.Title>
           <Card.Text>
             <strong>Основні інгрідієнти: </strong>
             {ingridients}
