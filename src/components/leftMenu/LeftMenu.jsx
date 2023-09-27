@@ -5,7 +5,7 @@ import styles from './LeftMenu.module.scss';
 
 const sidebarStyle = {
   margin: '80px 0 0 0',
-  backgroundColor: '#DCCAE9',
+  backgroundColor: ' white',
   width: '250px',
 };
 
@@ -53,11 +53,11 @@ function ResponsiveExample() {
             </NavLink>
             <Collapse in={open}>
               <div id="example-collapse-link">
-                <div className={styles.subTitle}>
-                  <NavLink to="menu/bar">Бар</NavLink>
+                <div>
+                  <NavLink className={styles.subTitle} to="menu/bar">Бар</NavLink>
                 </div>
-                <div className={styles.subTitle}>
-                  <NavLink to="menu/kitchen">Кухня</NavLink>
+                <div >
+                  <NavLink className={styles.subTitle} to="menu/kitchen">Кухня</NavLink>
                 </div>
               </div>
             </Collapse>

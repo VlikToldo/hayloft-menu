@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import KitchenItem from './KitchenItem/KitchenItem'
-import {getAllKitchen} from '../../shared/api/kitchen'
+import KitchenItem from './KitchenItem/KitchenItem';
+import {getAllKitchen} from '../../shared/api/kitchen';
+import styles from './kitchen-list.module.scss'
 const KitchenList = () => {
   const [items, setItems] = useState([]);
 
@@ -17,13 +18,13 @@ const KitchenList = () => {
     };
     fetchFilm();
   }, []);
-  // Функция для перехода на /menu/more-info
+
   const elements = items.map(item => (
     <KitchenItem key={item._id} {...item} />
   ));
   return (
-    <div>
-      <ul style={{ display: 'flex', justifyContent: 'center', gap: '10px', flexWrap: 'wrap' }}>
+    <div >
+      <ul className={styles.listBox} >
       {elements}
       </ul>
     </div>

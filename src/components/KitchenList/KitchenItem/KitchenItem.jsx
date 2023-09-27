@@ -11,9 +11,9 @@ const PageItem = ({ name, id, ingridients }) => {
   const defaultPhoto = 'https://cdn-icons-png.flaticon.com/512/4054/4054617.png';
 //   const linkPoster = 'https://image.tmdb.org/t/p/w400' + profile_path;
   return (
-    <li>
-      <Card style={{ width: '180px', height: '350px', oferflowY: 'scroll' }}>
-        <Card.Img style={{ width: '250px' }} variant="top" src={defaultPhoto} alt='qwe'/>
+    <li className={styles.listItem}>
+      <Card style={{ width: 'auto', height: '100%' }}>
+        <Card.Img  variant="top" src={defaultPhoto} alt='qwe'/>
         <Card.Body className={styles.cardBody}>
           <Card.Title>{name}</Card.Title>
           <Card.Text>
