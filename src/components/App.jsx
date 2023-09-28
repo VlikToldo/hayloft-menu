@@ -8,19 +8,19 @@ const MenuPage = lazy(() => import('../pages/MenuPage/MenuPage'));
 const MoreInfoPage = lazy(() => import('../pages/MoreInfoPage/MoreInfoPage'));
 const KitchenList = lazy(() => import('./KitchenList/KitchenList'));
 const BarList = lazy(() => import('./BarList/BarList'));
-
-
+const AddProduct = lazy(() => import('../pages/AddProduct/AddProduct'));
 
 export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Navbar />}>
-        <Route index element={<HomePage/>}/>
-        <Route path="menu" element={<MenuPage/>} > 
+        <Route index element={<HomePage />} />
+        <Route path="menu" element={<MenuPage />}>
           <Route path="bar" element={<BarList />} />
           <Route path="kitchen" element={<KitchenList />} />
-          <Route path="more-info" element={<MoreInfoPage/>}/>
+          <Route path="more-info" element={<MoreInfoPage />} />
         </Route>
+        <Route path="add-product" element={<AddProduct />} />
       </Route>
     </Routes>
   );

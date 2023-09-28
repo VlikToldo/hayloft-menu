@@ -60,6 +60,7 @@ function ResponsiveExample() {
                 </div>
               </div>
             </Collapse>
+            <NavLink onClick={() => setShow(!show)} className={styles.title} to="add-product">Додати позицію</NavLink>
           </Nav>
         </Offcanvas.Body>
       </Offcanvas>

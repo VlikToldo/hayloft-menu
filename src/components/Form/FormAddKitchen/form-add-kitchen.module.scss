@@ -1,0 +1,26 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: solid 1px;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+}
+
+.boxFormInput{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+.formLabel{
+    margin-bottom: 5px;
+}
+
+.formInput{
+    border: solid 1px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    height: 40px;
+    padding: 5px;
+}
