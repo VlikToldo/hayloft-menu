@@ -14,12 +14,6 @@ const Navbar = () => {
               <h2>Hayloft</h2>
               <span className={style.spanTitle}>Version 2.0</span>
             </NavLink>
-
-            {/* <Button size="sm" colorScheme="pink">
-              <NavLink className={style.navLink} to="menu">
-                Меню
-              </NavLink>
-            </Button> */}
           </ul>
         </nav>
       </header>

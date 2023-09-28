@@ -11,12 +11,12 @@ const sidebarStyle = {
 
 const launchButton = {
   position: 'fixed',
-  width: '15px',
-  height: '100px',
+  width: '10px',
+  height: '100%',
   left: '0',
-  bottom: '2px',
-  borderRadius: '0 5px 5px 0',
-  backgroundColor: 'silver',
+  bottom: '0',
+  borderRadius: '0 0 0 0',
+  backgroundColor: 'grey',
 };
 
 function ResponsiveExample() {
@@ -36,14 +36,13 @@ function ResponsiveExample() {
         style={sidebarStyle}
         show={show}
         onHide={handleClose}
-        responsive="sm"
       >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>HayLofy Menu</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Nav className={styles.navLists}>
-            <NavLink  className={styles.title} to="/">Концепція</NavLink>
+            <NavLink onClick={() => setShow(!show)} className={styles.title} to="/">Концепція</NavLink>
             <NavLink className={styles.title}
               onClick={() => setOpen(!open)}
               aria-controls="example-collapse-link"
@@ -54,10 +53,10 @@ function ResponsiveExample() {
             <Collapse in={open}>
               <div id="example-collapse-link">
                 <div>
-                  <NavLink className={styles.subTitle} to="menu/bar">Бар</NavLink>
+                  <NavLink onClick={() => setShow(!show)} className={styles.subTitle} to="menu/bar">Бар</NavLink>
                 </div>
                 <div >
-                  <NavLink className={styles.subTitle} to="menu/kitchen">Кухня</NavLink>
+                  <NavLink onClick={() => setShow(!show)} className={styles.subTitle} to="menu/kitchen">Кухня</NavLink>
                 </div>
               </div>
             </Collapse>

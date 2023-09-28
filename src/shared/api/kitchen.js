@@ -1,7 +1,9 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'https://backend-loft.onrender.com/api/kitchen'
+    baseURL:
+    //  'http://localhost:3001/api/kitchen'
+    'https://backend-loft.onrender.com/api/kitchen'
 });
 
 export const getAllKitchen = async () => {
