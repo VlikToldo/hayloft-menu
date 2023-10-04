@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/565.8a97cbdb.chunk.js","mappings":"qIAIE,UAJc,WACZ,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,YACd,C","sources":["components/BarList/BarList.jsx"],"sourcesContent":["const BarList = () => {\n    return <div>Bar List</div>;\n  }\n  \n  export default BarList;"],"names":["_jsx","children"],"sourceRoot":""}
