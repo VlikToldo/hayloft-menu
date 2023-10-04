@@ -12,8 +12,8 @@ export const getAllKitchen = async () => {
     return result;
 }
 
-export const addKitchenProduct = async (data) => {
-    const {data: result} = await instance.post('', data);
+export const addKitchenProduct = async(data) => {
+    const {data: result} = await instance.post('/', data);
     console.log(result);
     return result;
 }

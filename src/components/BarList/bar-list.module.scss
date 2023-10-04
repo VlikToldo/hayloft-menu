@@ -1,0 +1,6 @@
+.listBox{
+    grid-template-columns: 49%  49%;
+    display: grid;
+    grid-gap: 10px;
+    grid-auto-rows: minmax(200px, auto);
+}

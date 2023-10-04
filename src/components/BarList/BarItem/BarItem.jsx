@@ -1,6 +1,6 @@
 import { Button, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import styles from './kitchen-item.module.scss';
+import styles from './bar-item.module.scss';
 
 const PageItem = ({ name, id, ingredients }) => {
   const navigate = useNavigate();

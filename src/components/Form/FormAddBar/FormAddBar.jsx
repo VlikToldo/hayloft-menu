@@ -1,13 +1,13 @@
 import initialState from './initialState';
-import styles from './form-add-kitchen.module.scss';
+import styles from './form-add-bar.module.scss';
 import { Button } from 'react-bootstrap';
 import classnames from 'classnames';
 import { Formik, Form, Field } from 'formik';
 import toast, { Toaster } from 'react-hot-toast';
 
-import { addKitchenProduct } from '../../../shared/api/kitchen';
+import { addBarProduct } from '../../../shared/api/bar';
 
-const FormAddKitchen = () => {
+const FormAddBar = () => {
   const validateInput = value => {
     if (!value) {
       return 'Обовязково';
@@ -15,13 +15,13 @@ const FormAddKitchen = () => {
   };
   return (
     <div>
-      <h2 className={styles.titleForm}>Кухня</h2>
+      <h2 className={styles.titleForm}>Бар</h2>
       <Formik
         initialValues={{...initialState}}
         onSubmit={ async (values, { resetForm }) => {
           console.log(values);
           toast.promise(
-            addKitchenProduct(values),
+            addBarProduct(values),
              {
                loading: 'Додаєм...',
                success: <p>Збережено</p>,
@@ -68,33 +68,17 @@ const FormAddKitchen = () => {
             {/* Соуси */}
             <label
               className={classnames(styles.formLabel, {
-                [styles.errorLabel]: errors.souse && touched.souse,
+                [styles.errorLabel]: errors.alcohol && touched.alcohol,
               })}
             >
-              Соуси
+              Алкоголь
             </label>
             <Field
               className={classnames(styles.formInput, {
-                [styles.errorInput]: errors.souse && touched.souse,
+                [styles.errorInput]: errors.alcohol && touched.alcohol,
               })}
-              name="souse"
+              name="alcohol"
             />
-            {/* Алергени */}
-            <label
-              className={classnames(styles.formLabel, {
-                [styles.errorLabel]: errors.alergents && touched.alergents,
-              })}
-            >
-              Алергени
-            </label>
-            <Field
-              className={classnames(styles.formInput, {
-                [styles.errorInput]: errors.alergents && touched.alergents,
-              })}
-              name="alergents"
-
-            />
-
             <Button type="submit">Додати</Button>
           </Form>
         )}
@@ -109,4 +93,4 @@ const FormAddKitchen = () => {
   );
 };
 
-export default FormAddKitchen;
+export default FormAddBar;

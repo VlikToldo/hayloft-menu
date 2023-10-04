@@ -1,8 +1,7 @@
 const initialState = {
     name: '',
     ingredients: '',
-    souse: '',
-    alergents: '',
+    alcohol: ''
   };
   
   export default initialState;
