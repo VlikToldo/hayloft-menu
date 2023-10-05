@@ -16,7 +16,7 @@ const AddProduct = () => {
     setShow({ showFormBar: false, showFormKitchen: true });
   };
   return (
-    <div>
+    <div className={styles.formPageBox}>
       <div className={styles.btnChangeForm}>
         <Button onClick={openFormBar}>Додати бар</Button>
         <Button onClick={openFormKitchen}>Додати кухню</Button>
