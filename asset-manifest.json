@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/hayloft-menu/static/css/main.6b57986c.css",
-    "main.js": "/hayloft-menu/static/js/main.e33efcd0.js",
+    "main.js": "/hayloft-menu/static/js/main.0ddea54d.js",
     "static/js/680.100fae04.chunk.js": "/hayloft-menu/static/js/680.100fae04.chunk.js",
     "static/css/709.bf3f37c9.chunk.css": "/hayloft-menu/static/css/709.bf3f37c9.chunk.css",
     "static/js/709.7b4fcc33.chunk.js": "/hayloft-menu/static/js/709.7b4fcc33.chunk.js",
@@ -10,14 +10,14 @@
     "static/js/403.f149dd5f.chunk.js": "/hayloft-menu/static/js/403.f149dd5f.chunk.js",
     "static/css/746.815b2acf.chunk.css": "/hayloft-menu/static/css/746.815b2acf.chunk.css",
     "static/js/746.a889273b.chunk.js": "/hayloft-menu/static/js/746.a889273b.chunk.js",
-    "static/css/932.152dac5d.chunk.css": "/hayloft-menu/static/css/932.152dac5d.chunk.css",
-    "static/js/932.eabd7f1e.chunk.js": "/hayloft-menu/static/js/932.eabd7f1e.chunk.js",
+    "static/css/932.a4165d6d.chunk.css": "/hayloft-menu/static/css/932.a4165d6d.chunk.css",
+    "static/js/932.1a0baa1c.chunk.js": "/hayloft-menu/static/js/932.1a0baa1c.chunk.js",
     "static/js/825.a8145854.chunk.js": "/hayloft-menu/static/js/825.a8145854.chunk.js",
     "static/js/605.c9c495c8.chunk.js": "/hayloft-menu/static/js/605.c9c495c8.chunk.js",
     "static/media/gradient-dynamic-purple-lines-background_23-2148995757.avif": "/hayloft-menu/static/media/gradient-dynamic-purple-lines-background_23-2148995757.ec9420c3b0adb2a48549.avif",
     "index.html": "/hayloft-menu/index.html",
     "main.6b57986c.css.map": "/hayloft-menu/static/css/main.6b57986c.css.map",
-    "main.e33efcd0.js.map": "/hayloft-menu/static/js/main.e33efcd0.js.map",
+    "main.0ddea54d.js.map": "/hayloft-menu/static/js/main.0ddea54d.js.map",
     "680.100fae04.chunk.js.map": "/hayloft-menu/static/js/680.100fae04.chunk.js.map",
     "709.bf3f37c9.chunk.css.map": "/hayloft-menu/static/css/709.bf3f37c9.chunk.css.map",
     "709.7b4fcc33.chunk.js.map": "/hayloft-menu/static/js/709.7b4fcc33.chunk.js.map",
@@ -26,13 +26,13 @@
     "403.f149dd5f.chunk.js.map": "/hayloft-menu/static/js/403.f149dd5f.chunk.js.map",
     "746.815b2acf.chunk.css.map": "/hayloft-menu/static/css/746.815b2acf.chunk.css.map",
     "746.a889273b.chunk.js.map": "/hayloft-menu/static/js/746.a889273b.chunk.js.map",
-    "932.152dac5d.chunk.css.map": "/hayloft-menu/static/css/932.152dac5d.chunk.css.map",
-    "932.eabd7f1e.chunk.js.map": "/hayloft-menu/static/js/932.eabd7f1e.chunk.js.map",
+    "932.a4165d6d.chunk.css.map": "/hayloft-menu/static/css/932.a4165d6d.chunk.css.map",
+    "932.1a0baa1c.chunk.js.map": "/hayloft-menu/static/js/932.1a0baa1c.chunk.js.map",
     "825.a8145854.chunk.js.map": "/hayloft-menu/static/js/825.a8145854.chunk.js.map",
     "605.c9c495c8.chunk.js.map": "/hayloft-menu/static/js/605.c9c495c8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6b57986c.css",
-    "static/js/main.e33efcd0.js"
+    "static/js/main.0ddea54d.js"
   ]
 }
