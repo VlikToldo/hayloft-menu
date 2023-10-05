@@ -8,6 +8,18 @@ import toast, { Toaster } from 'react-hot-toast';
 import { addKitchenProduct } from '../../../shared/api/kitchen';
 
 const FormAddKitchen = () => {
+  const cehs = [
+    { value: 'Холодні закуски', label: 'Холодні закуски' },
+    { value: 'Салати', label: 'Салати' },
+    { value: 'Гарячі закуски', label: 'Гарячі закуски' },
+    { value: 'Перші страви', label: 'Перші страви' },
+    { value: 'Burgers', label: 'Бургери' },
+    { value: 'Шашлики та стейки', label: 'Шашлики та стейки' },
+    { value: 'Гарніри', label: 'Гарніри' },
+    { value: 'Дитяче меню', label: 'Дитяче меню' },
+    { value: 'Десерти', label: 'Десерти' },
+  ];
+
   const validateInput = value => {
     if (!value) {
       return 'Обовязково';
@@ -33,6 +45,14 @@ const FormAddKitchen = () => {
       >
         {({ errors, touched }) => (
           <Form className={styles.form}>
+           <label >Оберіть цех:</label>
+          <Field className={styles.formInput} as="select" name="ceh">
+            {cehs.map((ceh, index) => (
+              <option key={index} value={ceh.value}>
+                {ceh.label}
+              </option>
+            ))}
+          </Field>
             {/* Найменування */}
             <label
               className={classnames(styles.formLabel, {

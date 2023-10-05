@@ -6,8 +6,8 @@ import Navbar from './Navbar/Navbar';
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const MenuPage = lazy(() => import('../pages/MenuPage/MenuPage'));
 const MoreInfoPage = lazy(() => import('../pages/MoreInfoPage/MoreInfoPage'));
-const KitchenList = lazy(() => import('./KitchenList/KitchenList'));
-const BarList = lazy(() => import('./BarList/BarList'));
+const KitchenList = lazy(() => import('./Lists/KitchenList/KitchenList'));
+const BarList = lazy(() => import('./Lists/BarList/BarList'));
 const AddProduct = lazy(() => import('../pages/AddProduct/AddProduct'));
 
 export const App = () => {

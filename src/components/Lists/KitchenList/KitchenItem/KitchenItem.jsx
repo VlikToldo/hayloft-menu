@@ -24,7 +24,7 @@ const PageItem = ({ name, id, ingredients }) => {
           <Card.Text className={styles.text}>
             {ingredients}
           </Card.Text>
-          <Button onClick={goToMoreInfo} className={styles.btnDetailes} variant="primary" size='sm'>Повна інформація</Button>
+          <Button onClick={goToMoreInfo} className={styles.btnDetailes} size='sm'>Повна інформація</Button>
         </Card.Body>
         
       </Card>

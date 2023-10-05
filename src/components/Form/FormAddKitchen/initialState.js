@@ -1,4 +1,6 @@
 const initialState = {
+    type: 'kitchen',
+    ceh: '',
     name: '',
     ingredients: '',
     souse: '',

@@ -1,0 +1,36 @@
+// .listCehGroupBox{
+//     margin-bottom: 30px;
+// }
+
+.listCehGroupBox:last-child{
+    margin-bottom: 50px;
+}
+.cehGroupBox{
+    margin-bottom: 20px;
+}
+.listBox{
+    grid-template-columns: 49%  49%;
+    display: grid;
+    grid-gap: 10px;
+    grid-auto-rows: minmax(200px, auto);
+}
+
+.learnListBox{
+    grid-template-columns: 100%;
+    display: grid;
+    grid-gap: 10px;
+}
+.titleCeh{
+    margin-bottom: 10px;
+}
+.buttonGroup{
+    position: fixed;
+    z-index: 799;
+    bottom: 10px;
+    left: 15px;
+}
+.toggleButton{
+    position: absolute;
+    padding:1px 30px 1px 30px !important;
+    border-radius: 10px;
+}

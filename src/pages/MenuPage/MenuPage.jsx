@@ -7,7 +7,7 @@ import styles from './menu-page.module.scss';
 const MenuPage = () => {
 
   return (
-    <div>
+    <>
       <Stack className={styles.listBtnMenu} direction="horizontal" gap={2}>
         <Badge pill bg="primary">
           <NavLink to="bar">бар</NavLink>
@@ -19,7 +19,7 @@ const MenuPage = () => {
       <Suspense fallback={<div>...Loading</div>}>
         <Outlet />
       </Suspense>
-    </div>
+    </>
   );
 };
 
