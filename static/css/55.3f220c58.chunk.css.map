@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/55.3f220c58.chunk.css","mappings":"AAAA,4BACI,sBAGJ,gCACI","sources":["pages/MoreInfoPage/more-info-page.module.scss"],"sourcesContent":[".Card{\n    border: none !important;\n}\n\n.cardBody{\n    padding: 5px !important;\n}"],"names":[],"sourceRoot":""}
