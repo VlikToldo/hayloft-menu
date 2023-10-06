@@ -1,5 +1,5 @@
-import { useEffect, useState, useRef, Suspense } from 'react';
-import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import { getProductBar } from '../../shared/api/bar';
 import { getProductKitchen } from '../../shared/api/kitchen';
@@ -28,7 +28,7 @@ const MoreInfoPage = () => {
       }
     };
     getProduct();
-  }, [productId]);
+  }, [productId, location]);
   const { name, ingredients, ceh, souse = null, alergents } = infoProduct;
   return (
     <div>
