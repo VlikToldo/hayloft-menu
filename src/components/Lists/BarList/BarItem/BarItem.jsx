@@ -2,7 +2,9 @@ import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styles from './bar-item.module.scss';
 
-const PageItem = ({ name, _id, ingredients }) => {
+import PropTypes from 'prop-types';
+
+const PageItem = ({ name, _id, ingredients, location }) => {
 
  const bwrgerPhoto = 'https://klike.net/uploads/posts/2019-06/1559545617_2.jpg';
   // const defaultPhoto = 
@@ -20,7 +22,7 @@ const PageItem = ({ name, _id, ingredients }) => {
           <Card.Text className={styles.text}>
             {ingredients}
           </Card.Text>
-          <Link to={`${_id}`}>
+          <Link to={`${_id}`} state={{from: location}}>
             <Button className={styles.btnDetailes} variant="primary" size='sm'>Повна інформація</Button>
           </Link>
           
@@ -32,3 +34,11 @@ const PageItem = ({ name, _id, ingredients }) => {
 };
 
 export default PageItem;
+
+PageItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  location: PropTypes.object,
+  _id: PropTypes.string.isRequired,
+  ingredients: PropTypes.string,
+}
+

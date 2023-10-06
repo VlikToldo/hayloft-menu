@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import {ToggleButton, ButtonGroup} from 'react-bootstrap';
 import BarItem from './BarItem/BarItem';
 import LearnItem from '../LearnItemForList/LearnItemForList'
@@ -9,6 +10,8 @@ const BarList = () => {
   const [items, setItems] = useState([]);
   const [showItem, setShowItem] = useState({learnItem: false, cardItem: true});
   const [radioValue, setRadioValue] = useState('1');
+
+  const location = useLocation();
 
   const radios = [
     { name: 'Картка', value: '1' },
@@ -54,8 +57,8 @@ const BarList = () => {
         <ul className={listBox}>
           {dishes.map((dish) => (
             <li key={dish._id}>
-              {showItem.cardItem && <BarItem  {...dish} />}
-              {showItem.learnItem && <LearnItem  {...dish} />}
+              {showItem.cardItem && <BarItem  {...dish} location={location} />}
+              {showItem.learnItem && <LearnItem  {...dish} location={location} />}
             </li>
           ))}
         </ul>
