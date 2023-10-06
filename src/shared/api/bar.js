@@ -1,8 +1,9 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: // 'https://backend-loft.onrender.com/api/bar'
-    'http://localhost:3001/api/bar'
+    baseURL:
+     'https://backend-loft.onrender.com/api/bar'
+    // 'http://localhost:3001/api/bar'
 });
 
 export const getAllBar = async () => {
