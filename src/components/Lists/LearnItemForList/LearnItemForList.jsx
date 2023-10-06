@@ -1,17 +1,14 @@
 // LearnItemForList
 import { Card } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import styles from './kitchen-item.module.scss';
 
-const PageItem = ({ name, id, ingredients }) => {
-  const navigate = useNavigate();
+const PageItem = ({ name, _id, ingredients }) => {
 
-  const goToMoreInfo = () => {
-    navigate('/menu/more-info');
-  };
   return (
-    <li onClick={goToMoreInfo}>
-    <Card>
+    <>
+    <Link to={_id}>
+    <Card >
       <Card.Header>{name}</Card.Header>
       <Card.Body>
         <blockquote className="blockquote mb-0">
@@ -21,7 +18,9 @@ const PageItem = ({ name, id, ingredients }) => {
         </blockquote>
       </Card.Body>
     </Card>
-    </li>
+    </Link>
+
+    </>
   );
 };
 

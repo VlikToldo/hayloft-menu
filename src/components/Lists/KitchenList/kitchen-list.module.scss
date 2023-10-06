@@ -21,6 +21,8 @@
     grid-gap: 10px;
 }
 .titleCeh{
+    font-family: var(--family);
+    font-weight: 700;
     margin-bottom: 10px;
 }
 .buttonGroup{
@@ -30,6 +32,8 @@
     left: 15px;
 }
 .toggleButton{
+    font-family: var(--family);
+    font-weight: 400;
     position: absolute;
     padding:1px 30px 1px 30px !important;
     border-radius: 10px;

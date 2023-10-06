@@ -10,6 +10,7 @@ const sidebarStyle = {
 };
 
 const launchButton = {
+  fontWeight: 700,
   position: 'fixed',
   width: '10px',
   height: '100%',
@@ -38,7 +39,7 @@ function ResponsiveExample() {
         onHide={handleClose}
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>HayLofy Menu</Offcanvas.Title>
+          <Offcanvas.Title className={styles.headerTitleMenu}>HayLofy Menu</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Nav className={styles.navLists}>

@@ -1,18 +1,14 @@
 import { Button, Card } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from './bar-item.module.scss';
 
-const PageItem = ({ name, id, ingredients }) => {
-  const navigate = useNavigate();
+const PageItem = ({ name, _id, ingredients }) => {
 
-  const goToMoreInfo = () => {
-    navigate('/menu/more-info');
-  };
  const bwrgerPhoto = 'https://klike.net/uploads/posts/2019-06/1559545617_2.jpg';
   // const defaultPhoto = 
   //   'https://cdn-icons-png.flaticon.com/512/4054/4054617.png';
   return (
-    <li  className={styles.listItem}>
+    <>
       <Card className={styles.Card}>
         <div className={styles.imgContainer}>
           <img className={styles.imgProduct} src={bwrgerPhoto} alt="Продукт" />
@@ -24,11 +20,14 @@ const PageItem = ({ name, id, ingredients }) => {
           <Card.Text className={styles.text}>
             {ingredients}
           </Card.Text>
-          <Button onClick={goToMoreInfo} className={styles.btnDetailes} variant="primary" size='sm'>Повна інформація</Button>
+          <Link to={`${_id}`}>
+            <Button className={styles.btnDetailes} variant="primary" size='sm'>Повна інформація</Button>
+          </Link>
+          
         </Card.Body>
         
       </Card>
-    </li>
+    </>
   );
 };
 

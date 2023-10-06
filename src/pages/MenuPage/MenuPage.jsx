@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 import {  Badge, Stack } from 'react-bootstrap';
 import styles from './menu-page.module.scss';
-// import { getAllBar } from '../../shared/api/bar';
 
 const MenuPage = () => {
 

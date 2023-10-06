@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import {ToggleButton, ButtonGroup} from 'react-bootstrap';
 import BarItem from './BarItem/BarItem';
 import LearnItem from '../LearnItemForList/LearnItemForList'
-import {getAllKitchen} from '../../../shared/api/kitchen';
-import styles from './bar-list.module.scss'
+import {getAllBar} from '../../../shared/api/bar';
+import styles from './bar-list.module.scss';
+import {nanoid} from 'nanoid';
 const BarList = () => {
   const [items, setItems] = useState([]);
   const [showItem, setShowItem] = useState({learnItem: false, cardItem: true});
@@ -19,7 +20,7 @@ const BarList = () => {
   useEffect(() => {
     const fetchFilm = async () => {
       try {
-        const data = await getAllKitchen();
+        const data = await getAllBar();
         console.log(data);
         setItems([...data]);
       } catch (error) {
@@ -34,13 +35,44 @@ const BarList = () => {
     setRadioValue(e.currentTarget.value)
   }
 
-  const elements = items.map(item => (
-    <>
-    {showItem.cardItem && <BarItem key={item._id} {...item} />}
-    {showItem.learnItem && <LearnItem key={item._id} {...item} />}
-    </>
+  const groupMenuByKitchen = (menuItems) => {
+    const groupedMenu = {};
+    menuItems.forEach((item) => {
+      const { ceh } = item;
+      if (!groupedMenu[ceh]) {
+        groupedMenu[ceh] = [];
+      }
+      groupedMenu[ceh].push(item);
+    });
+    return groupedMenu;
+  };
 
-  ));
+  const renderKitchenSection = (name, dishes) => {
+    return (
+      <div key={nanoid()} className={styles.cehGroupBox} >
+        <h2 className={styles.titleCeh}>{name}</h2>
+        <ul className={listBox}>
+          {dishes.map((dish) => (
+            <li key={dish._id}>
+              {showItem.cardItem && <BarItem  {...dish} />}
+              {showItem.learnItem && <LearnItem  {...dish} />}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
+
+  const renderMenuSections = (groupedMenu) => {
+    return Object.keys(groupedMenu).map((name) => {
+      const kitchenDishes = groupedMenu[name];
+      return renderKitchenSection(name, kitchenDishes, );
+    });
+  };
+
+  const groupedMenu = groupMenuByKitchen(items);
+
+
   return (
     <div >
       <ButtonGroup className={styles.buttonGroup}>
@@ -60,8 +92,8 @@ const BarList = () => {
           </ToggleButton>
         ))}
       </ButtonGroup>
-      <ul className={listBox} >
-      {elements}
+      <ul className={styles.listCehGroupBox} >
+      {renderMenuSections(groupedMenu)}
       </ul>
     </div>
   );

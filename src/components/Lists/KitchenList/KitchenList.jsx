@@ -1,17 +1,21 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import {ToggleButton, ButtonGroup} from 'react-bootstrap';
 import KitchenItem from './KitchenItem/KitchenItem';
 import LearnItem from '../LearnItemForList/LearnItemForList'
 import {getAllKitchen} from '../../../shared/api/kitchen';
-import styles from './kitchen-list.module.scss'
+import styles from './kitchen-list.module.scss';
+import {nanoid} from 'nanoid';
 const KitchenList = () => {
   const [items, setItems] = useState([]);
   const [showItem, setShowItem] = useState({learnItem: false, cardItem: true});
   const [radioValue, setRadioValue] = useState('1');
 
+  const location = useLocation();
+
   const radios = [
-    { name: 'Картка', value: '1' },
-    { name: 'Список', value: '2' },
+    {id: nanoid(), name: 'Картка', value: '1' },
+    {id: nanoid(), name: 'Список', value: '2' },
   ];
 
 
@@ -49,14 +53,14 @@ const KitchenList = () => {
 
   const renderKitchenSection = (name, dishes) => {
     return (
-      <div className={styles.cehGroupBox} key={name}>
-        <h2 className={styles.titleCeh}>{name}</h2>
+      <div className={styles.cehGroupBox} key={nanoid()}>
+        <h2  className={styles.titleCeh}>{name}</h2>
         <ul className={listBox}>
           {dishes.map((dish) => (
-            <>
-              {showItem.cardItem && <KitchenItem key={dish._id} {...dish} />}
-              {showItem.learnItem && <LearnItem key={dish._id} {...dish} />}
-            </>
+            <li key={dish._id}>
+              {showItem.cardItem && <KitchenItem {...dish} location={location} />}
+              {showItem.learnItem && <LearnItem {...dish} location={location} />}
+            </li>
           ))}
         </ul>
       </div>
@@ -78,7 +82,7 @@ const KitchenList = () => {
         {radios.map((radio, idx) => (
           <ToggleButton
             className={styles.toggleButton}
-            key={idx}
+            key={radio.id}
             id={`radio-${idx}`}
             type="radio"
             variant="primary"

@@ -1,4 +1,8 @@
-
+.headerTitleMenu{
+    font-family: var(--family);
+    font-weight: 400;
+    font-style: italic;
+}
 
 .navLists{
     display: flex;
@@ -6,7 +10,8 @@
     gap: 10px;
 }
 .title{
-    font-weight: bold;
+    font-family: var(--family);
+    font-weight: 700;
     border-bottom: solid 1px;
     padding: 5px 5px 5px 3px ;
     &:hover,
@@ -19,6 +24,7 @@
     }
 }
 .subTitle{
+    font-family: var(--family);
     width: 100%;
     margin-left: 10px;
     font-weight: bold;

@@ -29,30 +29,33 @@ const FormAddKitchen = () => {
     <div>
       <h2 className={styles.titleForm}>Кухня</h2>
       <Formik
-        initialValues={{...initialState}}
-        onSubmit={ async (values, { resetForm }) => {
+        initialValues={{ ...initialState }}
+        onSubmit={async (values, { resetForm }) => {
           console.log(values);
-          toast.promise(
-            addKitchenProduct(values),
-             {
-               loading: 'Додаєм...',
-               success: <p>Збережено</p>,
-               error: <p>Виникла помилка при збережені!!</p>,
-             }
-           );
-           resetForm()
+          toast.promise(addKitchenProduct(values), {
+            loading: 'Додаєм...',
+            success: <p>Збережено</p>,
+            error: <p>Виникла помилка при збережені!!</p>,
+          });
+          resetForm();
         }}
       >
         {({ errors, touched }) => (
           <Form className={styles.form}>
-           <label >Оберіть цех:</label>
-          <Field className={styles.formInput} as="select" name="ceh">
-            {cehs.map((ceh, index) => (
-              <option key={index} value={ceh.value}>
-                {ceh.label}
-              </option>
-            ))}
-          </Field>
+            <label
+              className={classnames(styles.formLabel, {
+                [styles.errorLabel]: errors.name && touched.name,
+              })}
+            >
+              Оберіть цех:
+            </label>
+            <Field className={styles.formInput} as="select" name="ceh">
+              {cehs.map((ceh, index) => (
+                <option key={index} value={ceh.value}>
+                  {ceh.label}
+                </option>
+              ))}
+            </Field>
             {/* Найменування */}
             <label
               className={classnames(styles.formLabel, {
@@ -61,7 +64,9 @@ const FormAddKitchen = () => {
             >
               Найменування
             </label>
-            {errors.name && touched.name && <div className={styles.erorrRequired}>{errors.name}</div>}
+            {errors.name && touched.name && (
+              <div className={styles.erorrRequired}>{errors.name}</div>
+            )}
             <Field
               className={classnames(styles.formInput, {
                 [styles.errorInput]: errors.name && touched.name,
@@ -77,7 +82,9 @@ const FormAddKitchen = () => {
             >
               Інгрідієнти
             </label>
-            {errors.ingredients && touched.ingredients && <div className={styles.erorrRequired}>{errors.ingredients}</div>}
+            {errors.ingredients && touched.ingredients && (
+              <div className={styles.erorrRequired}>{errors.ingredients}</div>
+            )}
             <Field
               className={classnames(styles.formInput, {
                 [styles.errorInput]: errors.ingredients && touched.ingredients,
@@ -112,18 +119,14 @@ const FormAddKitchen = () => {
                 [styles.errorInput]: errors.alergents && touched.alergents,
               })}
               name="alergents"
-
             />
 
-            <Button type="submit">Додати</Button>
+            <Button className={styles.submitBtn} type="submit">Додати</Button>
           </Form>
         )}
       </Formik>
       <div>
-        <Toaster
-          position="top-center"
-          reverseOrder={false}
-        />
+        <Toaster position="top-center" reverseOrder={false} />
       </div>
     </div>
   );

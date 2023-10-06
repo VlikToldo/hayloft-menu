@@ -26,6 +26,8 @@
 
 
 .title{
+    font-family: var(--family);
+    font-weight: 700;
     font-size: 0.9em;
     line-height: 1.2em;
     height: 2.4em;
@@ -38,11 +40,14 @@
 
 }
 .spanText{
+    font-family: var(--family);
+    // font-style: italic;
     display: block;
     margin-bottom: 5px;
 }
 
 .text{
+    font-family: var(--family);
     margin-bottom: 5px;
     font-size: 0.8em;
     line-height: 1.2em;
@@ -56,9 +61,10 @@
 
 
 .btnDetailes{
+    font-family: var(--family);
     border-radius: 0px 0px 5px 5px !important ;
     border: none !important;
     width: 100% !important;
     cursor: pointer;
-    background-color: #3ec23e !important;
+    background-color: var(--color-green) !important;
 }

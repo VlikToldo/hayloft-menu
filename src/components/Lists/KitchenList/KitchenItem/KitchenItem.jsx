@@ -1,18 +1,15 @@
 import { Button, Card } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styles from './kitchen-item.module.scss';
 
-const PageItem = ({ name, id, ingredients }) => {
-  const navigate = useNavigate();
-
-  const goToMoreInfo = () => {
-    navigate('/menu/more-info');
-  };
- const bwrgerPhoto = 'https://klike.net/uploads/posts/2019-06/1559545617_2.jpg';
-  // const defaultPhoto = 
+const PageItem = ({ name, _id, ingredients, location }) => {
+  const bwrgerPhoto =
+    'https://klike.net/uploads/posts/2019-06/1559545617_2.jpg';
+  // const defaultPhoto =
   //   'https://cdn-icons-png.flaticon.com/512/4054/4054617.png';
   return (
-    <li  className={styles.listItem}>
+    <>
       <Card className={styles.Card}>
         <div className={styles.imgContainer}>
           <img className={styles.imgProduct} src={bwrgerPhoto} alt="Продукт" />
@@ -21,15 +18,23 @@ const PageItem = ({ name, id, ingredients }) => {
         <Card.Body className={styles.cardBody}>
           <Card.Title className={styles.title}>{name}</Card.Title>
           <span className={styles.spanText}>Склад: </span>
-          <Card.Text className={styles.text}>
-            {ingredients}
-          </Card.Text>
-          <Button onClick={goToMoreInfo} className={styles.btnDetailes} size='sm'>Повна інформація</Button>
+          <Card.Text className={styles.text}>{ingredients}</Card.Text>
+          <Link to={`${_id}`} state={{from: location}}>
+            <Button className={styles.btnDetailes} size="sm">
+              Повна інформація
+            </Button>
+          </Link>
         </Card.Body>
-        
       </Card>
-    </li>
+    </>
   );
 };
 
 export default PageItem;
+
+PageItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  location: PropTypes.object,
+  _id: PropTypes.string.isRequired,
+  ingredients: PropTypes.string,
+}
