@@ -8,10 +8,10 @@ const MenuPage = () => {
   return (
     <>
       <Stack className={styles.listBtnMenu} direction="horizontal" gap={2}>
-        <Badge pill bg="primary">
+        <Badge className={styles.pill} pill bg="primary">
           <NavLink to="bar">бар</NavLink>
         </Badge>
-        <Badge pill bg="primary">
+        <Badge className={styles.pill} pill bg="primary">
           <NavLink to="kitchen">кухня</NavLink>
         </Badge>
       </Stack>

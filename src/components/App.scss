@@ -3,8 +3,16 @@
 
 :root {
   --family: 'Balsamiq Sans', cursive;
-  --color-blue: hsl(270deg 75% 60%);
-  --color-green: #3ec23e;
+  --DARK-PRIMARY-COLOR: #7B1FA2;
+  --LIGHT-PRIMARY-COLOR:#E1BEE7;
+  --PRIMARY-COLOR:#9C27B0;
+  --ACCENT-COLOR: #7C4DFF;
+  --PRIMARY-TEXT:#212121;
+  --SECONDARY-TEXT:#757575;
+  --TEXT-ICONS-COLOR: #FFFFFF;
+  --DIVIDER-COLOR:#BDBDBD;
+
+  
 }
 
 body {

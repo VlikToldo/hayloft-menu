@@ -85,7 +85,7 @@ const BarList = () => {
             key={idx}
             id={`radio-${idx}`}
             type="radio"
-            variant="primary"
+            variant="secondary"
             name="radio"
             value={radio.value}
             checked={radioValue === radio.value}

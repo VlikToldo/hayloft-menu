@@ -18,8 +18,9 @@
     :focus {
         border-bottom: none;
         border-radius: 5px;
-        border-color: #008cff;
-        background-color: #008cff;
+        color: var(--TEXT-ICONS-COLOR);
+        border-color: var(--DARK-PRIMARY-COLOR);
+        background-color: var(--DARK-PRIMARY-COLOR);
         box-shadow: 0 0 3px 1px;
     }
 }
@@ -35,8 +36,9 @@
     :focus {
         border-bottom: none;
         border-radius: 5px;
-        border-color: #008cff;
-        background-color: #008cff;
+        color: var(--TEXT-ICONS-COLOR);
+        border-color: var(--DARK-PRIMARY-COLOR);
+        background-color: var(--DARK-PRIMARY-COLOR);
         box-shadow: 0 0 3px 1px;
     }
 

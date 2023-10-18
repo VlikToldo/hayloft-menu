@@ -3,9 +3,14 @@
     padding-bottom: 20px;
 }
 
-.btnChangeForm{
+.btnGroupChangeForm{
     display: flex;
     flex-direction: row;
     gap: 15px;
     margin-bottom: 15px;
+}
+
+.btnChangeForm{
+    background-color: var(--ACCENT-COLOR) !important;
+    border-color: var(--ACCENT-COLOR) !important;
 }

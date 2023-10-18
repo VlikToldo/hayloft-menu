@@ -17,9 +17,9 @@ const AddProduct = () => {
   };
   return (
     <div className={styles.formPageBox}>
-      <div className={styles.btnChangeForm}>
-        <Button onClick={openFormBar}>Додати бар</Button>
-        <Button onClick={openFormKitchen}>Додати кухню</Button>
+      <div className={styles.btnGroupChangeForm}>
+        <Button className={styles.btnChangeForm} onClick={openFormBar}>Додати бар</Button>
+        <Button  className={styles.btnChangeForm}onClick={openFormKitchen}>Додати кухню</Button>
       </div>
 
       {show.showFormBar && <FormAddBar />}
