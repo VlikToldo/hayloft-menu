@@ -1,26 +1,34 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import {ToggleButton, ButtonGroup} from 'react-bootstrap';
+import { ToggleButton, ButtonGroup } from 'react-bootstrap';
 import KitchenItem from './KitchenItem/KitchenItem';
-import LearnItem from '../LearnItemForList/LearnItemForList'
-import {getAllKitchen} from '../../../shared/api/kitchen';
+import LearnItem from '../LearnItemForList/LearnItemForList';
+import { getAllKitchen } from '../../../shared/api/kitchen';
+
+import { changeList } from '../../../redux/utility/utility-slice';
+import {
+  selectList,
+  selectShowList,
+} from '../../../redux/utility/utility-selectors';
+
 import styles from './kitchen-list.module.scss';
-import {nanoid} from 'nanoid';
+import { nanoid } from 'nanoid';
 const KitchenList = () => {
   const [items, setItems] = useState([]);
-  const [showItem, setShowItem] = useState({learnItem: false, cardItem: true});
-  const [radioValue, setRadioValue] = useState('1');
 
+  const dispatch = useDispatch();
   const location = useLocation();
 
+  const valueList = useSelector(selectList);
+  const showList = useSelector(selectShowList);
+
   const radios = [
-    {id: nanoid(), name: 'Картка', value: '1' },
-    {id: nanoid(), name: 'Список', value: '2' },
+    { id: nanoid(), name: 'Картка', value: '1' },
+    { id: nanoid(), name: 'Список', value: '2' },
   ];
 
-
-
-  const listBox = showItem.cardItem ? styles.listBox : styles.learnListBox;
+  const listBox = showList ? styles.learnListBox : styles.listBox;
 
   useEffect(() => {
     const fetchFilm = async () => {
@@ -34,14 +42,15 @@ const KitchenList = () => {
     fetchFilm();
   }, [setItems]);
 
-  const changeList = (e) => {
-    showItem.learnItem ? setShowItem({learnItem: false, cardItem: true}) : setShowItem({learnItem: true, cardItem: false})
-    setRadioValue(e.currentTarget.value)
-  }
+  const changeLis = e => {
+    e.currentTarget.value === '1'
+      ? dispatch(changeList({ value: e.currentTarget.value, showList: false }))
+      : dispatch(changeList({ value: e.currentTarget.value, showList: true }));
+  };
 
-  const groupMenuByKitchen = (menuItems) => {
+  const groupMenuByKitchen = menuItems => {
     const groupedMenu = {};
-    menuItems.forEach((item) => {
+    menuItems.forEach(item => {
       const { ceh } = item;
       if (!groupedMenu[ceh]) {
         groupedMenu[ceh] = [];
@@ -54,12 +63,15 @@ const KitchenList = () => {
   const renderKitchenSection = (name, dishes) => {
     return (
       <div className={styles.cehGroupBox} key={nanoid()}>
-        <h2  className={styles.titleCeh}>{name}</h2>
+        <h2 className={styles.titleCeh}>{name}</h2>
         <ul className={listBox}>
-          {dishes.map((dish) => (
+          {dishes.map(dish => (
             <li key={dish._id}>
-              {showItem.cardItem && <KitchenItem {...dish} location={location} />}
-              {showItem.learnItem && <LearnItem {...dish} location={location} />}
+              {showList ? (
+                <LearnItem {...dish} location={location} />
+              ) : (
+                <KitchenItem {...dish} location={location} />
+              )}
             </li>
           ))}
         </ul>
@@ -67,8 +79,8 @@ const KitchenList = () => {
     );
   };
 
-  const renderMenuSections = (groupedMenu) => {
-    return Object.keys(groupedMenu).map((name) => {
+  const renderMenuSections = groupedMenu => {
+    return Object.keys(groupedMenu).map(name => {
       const kitchenDishes = groupedMenu[name];
       return renderKitchenSection(name, kitchenDishes);
     });
@@ -88,15 +100,15 @@ const KitchenList = () => {
             variant="secondary"
             name="radio"
             value={radio.value}
-            checked={radioValue === radio.value}
-            onChange={(e) => changeList(e)}
+            checked={valueList === radio.value}
+            onChange={e => changeLis(e)}
           >
             {radio.name}
           </ToggleButton>
         ))}
       </ButtonGroup>
       <ul className={styles.listCehGroupBox}>
-      {renderMenuSections(groupedMenu)}
+        {renderMenuSections(groupedMenu)}
       </ul>
     </div>
   );

@@ -1,30 +1,40 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import {ToggleButton, ButtonGroup} from 'react-bootstrap';
+import { ToggleButton, ButtonGroup } from 'react-bootstrap';
 import BarItem from './BarItem/BarItem';
-import LearnItem from '../LearnItemForList/LearnItemForList'
-import {getAllBar} from '../../../shared/api/bar';
+import LearnItem from '../LearnItemForList/LearnItemForList';
+
+import { changeList } from '../../../redux/utility/utility-slice';
+
+import { getAllBar } from '../../../shared/api/bar';
+
+import {
+  selectList,
+  selectShowList,
+} from '../../../redux/utility/utility-selectors';
 import styles from './bar-list.module.scss';
-import {nanoid} from 'nanoid';
+import { nanoid } from 'nanoid';
 const BarList = () => {
   const [items, setItems] = useState([]);
-  const [showItem, setShowItem] = useState({learnItem: false, cardItem: true});
-  const [radioValue, setRadioValue] = useState('1');
 
+  const dispatch = useDispatch();
   const location = useLocation();
 
+  const valueList = useSelector(selectList);
+  const showList = useSelector(selectShowList);
+
   const radios = [
-    { name: 'Картка', value: '1' },
-    { name: 'Список', value: '2' },
+    { id: nanoid(), name: 'Картка', value: '1' },
+    { id: nanoid(), name: 'Список', value: '2' },
   ];
 
-  const listBox = showItem.cardItem ? styles.listBox : styles.learnListBox;
+  const listBox = showList ? styles.learnListBox : styles.listBox;
 
   useEffect(() => {
     const fetchFilm = async () => {
       try {
         const data = await getAllBar();
-        console.log(data);
         setItems([...data]);
       } catch (error) {
         console.log(error.message);
@@ -33,14 +43,15 @@ const BarList = () => {
     fetchFilm();
   }, []);
 
-  const changeList = (e) => {
-    showItem.learnItem ? setShowItem({learnItem: false, cardItem: true}) : setShowItem({learnItem: true, cardItem: false})
-    setRadioValue(e.currentTarget.value)
-  }
+  const showLearnList = e => {
+    e.currentTarget.value === '1'
+      ? dispatch(changeList({ value: e.currentTarget.value, showList: false }))
+      : dispatch(changeList({ value: e.currentTarget.value, showList: true }));
+  };
 
-  const groupMenuByKitchen = (menuItems) => {
+  const groupMenuByBar = menuItems => {
     const groupedMenu = {};
-    menuItems.forEach((item) => {
+    menuItems.forEach(item => {
       const { ceh } = item;
       if (!groupedMenu[ceh]) {
         groupedMenu[ceh] = [];
@@ -50,15 +61,18 @@ const BarList = () => {
     return groupedMenu;
   };
 
-  const renderKitchenSection = (name, dishes) => {
+  const renderBarSection = (name, dishes) => {
     return (
-      <div key={nanoid()} className={styles.cehGroupBox} >
+      <div key={nanoid()} className={styles.cehGroupBox}>
         <h2 className={styles.titleCeh}>{name}</h2>
         <ul className={listBox}>
-          {dishes.map((dish) => (
+          {dishes.map(dish => (
             <li key={dish._id}>
-              {showItem.cardItem && <BarItem  {...dish} location={location} />}
-              {showItem.learnItem && <LearnItem  {...dish} location={location} />}
+              {showList ? (
+                <LearnItem {...dish} location={location} />
+              ) : (
+                <BarItem {...dish} location={location} />
+              )}
             </li>
           ))}
         </ul>
@@ -66,18 +80,17 @@ const BarList = () => {
     );
   };
 
-  const renderMenuSections = (groupedMenu) => {
-    return Object.keys(groupedMenu).map((name) => {
+  const renderMenuSections = groupedMenu => {
+    return Object.keys(groupedMenu).map(name => {
       const kitchenDishes = groupedMenu[name];
-      return renderKitchenSection(name, kitchenDishes, );
+      return renderBarSection(name, kitchenDishes);
     });
   };
 
-  const groupedMenu = groupMenuByKitchen(items);
-
+  const groupedMenu = groupMenuByBar(items);
 
   return (
-    <div >
+    <div>
       <ButtonGroup className={styles.buttonGroup}>
         {radios.map((radio, idx) => (
           <ToggleButton
@@ -88,15 +101,15 @@ const BarList = () => {
             variant="secondary"
             name="radio"
             value={radio.value}
-            checked={radioValue === radio.value}
-            onChange={(e) => changeList(e)}
+            checked={valueList !== radio.value}
+            onChange={e => showLearnList(e)}
           >
             {radio.name}
           </ToggleButton>
         ))}
       </ButtonGroup>
-      <ul className={styles.listCehGroupBox} >
-      {renderMenuSections(groupedMenu)}
+      <ul className={styles.listCehGroupBox}>
+        {renderMenuSections(groupedMenu)}
       </ul>
     </div>
   );
