@@ -95,13 +95,13 @@ const BarList = () => {
         {radios.map((radio, idx) => (
           <ToggleButton
             className={styles.toggleButton}
-            key={idx}
+            key={radio.id}
             id={`radio-${idx}`}
             type="radio"
             variant="secondary"
             name="radio"
             value={radio.value}
-            checked={valueList !== radio.value}
+            checked={valueList === radio.value}
             onChange={e => showLearnList(e)}
           >
             {radio.name}

@@ -3,7 +3,8 @@ const initialState = {
     ceh: 'Алкогольні коктейлі',
     name: '',
     ingredients: '',
-    alcohol: ''
+    alcohol: '',
+    image: '',
   };
   
-  export default initialState;
+  export default initialState; 

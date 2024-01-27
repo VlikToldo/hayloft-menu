@@ -2,8 +2,8 @@ import axios from "axios";
 
 const instance = axios.create({
     baseURL:
-     'https://backend-loft.onrender.com/api/bar'
-    // 'http://localhost:3001/api/bar'
+    //  'https://backend-loft.onrender.com/api/bar'
+    'http://localhost:3001/api/bar'
 });
 
 export const getAllBar = async () => {
@@ -17,7 +17,11 @@ export const getProductBar = async (productId) => {
 }
 
 export const addBarProduct = async (data) => {
-    const {data: result} = await instance.post('', data);
+    const {data: result} = await instance.post('', data, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        }
+    });
     console.log(result);
     return result;
 }

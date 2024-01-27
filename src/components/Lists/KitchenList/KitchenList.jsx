@@ -42,7 +42,7 @@ const KitchenList = () => {
     fetchFilm();
   }, [setItems]);
 
-  const changeLis = e => {
+  const showLearnList = e => {
     e.currentTarget.value === '1'
       ? dispatch(changeList({ value: e.currentTarget.value, showList: false }))
       : dispatch(changeList({ value: e.currentTarget.value, showList: true }));
@@ -101,7 +101,7 @@ const KitchenList = () => {
             name="radio"
             value={radio.value}
             checked={valueList === radio.value}
-            onChange={e => changeLis(e)}
+            onChange={e => showLearnList(e)}
           >
             {radio.name}
           </ToggleButton>
