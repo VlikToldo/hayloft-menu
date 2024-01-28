@@ -10,6 +10,9 @@
     grid-gap: 10px;
     grid-auto-rows: minmax(200px, auto);
 }
+.listBox > * {
+    max-width: 280px; 
+}
 
 .learnListBox{
     grid-template-columns: 100%;

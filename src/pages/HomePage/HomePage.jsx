@@ -1,6 +1,8 @@
+import Conception from "../../components/Conception/Conception";
+
 const HomePage = () => {
   return <div>
-    Концепція
+    <Conception/>
   </div>;
 };
 

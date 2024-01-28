@@ -1,0 +1,17 @@
+.box{
+    margin-bottom: 15px;
+}
+
+.Title{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    margin-bottom: 20px;
+
+}
+
+.Text{
+    font-family: 'Roboto', sans-serif;
+    &:first-letter {
+        margin-left: 15px;
+      }
+}

@@ -5,15 +5,16 @@
     border: none !important;
     box-shadow: 5px 5px 30px rgb(130, 124, 124);
 }
-.imgContainer{
+.imgContainer {
     position: relative;
-    overflow: hidden;
-    border-radius: 5px;
-}
-.imgProduct{
-    width: 100%; /* Сделать изображение шириной 100% от родительского контейнера */
-    height: auto;
-}
+    border-radius: 5px 5px 0 0;
+    height: 150px;
+    width: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  } 
+  
 .imgContainer::after {
     content: "";
     position: absolute;

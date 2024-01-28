@@ -4,30 +4,20 @@ import styles from './bar-item.module.scss';
 
 import PropTypes from 'prop-types';
 
-const { REACT_APP_FILE_URL } = process.env;
+// const { REACT_APP_FILE_URL } = process.env;
 
 const PageItem = ({ name, _id, ingredients, location, image }) => {
-  const bwrgerPhoto =
-    'https://klike.net/uploads/posts/2019-06/1559545617_2.jpg';
-  // const defaultPhoto =
-  //   'https://cdn-icons-png.flaticon.com/512/4054/4054617.png';
+  // const bwrgerPhoto =
+    // 'https://klike.net/uploads/posts/2019-06/1559545617_2.jpg';
+  const defaultPhoto =
+    'https://cdn-icons-png.flaticon.com/512/4054/4054617.png';
+  const backgroundImage = image ? `url(https://backend-loft.onrender.com/${encodeURIComponent(image)})` : `url(${defaultPhoto})`;
+
   return (
     <>
       <Card className={styles.Card}>
-        <div className={styles.imgContainer}>
-          {image ? (
-            <img
-              className={styles.imgProduct}
-              src={`${REACT_APP_FILE_URL}/${image}`}
-              alt="Продукт"
-            />
-          ) : (
-            <img
-              className={styles.imgProduct}
-              src={bwrgerPhoto}
-              alt="Продукт"
-            />
-          )}
+        <div className={styles.imgContainer} style={{ backgroundImage }}>
+
         </div>
 
         <Card.Body className={styles.cardBody}>

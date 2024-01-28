@@ -3,16 +3,15 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './kitchen-item.module.scss';
 
-const PageItem = ({ name, _id, ingredients, location }) => {
-  const bwrgerPhoto =
-    'https://klike.net/uploads/posts/2019-06/1559545617_2.jpg';
-  // const defaultPhoto =
-  //   'https://cdn-icons-png.flaticon.com/512/4054/4054617.png';
+const PageItem = ({ name, _id, ingredients, location, image }) => {
+  const defaultPhoto =
+    'https://cdn-icons-png.flaticon.com/512/4054/4054617.png';
+  const backgroundImage = image ? `url(https://backend-loft.onrender.com/${encodeURIComponent(image)})` : `url(${defaultPhoto})`;
   return (
     <>
       <Card className={styles.Card}>
-        <div className={styles.imgContainer}>
-          <img className={styles.imgProduct} src={bwrgerPhoto} alt="Продукт" />
+        <div className={styles.imgContainer} style={{ backgroundImage }}>
+
         </div>
 
         <Card.Body className={styles.cardBody}>

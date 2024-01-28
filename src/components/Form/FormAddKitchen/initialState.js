@@ -5,6 +5,7 @@ const initialState = {
     ingredients: '',
     souse: '',
     alergents: '',
+    image: ''
   };
   
   export default initialState;
