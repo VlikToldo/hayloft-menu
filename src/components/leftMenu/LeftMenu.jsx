@@ -17,7 +17,7 @@ const launchButton = {
   left: '0',
   bottom: '0',
   borderRadius: '0 0 0 0',
-  backgroundColor: 'grey',
+  backgroundColor: 'rgb(117 117 117 / 0%)',
 };
 
 function ResponsiveExample() {
@@ -30,7 +30,6 @@ function ResponsiveExample() {
   return (
     <>
       <button as="launchButton" style={launchButton} onClick={handleShow}>
-        {'<'}
       </button>
 
       <Offcanvas
@@ -39,7 +38,7 @@ function ResponsiveExample() {
         onHide={handleClose}
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title className={styles.headerTitleMenu}>HayLofy Menu</Offcanvas.Title>
+          <Offcanvas.Title className={styles.headerTitleMenu}>HayLoft Menu</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Nav className={styles.navLists}>
