@@ -41,7 +41,7 @@ const MoreInfoPage = () => {
       {/* {cardImage ? <div className={styles.imgContainer} style={{ backgroundImage: cardImage }}> 
 
       </div>:null} */}
-        <Card.Img className={styles.cardImage} variant="top" src={cardImage} style={{ maxHeight: '300px', maxHeight: '300px' }} />
+        <Card.Img className={styles.cardImage} variant="top" src={cardImage} style={{ maxWidth: '300px', maxHeight: '300px' }} />
         <Card.Body className={styles.cardBody}>
           <h2>{name}</h2>
           <h4>{ceh}</h4>
