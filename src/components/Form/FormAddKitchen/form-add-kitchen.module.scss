@@ -48,3 +48,19 @@
     background-color: var(--ACCENT-COLOR);
     border-color: var(--ACCENT-COLOR) !important;
 }
+
+.buttonUpload{
+    font-family: var(--family);;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: solid 1px black;
+    border-radius: 5px;
+    width: 40%;
+}
+
+.spanUpload{
+    font-family: var(--family);;
+    margin-left: 10px;
+    font-size: 15px;
+    color: #aaa;
+}

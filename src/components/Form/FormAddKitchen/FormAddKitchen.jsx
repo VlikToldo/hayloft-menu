@@ -4,10 +4,13 @@ import { Button } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import toast, { Toaster } from 'react-hot-toast';
+import { useState, useRef } from 'react';
 
 import { addKitchenProduct } from '../../../shared/api/kitchen';
 
 const FormAddKitchen = () => {
+  const filePickerKitchen = useRef(null);
+  const [selectedFile, setSelectedFile] = useState(null);
   const cehs = [
     { value: 'Холодні закуски', label: 'Холодні закуски' },
     { value: 'Салати', label: 'Салати' },
@@ -33,7 +36,7 @@ const FormAddKitchen = () => {
         .test(
           'FILE_SIZE',
           'Розмір фото не підходить',
-          value => !value || value.size < 1024 * 1024
+          value => !value || value.size < 10 * 1024 * 1024
         )
         .test(
           'FILE_TYPE',
@@ -54,6 +57,17 @@ const FormAddKitchen = () => {
       resetForm();
     },
   });
+
+  const handlePick = () => {
+    filePickerKitchen.current.click();
+  };
+
+  const handleFileChange = e => {
+    const file = e.target.files[0];
+
+    formik.setFieldValue('image', file);
+    setSelectedFile(file);
+  };
   return (
     <div>
       <h2 className={styles.titleForm}>Кухня</h2>
@@ -116,14 +130,35 @@ const FormAddKitchen = () => {
             value={formik.values.alergents}
           />
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <label className={styles.formLabel}>Додати фото</label>
+        <div style={{ marginTop: '10px' }}>
           <input
-            className={styles.formInput}
             type="file"
             name="image"
-            onChange={e => formik.setFieldValue('image', e.target.files[0])}
+            ref={filePickerKitchen}
+            hidden="hidden"
+            onChange={handleFileChange}
           />
+          {!selectedFile ? (
+            <button
+              className={styles.buttonUpload}
+              type="button"
+              onClick={handlePick}
+            >
+              Обрати фото
+            </button>
+          ) : null}
+          <span className={styles.spanUpload}>
+            {selectedFile ? (
+              <img
+                width="50px"
+                style={{ display: 'inline-block', marginBottom: '10px' }}
+                src={URL.createObjectURL(selectedFile)}
+                alt="Завантажене зображення"
+              />
+            ) : (
+              'Файл не завантажено'
+            )}
+          </span>
           {formik.errors.image && <p>{formik.errors.image}</p>}
         </div>
 

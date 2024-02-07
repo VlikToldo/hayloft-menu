@@ -4,10 +4,14 @@ import { Button } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import toast, { Toaster } from 'react-hot-toast';
+import { useState, useRef } from 'react';
 
 import { addBarProduct } from '../../../shared/api/bar';
 
 const FormAddBar = () => {
+  const filePickerBar = useRef(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+
   const cehs = [
     { value: 'Алкогольні коктейлі', label: 'Алкогольні коктейлі' },
     { value: 'Міцні напої', label: 'Міцні напої' },
@@ -19,6 +23,8 @@ const FormAddBar = () => {
     { value: 'Софти', label: 'Софти' },
     { value: 'Лимонади та коктейлі Б/а', label: 'Лимонади та коктейлі Б/а' },
   ];
+
+
 
   const formik = useFormik({
     initialValues: {
@@ -43,7 +49,7 @@ const FormAddBar = () => {
     onSubmit: (values, { resetForm }) => {
       const formData = new FormData();
       Object.entries(values).forEach(([key, value]) => {
-          formData.append(key, value);
+        formData.append(key, value);
       });
       toast.promise(addBarProduct(formData), {
         loading: 'Додаєм...',
@@ -53,6 +59,17 @@ const FormAddBar = () => {
       resetForm();
     },
   });
+
+  const handlePick = () => {
+    filePickerBar.current.click();
+  };
+
+  const handleFileChange = e => {
+    const file = e.target.files[0];
+
+    formik.setFieldValue('image', file);
+    setSelectedFile(file);
+  };
   return (
     <div>
       <h2 className={styles.titleForm}>Бар</h2>
@@ -103,17 +120,38 @@ const FormAddBar = () => {
             className={styles.formInput}
             name="alcohol"
             onChange={formik.handleChange}
-            value={formik.values.ingredients}
+            value={formik.values.alcohol}
           />
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <label className={styles.formLabel}>Додати фото</label>
+        <div style={{ marginTop: '10px' }}>
           <input
-            className={styles.formInput}
             type="file"
             name="image"
-            onChange={e => formik.setFieldValue('image', e.target.files[0])}
+            ref={filePickerBar}
+            hidden="hidden"
+            onChange={handleFileChange}
           />
+          {!selectedFile ? (
+            <button
+              className={styles.buttonUpload}
+              type="button"
+              onClick={handlePick}
+            >
+              Обрати фото
+            </button>
+          ) : null}
+          <span className={styles.spanUpload}>
+            {selectedFile ? (
+              <img
+                width="50px"
+                style={{ display: 'inline-block', marginBottom: '10px' }}
+                src={URL.createObjectURL(selectedFile)}
+                alt="Завантажене зображення"
+              />
+            ) : (
+              'Файл не завантажено'
+            )}
+          </span>
           {formik.errors.image && <p>{formik.errors.image}</p>}
         </div>
 
@@ -121,92 +159,6 @@ const FormAddBar = () => {
           Додати
         </Button>
       </form>
-      {/* <Formik
-        initialValues={{ ...initialState }}
-        onSubmit={async (values, { resetForm }) => {
-          console.log(values);
-          toast.promise(addBarProduct(values), {
-            loading: 'Додаєм...',
-            success: <p>Збережено</p>,
-            error: <p>Виникла помилка при збережені!!</p>,
-          });
-          resetForm();
-        }}
-      >
-        {({ errors, touched }) => (
-          <Form className={styles.form} encType='multipart/form-data'>
-            <label
-              className={classnames(styles.formLabel, {
-                [styles.errorLabel]: errors.name && touched.name,
-              })}
-            >
-              Оберіть цех:
-            </label>
-            <Field className={styles.formInput} as="select" name="ceh">
-              {cehs.map((ceh, index) => (
-                <option key={index} value={ceh.value}>
-                  {ceh.label}
-                </option>
-              ))}
-            </Field>
-            <label
-              className={classnames(styles.formLabel, {
-                [styles.errorLabel]: errors.name && touched.name,
-              })}
-            >
-              
-            </label>
-            <input type="file" className={styles.formInput} name="photo" />
-            {/* Найменування */}
-      {/* <label
-              className={classnames(styles.formLabel, {
-                [styles.errorLabel]: errors.name && touched.name,
-              })}
-            >
-              Найменування
-            </label>
-            {errors.name && touched.name && (
-              <div className={styles.erorrRequired}>{errors.name}</div>
-            )}
-            <Field
-              className={classnames(styles.formInput, {
-                [styles.errorInput]: errors.name && touched.name,
-              })}
-              name="name"
-              validate={validateInput}
-            />
-            {/* Інгрідієнти */}
-      {/* <label
-              className={classnames(styles.formLabel, {
-                [styles.errorLabel]: errors.ingredients && touched.ingredients,
-              })}
-            >
-              Інгрідієнти
-            </label>
-            <Field
-              className={classnames(styles.formInput, {
-                [styles.errorInput]: errors.ingredients && touched.ingredients,
-              })}
-              name="ingredients"
-            />
-            {/* Соуси */}
-      {/* <label
-              className={classnames(styles.formLabel, {
-                [styles.errorLabel]: errors.alcohol && touched.alcohol,
-              })}
-            >
-              Алкоголь
-            </label>
-            <Field
-              className={classnames(styles.formInput, {
-                [styles.errorInput]: errors.alcohol && touched.alcohol,
-              })}
-              name="alcohol"
-            />
-            <Button className={styles.submitBtn} type="submit">Додати</Button>
-          </Form>
-        )}
-      </Formik> */}
       <div>
         <Toaster position="top-center" reverseOrder={false} />
       </div>
