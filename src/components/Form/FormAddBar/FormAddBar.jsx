@@ -72,7 +72,6 @@ const FormAddBar = () => {
   };
   return (
     <div>
-      <h2 className={styles.titleForm}>Бар</h2>
       <form
         className={styles.form}
         onSubmit={formik.handleSubmit}

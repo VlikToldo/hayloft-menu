@@ -7,14 +7,14 @@ const MenuPage = () => {
 
   return (
     <>
-      <Stack className={styles.listBtnMenu} direction="horizontal" gap={2}>
+      {/* <Stack className={styles.listBtnMenu} direction="horizontal" gap={2}>
         <Badge className={styles.pill} pill bg="primary">
           <NavLink to="bar">бар</NavLink>
         </Badge>
         <Badge className={styles.pill} pill bg="primary">
           <NavLink to="kitchen">кухня</NavLink>
         </Badge>
-      </Stack>
+      </Stack> */}
       <Suspense fallback={<div>...Loading</div>}>
         <Outlet />
       </Suspense>

@@ -4,13 +4,35 @@
 }
 
 .btnGroupChangeForm{
-    display: flex;
-    flex-direction: row;
+    position: relative;
+    height: 20px    ;
+    width: 100%;
     gap: 15px;
     margin-bottom: 15px;
 }
 
-.btnChangeForm{
-    background-color: var(--ACCENT-COLOR) !important;
+.btnChangeTooKitchen{
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
     border-color: var(--ACCENT-COLOR) !important;
+}
+.btnChangeToBar{
+    position: absolute;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-color: var(--ACCENT-COLOR) !important;
+}
+
+.spanGo{
+    font-family: sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: normal;
 }

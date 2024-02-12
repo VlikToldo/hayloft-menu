@@ -70,7 +70,6 @@ const FormAddKitchen = () => {
   };
   return (
     <div>
-      <h2 className={styles.titleForm}>Кухня</h2>
       <form
         className={styles.form}
         onSubmit={formik.handleSubmit}

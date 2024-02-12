@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Nav, Collapse, Offcanvas } from 'react-bootstrap';
 import styles from './LeftMenu.module.scss';
 
 const sidebarStyle = {
-  margin: '80px 0 0 0',
   backgroundColor: ' white',
   width: '250px',
 };
@@ -20,12 +19,16 @@ const launchButton = {
   backgroundColor: 'rgb(117 117 117 / 0%)',
 };
 
-function ResponsiveExample() {
+function ResponsiveExample({ showProp, setShowProp }) {
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => {setShow(false); setShowProp(false)};
+  const handleShow = () => {setShow(true); setShowProp(true)};
+
+  useEffect(() => {
+    setShow(showProp); 
+  }, [showProp]);
 
   return (
     <>
