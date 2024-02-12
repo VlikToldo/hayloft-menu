@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import FormAddKitchen from '../../components/Form/FormAddKitchen/FormAddKitchen';
 import FormAddBar from '../../components/Form/FormAddBar/FormAddBar';
-import { Button } from 'react-bootstrap';
 import styles from './add-product.module.scss'
 import svgLeft from './image/back-svgrepo-com.svg';
 import svgRight from './image/back-svgrepo-com (1).svg';

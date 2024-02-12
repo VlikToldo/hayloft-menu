@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
-import { Outlet, NavLink } from 'react-router-dom';
-import {  Badge, Stack } from 'react-bootstrap';
-import styles from './menu-page.module.scss';
+import { Outlet } from 'react-router-dom';
+// import {  Badge, Stack } from 'react-bootstrap';
+// import styles from './menu-page.module.scss';
 
 const MenuPage = () => {
 
