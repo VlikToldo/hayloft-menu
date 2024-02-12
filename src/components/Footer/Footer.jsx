@@ -1,40 +1,45 @@
 import style from './footer.module.scss';
 
+import { NavLink } from 'react-router-dom';
+
 const Footer = () => {
   return (
     <footer className={style.footer}>
       <div className={style.footerContainer}>
         <div className="footer-address">
-          <a lang="en" className={style.footerLogoMobile}>
+          <NavLink to={"/"} className={style.footerLogoMobile}>
             Hay<span className={style.spanWight}>Loft</span>
-          </a>
+          </NavLink>
           <address className={style.footerAddressContainer}>
             <ul className={style.footerAddressList}>
               <li className={style.footerAddressItem}>
-                <a
-                  href="https://goo.gl/maps/L3SfGArejfsZdyfL7"
+                <NavLink
+                to={"/"}
+                  // href="https://goo.gl/maps/L3SfGArejfsZdyfL7"
                   //   target="_blank"
-                  rel="noopener noreferrer"
+                  // rel="noopener noreferrer"
                   className={style.footerAddressMapsLink}
                 >
                   м.Київ, пр-т Академіка Глушкова, 1
-                </a>
+                </NavLink>
               </li>
               <li className={style.footerAddressItem}>
-                <a
+                <NavLink
+                to={"/"}
                 //   href="mailto:info@example.com"
                   className={style.footerAddressLink}
                 >
                   info@example.com
-                </a>
+                </NavLink>
               </li>
               <li className={style.footerAddressItem}>
-                <a
+                <NavLink
+                to={"/"}
                 //   href="tell:+380991111111"
                   className={style.footerAddressLink}
                 >
                   +38 099 111 11 11
-                </a>
+                </NavLink>
               </li>
             </ul>
           </address>
