@@ -1,27 +1,51 @@
-.Card{
-    border: none !important;
+.Card {
+  border: none !important;
+  background-color: transparent !important;
 }
 
-.cardBody{
-    padding: 5px !important;
+.cardBody {
+  padding: 5px !important;
 }
 
 .imgContainer {
-    position: relative;
-    border-radius: 5px 5px 0 0;
-    max-height: 300px !important;
-    max-width: 300px !important;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  } 
+  position: relative;
+  border-radius: 5px 5px 0 0;
+  height: 300px;
+  width: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 
-  .cardImage{
-    position: relative;
-    border-radius: 5px 5px 0 0;
-    max-height: 300px !important;
-    max-width: 300px !important;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
+.cardImage {
+  position: relative;
+  border-radius: 5px 5px 0 0;
+  max-height: 300px !important;
+  max-width: 300px !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.name {
+  font-size: 32px;
+  line-height: 1.33;
+}
+.ceh {
+  font-size: 22px;
+  margin-bottom: 10px;
+  line-height: 1.33;
+}
+.descriptionList{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.description {
+  color: #8c8c8c;
+  font-size: 22px;
+  line-height: 1.33;
+}
+
+.spanDescription {
+  color: black;
+}

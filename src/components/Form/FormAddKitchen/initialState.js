@@ -4,7 +4,7 @@ const initialState = {
     name: '',
     ingredients: '',
     souse: '',
-    alergents: '',
+    allergens: '',
     image: ''
   };
   

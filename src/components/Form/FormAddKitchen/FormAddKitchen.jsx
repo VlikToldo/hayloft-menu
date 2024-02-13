@@ -31,7 +31,7 @@ const FormAddKitchen = () => {
       name: Yup.string().required(),
       ingredients: Yup.string(),
       souse: Yup.string(),
-      alergents: Yup.string(),
+      allergens: Yup.string(),
       image: Yup.mixed()
         .test(
           'FILE_SIZE',
@@ -115,7 +115,7 @@ const FormAddKitchen = () => {
           <label className={styles.formLabel}>Соуси</label>
           <input
             className={styles.formInput}
-            name="alcohol"
+            name="souse"
             onChange={formik.handleChange}
             value={formik.values.souse}
           />
@@ -124,9 +124,9 @@ const FormAddKitchen = () => {
           <label className={styles.formLabel}>Алергени</label>
           <input
             className={styles.formInput}
-            name="alcohol"
+            name="allergens"
             onChange={formik.handleChange}
-            value={formik.values.alergents}
+            value={formik.values.allergens}
           />
         </div>
         <div style={{ marginTop: '10px' }}>
@@ -165,101 +165,6 @@ const FormAddKitchen = () => {
           Додати
         </Button>
       </form>
-      {/* <Formik
-        initialValues={{ ...initialState }}
-        onSubmit={async (values, { resetForm }) => {
-          console.log(values);
-          toast.promise(addKitchenProduct(values), {
-            loading: 'Додаєм...',
-            success: <p>Збережено</p>,
-            error: <p>Виникла помилка при збережені!!</p>,
-          });
-          resetForm();
-        }}
-      >
-        {({ errors, touched }) => (
-          <Form className={styles.form}>
-            <label
-              className={classnames(styles.formLabel, {
-                [styles.errorLabel]: errors.name && touched.name,
-              })}
-            >
-              Оберіть цех:
-            </label>
-            <Field className={styles.formInput} as="select" name="ceh">
-              {cehs.map((ceh, index) => (
-                <option key={index} value={ceh.value}>
-                  {ceh.label}
-                </option>
-              ))}
-            </Field>
-            {/* Найменування */}
-            {/* <label
-              className={classnames(styles.formLabel, {
-                [styles.errorLabel]: errors.name && touched.name,
-              })}
-            >
-              Найменування
-            </label>
-            {errors.name && touched.name && (
-              <div className={styles.erorrRequired}>{errors.name}</div>
-            )}
-            <Field
-              className={classnames(styles.formInput, {
-                [styles.errorInput]: errors.name && touched.name,
-              })}
-              name="name"
-              validate={validateInput}
-            /> */}
-            {/* Інгрідієнти */}
-            {/* <label
-              className={classnames(styles.formLabel, {
-                [styles.errorLabel]: errors.ingredients && touched.ingredients,
-              })}
-            >
-              Інгрідієнти
-            </label>
-            {errors.ingredients && touched.ingredients && (
-              <div className={styles.erorrRequired}>{errors.ingredients}</div>
-            )}
-            <Field
-              className={classnames(styles.formInput, {
-                [styles.errorInput]: errors.ingredients && touched.ingredients,
-              })}
-              name="ingredients"
-              validate={validateInput}
-            /> */}
-            {/* Соуси */}
-            {/* <label
-              className={classnames(styles.formLabel, {
-                [styles.errorLabel]: errors.souse && touched.souse,
-              })}
-            >
-              Соуси
-            </label>
-            <Field
-              className={classnames(styles.formInput, {
-                [styles.errorInput]: errors.souse && touched.souse,
-              })}
-              name="souse"
-            /> */}
-            {/* Алергени */}
-            {/* <label
-              className={classnames(styles.formLabel, {
-                [styles.errorLabel]: errors.alergents && touched.alergents,
-              })}
-            >
-              Алергени
-            </label>
-            <Field
-              className={classnames(styles.formInput, {
-                [styles.errorInput]: errors.alergents && touched.alergents,
-              })}
-              name="alergents"
-            />
-
-            <Button className={styles.submitBtn} type="submit">Додати</Button>
-      //     </Form> */}
       <div>
         <Toaster position="top-center" reverseOrder={false} />
       </div>

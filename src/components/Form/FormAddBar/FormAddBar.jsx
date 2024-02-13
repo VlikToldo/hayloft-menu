@@ -38,7 +38,7 @@ const FormAddBar = () => {
         .test(
           'FILE_SIZE',
           'Розмір фото не підходить',
-          value => !value || value.size < 1024 * 1024
+          value => !value || value.size < 10 * 1024 * 1024
         )
         .test(
           'FILE_TYPE',
