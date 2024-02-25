@@ -11,7 +11,7 @@ const Navbar = () => {
   const [showProp, setShowProp] = useState(false);
 
   return (
-    <>
+    <div className={style.divBox}>
       <header className={style.header}>
         <nav className={style.navHeader}>
           <ul className={style.navList}>
@@ -19,7 +19,7 @@ const Navbar = () => {
               Hay<span className={style.spanBlack}>Loft</span>
               {/* <span className={style.spanTitle}>Version 2.0</span> */}
             </NavLink>
-            <div onClick={() => showProp ? setShowProp(false) : setShowProp(true) }>
+            <div onClick={() => showProp ? setShowProp(false) : setShowProp(true) } style={{'cursor': 'pointer'}}>
               <img src={svgBurger} alt="SVG Burger" />
             </div>
           </ul>
@@ -34,7 +34,7 @@ const Navbar = () => {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 
