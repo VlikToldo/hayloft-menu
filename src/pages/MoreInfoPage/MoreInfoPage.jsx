@@ -30,7 +30,7 @@ const MoreInfoPage = () => {
   }, [productId, location]);
 
   const defaultPhoto =
-    'url(https://cdn-icons-png.flaticon.com/512/4054/4054617.png)';
+    'url(https://static.tildacdn.com/tild6132-3237-4263-a136-326436306336/_.png)';
 
   return (
     <div>

@@ -1,16 +1,33 @@
 .headerTitleMenu{
+    text-align: center;
     font-family: var(--family);
     font-weight: 800;
+    letter-spacing: 0.1rem;
+    color: var(--DARK-PRIMARY-COLOR);
 }
-
+.spanBlack {
+    color: black;
+  }
+// .BodyNavLists{
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
 .navLists{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 100px;
 }
 .title{
     font-family: var(--family);
     font-weight: 700;
+    font-size: large;
+    letter-spacing: 0.2rem;
+    width: 200px;
+    text-align: center;
     border-bottom: solid 1px;
     padding: 5px 5px 5px 3px ;
     &:hover,
@@ -23,10 +40,12 @@
         box-shadow: 0 0 3px 1px;
     }
 }
+
 .subTitle{
     font-family: var(--family);
     width: 100%;
     margin-left: 10px;
+    letter-spacing: 0.2rem;
     font-weight: bold;
     border-bottom: solid 1px;
     padding: 5px 5px 5px 3px ;

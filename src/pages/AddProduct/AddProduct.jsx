@@ -2,8 +2,8 @@ import { useState } from 'react';
 import FormAddKitchen from '../../components/Form/FormAddKitchen/FormAddKitchen';
 import FormAddBar from '../../components/Form/FormAddBar/FormAddBar';
 import styles from './add-product.module.scss'
-import svgLeft from './image/back-svgrepo-com.svg';
-import svgRight from './image/back-svgrepo-com (1).svg';
+import svgLeft from './image/left.svg';
+import svgRight from './image/right.svg';
 const AddProduct = () => {
   const [show, setShow] = useState({
     showFormBar: false,

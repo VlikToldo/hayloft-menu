@@ -7,10 +7,9 @@ import PropTypes from 'prop-types';
 // const { REACT_APP_FILE_URL } = process.env;
 
 const PageItem = ({ name, _id, ingredients, location, image }) => {
-  // const bwrgerPhoto =
-    // 'https://klike.net/uploads/posts/2019-06/1559545617_2.jpg';
+
   const defaultPhoto =
-    'https://cdn-icons-png.flaticon.com/512/4054/4054617.png';
+    'https://static.tildacdn.com/tild6132-3237-4263-a136-326436306336/_.png';
   const backgroundImage = image ? `url(https://backend-loft.onrender.com/${encodeURIComponent(image)})` : `url(${defaultPhoto})`;
 
   return (

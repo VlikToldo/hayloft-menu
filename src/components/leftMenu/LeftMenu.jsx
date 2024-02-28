@@ -5,7 +5,7 @@ import styles from './LeftMenu.module.scss';
 
 const sidebarStyle = {
   backgroundColor: ' white',
-  width: '250px',
+  width: '100%',
 };
 
 const launchButton = {
@@ -41,9 +41,10 @@ function ResponsiveExample({ showProp, setShowProp }) {
         onHide={handleClose}
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title className={styles.headerTitleMenu}>HayLoft Menu</Offcanvas.Title>
+          <Offcanvas.Title className={styles.headerTitleMenu}>Hay<span className={styles.spanBlack}>Loft</span></Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body>
+        <hr style={{margin: '0'}}/>
+        <Offcanvas.Body className={styles.BodyNavLists}>
           <Nav className={styles.navLists}>
             <NavLink onClick={() => setShow(!show)} className={styles.title} to="/">Концепція</NavLink>
             <NavLink className={styles.title}

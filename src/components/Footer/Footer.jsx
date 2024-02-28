@@ -26,15 +26,6 @@ const Footer = () => {
               <li className={style.footerAddressItem}>
                 <NavLink
                 to={"/"}
-                //   href="mailto:info@example.com"
-                  className={style.footerAddressLink}
-                >
-                  info@example.com
-                </NavLink>
-              </li>
-              <li className={style.footerAddressItem}>
-                <NavLink
-                to={"/"}
                 //   href="tell:+380991111111"
                   className={style.footerAddressLink}
                 >
