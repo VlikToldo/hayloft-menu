@@ -5,6 +5,7 @@ const utilitySlice = createSlice({
   initialState: {
     radioValue: '1',
     showList: false,
+    showLeftMenu: false
   },
   reducers: {
     changeList: {
@@ -13,8 +14,14 @@ const utilitySlice = createSlice({
         state.showList = payload.showList;
       },
     },
+    toggleLeftMenu: { 
+      reducer: (state, {payload}) => {
+        console.log(payload);
+        state.showLeftMenu = payload;
+      },
+    },
   },
 });
 
-export const { changeList } = utilitySlice.actions;
+export const { changeList, toggleLeftMenu } = utilitySlice.actions;
 export default utilitySlice.reducer;

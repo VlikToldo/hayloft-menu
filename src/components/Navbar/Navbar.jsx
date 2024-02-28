@@ -1,14 +1,21 @@
-import { Suspense, useState } from 'react';
-
+import { Suspense } from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 import Example from '../leftMenu/LeftMenu';
 import Footer from '../Footer/Footer';
-import svgBurger from './image/burger-menu-svgrepo-com.svg'
+import svgBurger from './image/burger-menu-svgrepo-com.svg';
+
+import { toggleLeftMenu } from '../../redux/utility/utility-slice';
 
 import style from './navbar.module.scss';
 
 const Navbar = () => {
-  const [showProp, setShowProp] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleShow = () => {
+    dispatch(toggleLeftMenu(true));
+  };
 
   return (
     <div className={style.divBox}>
@@ -17,9 +24,8 @@ const Navbar = () => {
           <ul className={style.navList}>
             <NavLink className={style.navLink} to="/">
               Hay<span className={style.spanBlack}>Loft</span>
-              {/* <span className={style.spanTitle}>Version 2.0</span> */}
             </NavLink>
-            <div onClick={() => showProp ? setShowProp(false) : setShowProp(true) } style={{'cursor': 'pointer'}}>
+            <div onClick={handleShow} style={{ cursor: 'pointer' }}>
               <img src={svgBurger} alt="SVG Burger" />
             </div>
           </ul>
@@ -27,7 +33,7 @@ const Navbar = () => {
       </header>
       <main className={style.main}>
         <div className={style.mainBox}>
-          <Example showProp={showProp} setShowProp={setShowProp}/>
+          <Example />
           <Suspense fallback={<div>...Loading</div>}>
             <Outlet />
           </Suspense>
