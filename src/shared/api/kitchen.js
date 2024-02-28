@@ -23,8 +23,7 @@ export const addKitchenProduct = async(data) => {
     return result;
 }
 
-export const deleteKitchenProduct = async () => {
-    const {data: result} = await instance.get('');
-    console.log(result);
+export const deleteKitchenProduct = async (id) => {
+    const {data: result} = await instance.delete(id);
     return result;
 }

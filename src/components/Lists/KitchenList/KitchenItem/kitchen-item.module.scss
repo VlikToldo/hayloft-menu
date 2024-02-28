@@ -2,10 +2,19 @@
     padding: 10px !important;
 }
 .Card{
+    position: relative;
     border: none !important;
     background: #ffffff;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 4px 4px 4px 4px;
+}
+.cardDel{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 15px;
+    height: 10px;
+    z-index: 100;
 }
 .imgContainer {
     position: relative;
@@ -73,3 +82,26 @@
     cursor: pointer;
     background-color: var(--ACCENT-COLOR);
 }
+
+.modalBox{
+    height: auto;
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.modalMain{
+    display: flex;
+    gap:10px;
+    flex-direction: row;
+}
+
+.modaButton{
+    // flex-grow: 1;
+    width: 48%;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+}
+

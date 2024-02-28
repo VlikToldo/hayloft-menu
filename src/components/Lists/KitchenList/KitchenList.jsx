@@ -4,7 +4,11 @@ import { useLocation } from 'react-router-dom';
 import { ToggleButton, ButtonGroup } from 'react-bootstrap';
 import KitchenItem from './KitchenItem/KitchenItem';
 import LearnItem from '../LearnItemForList/LearnItemForList';
-import { getAllKitchen } from '../../../shared/api/kitchen';
+import toast, { Toaster } from 'react-hot-toast';
+import {
+  getAllKitchen,
+  deleteKitchenProduct,
+} from '../../../shared/api/kitchen';
 
 import { changeList } from '../../../redux/utility/utility-slice';
 import {
@@ -42,6 +46,21 @@ const KitchenList = () => {
     fetchFilm();
   }, [setItems]);
 
+  const deletePosition = async id => {
+    await toast.promise(deleteKitchenProduct(id), {
+      loading: 'Видаляєм...',
+      success: <p>Успішно видалено</p>,
+      error: <p>Виникла помилка при видаленні!!</p>,
+    });
+    // .then(() => {
+    //   const data = getAllKitchen();
+    //   setItems([...data]);
+    // })
+    // .catch(error => {
+    //   console.error('Помилка при видаленні:', error);
+    // });
+  };
+
   const showLearnList = e => {
     e.currentTarget.value === '1'
       ? dispatch(changeList({ value: e.currentTarget.value, showList: false }))
@@ -70,7 +89,11 @@ const KitchenList = () => {
               {showList ? (
                 <LearnItem {...dish} location={location} />
               ) : (
-                <KitchenItem {...dish} location={location} />
+                <KitchenItem
+                  {...dish}
+                  deletePosition={deletePosition}
+                  location={location}
+                />
               )}
             </li>
           ))}
@@ -89,28 +112,33 @@ const KitchenList = () => {
   const groupedMenu = groupMenuByKitchen(items);
 
   return (
-    <div>
-      <ButtonGroup className={styles.buttonGroup}>
-        {radios.map((radio, idx) => (
-          <ToggleButton
-            className={styles.toggleButton}
-            key={radio.id}
-            id={`radio-${idx}`}
-            type="radio"
-            variant="secondary"
-            name="radio"
-            value={radio.value}
-            checked={valueList === radio.value}
-            onChange={e => showLearnList(e)}
-          >
-            {radio.name}
-          </ToggleButton>
-        ))}
-      </ButtonGroup>
-      <ul className={styles.listCehGroupBox}>
-        {renderMenuSections(groupedMenu)}
-      </ul>
-    </div>
+    <>
+      <div>
+        <ButtonGroup className={styles.buttonGroup}>
+          {radios.map((radio, idx) => (
+            <ToggleButton
+              className={styles.toggleButton}
+              key={radio.id}
+              id={`radio-${idx}`}
+              type="radio"
+              variant="secondary"
+              name="radio"
+              value={radio.value}
+              checked={valueList === radio.value}
+              onChange={e => showLearnList(e)}
+            >
+              {radio.name}
+            </ToggleButton>
+          ))}
+        </ButtonGroup>
+        <ul className={styles.listCehGroupBox}>
+          {renderMenuSections(groupedMenu)}
+        </ul>
+        <div style={{ zIndex: '2000' }}>
+          <Toaster position="center" reverseOrder={false} />
+        </div>
+      </div>
+    </>
   );
 };
 
