@@ -91,7 +91,7 @@ function ResponsiveExample() {
               Меню
             </NavLink>
             <Collapse in={open}>
-              <div id="example-collapse-link">
+              <div className={styles.subTitleLists} id="example-collapse-link">
                 <div>
                   <NavLink
                     onClick={() => handleClose()}

@@ -29,7 +29,8 @@
     border: solid 1px;
     border-radius: 5px;
     margin-bottom: 10px;
-    height: 40px;
+    height: auto;
+    min-height: 40px;
     padding: 5px;
 }
 

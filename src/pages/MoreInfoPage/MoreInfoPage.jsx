@@ -54,6 +54,7 @@ const MoreInfoPage = () => {
           <Card.Body className={styles.cardBody}>
             <h2 className={styles.name}> {infoProduct.name} </h2>
             <h4 className={styles.ceh}> {infoProduct.ceh} </h4>
+            <hr/>
             <ul className={styles.descriptionList}>
               <li className={styles.description}>
                 Інгрідієнти:{' '}
@@ -61,18 +62,24 @@ const MoreInfoPage = () => {
                   {infoProduct.ingredients}
                 </span>{' '}
               </li>
-              <li className={styles.description}>
+              {infoProduct.souse ?<li className={styles.description}>
                 Соуси:{' '}
                 <span className={styles.spanDescription}>
                   {infoProduct.souse}
                 </span>{' '}
-              </li>
-              <li className={styles.description}>
+              </li> : null}
+              {infoProduct.allergens ? <li className={styles.description}>
                 Алергени:{' '}
                 <span className={styles.spanDescription}>
                   {infoProduct.allergens}
                 </span>
-              </li>
+              </li> : null}
+              {infoProduct.alcohol ? <li className={styles.description}>
+                Алкоголь:{' '}
+                <span className={styles.spanDescription}>
+                  {infoProduct.alcohol}
+                </span>
+              </li> : null}
             </ul>
           </Card.Body>
         </Card>

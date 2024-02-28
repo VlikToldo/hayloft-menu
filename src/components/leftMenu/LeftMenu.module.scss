@@ -41,6 +41,10 @@
     }
 }
 
+.subTitleLists{
+    display: flex;
+    gap: 20px;
+}
 .subTitle{
     font-family: var(--family);
     width: 100%;

@@ -57,6 +57,7 @@ const FormAddBar = () => {
         error: <p>Виникла помилка при збережені!!</p>,
       });
       resetForm();
+      setSelectedFile(null)
     },
   });
 
@@ -106,7 +107,7 @@ const FormAddBar = () => {
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label className={styles.formLabel}>Інгрідієнти</label>
-          <input
+          <textarea
             className={styles.formInput}
             name="ingredients"
             onChange={formik.handleChange}
