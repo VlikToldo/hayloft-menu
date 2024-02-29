@@ -1,23 +1,46 @@
 import { Button, Card } from 'react-bootstrap';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './bar-item.module.scss';
+import Modal from '../../../Modal/Modal';
 
 import PropTypes from 'prop-types';
 
-// const { REACT_APP_FILE_URL } = process.env;
-
-const PageItem = ({ name, _id, ingredients, location, image }) => {
+const PageItem = ({
+  name,
+  _id,
+  ingredients,
+  location,
+  image,
+  deletePosition,
+}) => {
+  const [showModal, setShowModal] = useState(false);
 
   const defaultPhoto =
     'https://static.tildacdn.com/tild6132-3237-4263-a136-326436306336/_.png';
-  const backgroundImage = image ? `url(https://backend-loft.onrender.com/${encodeURIComponent(image)})` : `url(${defaultPhoto})`;
+  const backgroundImage = image
+    ? `url(https://backend-loft.onrender.com/${encodeURIComponent(image)})`
+    : `url(${defaultPhoto})`;
+
+  const modalShow = () => {
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const removePosition = async (id) => {
+    closeModal()
+    await deletePosition(id)
+  }
 
   return (
     <>
       <Card className={styles.Card}>
-        <div className={styles.imgContainer} style={{ backgroundImage }}>
-
-        </div>
+        <button className={styles.cardDel} onClick={modalShow}>
+          &otimes;
+        </button>
+        <div className={styles.imgContainer} style={{ backgroundImage }}></div>
 
         <Card.Body className={styles.cardBody}>
           <Card.Title className={styles.title}>{name}</Card.Title>
@@ -30,6 +53,32 @@ const PageItem = ({ name, _id, ingredients, location, image }) => {
           </Link>
         </Card.Body>
       </Card>
+      {showModal && (
+        <Modal close={closeModal}>
+          <div className={styles.modalBox}>
+            <div className={styles.modalHead}>
+              <span>Бажаєте видалити позицію?</span>
+            </div>
+            <hr />
+            <div className={styles.modalMain}>
+              <button
+                className={styles.modaButton}
+                style={{ backgroundColor: 'green' }}
+                onClick={() => removePosition(_id)}
+              >
+                Так
+              </button>{' '}
+              <button
+                className={styles.modaButton}
+                style={{ backgroundColor: 'red' }}
+                onClick={closeModal}
+              >
+                Скасувати
+              </button>
+            </div>
+          </div>
+        </Modal>
+      )}
     </>
   );
 };

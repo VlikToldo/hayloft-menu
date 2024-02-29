@@ -26,9 +26,8 @@ export const addBarProduct = async (data) => {
     return result;
 }
 
-export const deleteBarProduct = async () => {
-    const {data: result} = await instance.get('');
-    console.log(result);
+export const deleteBarProduct = async (id) => {
+    const {data: result} = await instance.delete(id);
     return result;
 }
 

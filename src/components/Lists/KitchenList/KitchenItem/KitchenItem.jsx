@@ -5,7 +5,14 @@ import PropTypes from 'prop-types';
 import styles from './kitchen-item.module.scss';
 import Modal from '../../../Modal/Modal';
 
-const PageItem = ({ name, _id, ingredients, location, image, deletePosition }) => {
+const PageItem = ({
+  name,
+  _id,
+  ingredients,
+  location,
+  image,
+  deletePosition,
+}) => {
   const [showModal, setShowModal] = useState(false);
 
   const defaultPhoto =
@@ -15,13 +22,15 @@ const PageItem = ({ name, _id, ingredients, location, image, deletePosition }) =
     : `url(${defaultPhoto})`;
 
   const modalShow = () => {
-    // setImageDetails(largeImageURL);
     setShowModal(true);
   };
   const closeModal = () => {
     setShowModal(false);
-    // setImageDetails(null);
   };
+  const removePosition = async (id) => {
+    closeModal()
+    await deletePosition(id)
+  }
   return (
     <>
       <Card className={styles.Card}>
@@ -49,8 +58,20 @@ const PageItem = ({ name, _id, ingredients, location, image, deletePosition }) =
             </div>
             <hr />
             <div className={styles.modalMain}>
-              <button className={styles.modaButton} style={{backgroundColor: 'green'}} onClick={()=>deletePosition(_id)}>Так</button>{' '}
-              <button className={styles.modaButton} style={{backgroundColor: 'red'}} onClick={closeModal}>Скасувати</button>
+              <button
+                className={styles.modaButton}
+                style={{ backgroundColor: 'green' }}
+                onClick={() => removePosition(_id)}
+              >
+                Так
+              </button>{' '}
+              <button
+                className={styles.modaButton}
+                style={{ backgroundColor: 'red' }}
+                onClick={closeModal}
+              >
+                Скасувати
+              </button>
             </div>
           </div>
         </Modal>

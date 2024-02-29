@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { ToggleButton, ButtonGroup } from 'react-bootstrap';
+import toast, { Toaster } from 'react-hot-toast';
 import KitchenItem from './KitchenItem/KitchenItem';
 import LearnItem from '../LearnItemForList/LearnItemForList';
-import toast, { Toaster } from 'react-hot-toast';
 import {
   getAllKitchen,
   deleteKitchenProduct,
@@ -51,14 +51,13 @@ const KitchenList = () => {
       loading: 'Видаляєм...',
       success: <p>Успішно видалено</p>,
       error: <p>Виникла помилка при видаленні!!</p>,
+    })
+    .then((result) => {
+      setItems([...result.products]);
+    })
+    .catch(error => {
+      console.error('Помилка при видаленні:', error);
     });
-    // .then(() => {
-    //   const data = getAllKitchen();
-    //   setItems([...data]);
-    // })
-    // .catch(error => {
-    //   console.error('Помилка при видаленні:', error);
-    // });
   };
 
   const showLearnList = e => {
@@ -134,9 +133,9 @@ const KitchenList = () => {
         <ul className={styles.listCehGroupBox}>
           {renderMenuSections(groupedMenu)}
         </ul>
-        <div style={{ zIndex: '2000' }}>
-          <Toaster position="center" reverseOrder={false} />
-        </div>
+      </div>
+      <div style={{ zIndex: '2000' }}>
+        <Toaster position="center-top" reverseOrder={false} />
       </div>
     </>
   );
