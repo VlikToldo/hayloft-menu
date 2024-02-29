@@ -1,5 +1,5 @@
 import { Button, Card } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './kitchen-item.module.scss';
