@@ -72,7 +72,7 @@ const FormAddBar = () => {
     setSelectedFile(file);
   };
   return (
-    <div>
+    <div className={styles.boxForm}>
       <form
         className={styles.form}
         onSubmit={formik.handleSubmit}

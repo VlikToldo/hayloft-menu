@@ -64,13 +64,28 @@ h2 {
 
 .main {
   flex-grow: 1;
+  display: flex;
+  justify-content: center;
   padding-top: 100px;
   background-color: #f5f4fa;
   min-height: 100vh;
 }
 
 .mainBox {
+  width: 100%;
   height: 100%;
   padding-right: 16px;
   padding-left: 16px;
+}
+
+@media screen and (min-width: 820px) {
+  .mainBox {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .mainBox {
+    max-width: 900px;
+  }
 }

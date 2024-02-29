@@ -1,4 +1,9 @@
+.boxCard{
+  display: flex;
+  justify-content: center;
+}
 .Card {
+  width: 100%;
   border: none !important;
   background-color: transparent !important;
 }
@@ -57,4 +62,10 @@
   font-weight: 400;
   font-size: 14px;
   color: black;
+}
+
+@media screen and (min-width: 600px) {
+  .Card {
+    width: 600px;
+  }
 }

@@ -33,7 +33,7 @@ const MoreInfoPage = () => {
     'url(https://static.tildacdn.com/tild6132-3237-4263-a136-326436306336/_.png)';
 
   return (
-    <div>
+    <div className={styles.boxCard}>
       {infoProduct && (
         <Card className={styles.Card}>
           {!infoProduct.image ? (

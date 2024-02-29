@@ -64,3 +64,14 @@
     font-size: 15px;
     color: #aaa;
 }
+
+
+  @media screen and (min-width: 820px) {
+    .boxForm{
+        display: flex;
+        justify-content: center;
+    }
+    .form {
+      width: 60%;
+    }
+  }

@@ -42,20 +42,21 @@ const BarList = () => {
       }
     };
     fetchFilm();
-  }, []);
+  }, [setItems]);
 
   const deletePosition = async id => {
-    await toast.promise(deleteBarProduct(id), {
-      loading: 'Видаляєм...',
-      success: <p>Успішно видалено</p>,
-      error: <p>Виникла помилка при видаленні!!</p>,
-    })
-    .then((result) => {
-      setItems([...result.products]);
-    })
-    .catch(error => {
-      console.error('Помилка при видаленні:', error);
-    });
+    await toast
+      .promise(deleteBarProduct(id), {
+        loading: 'Видаляєм...',
+        success: <p>Успішно видалено</p>,
+        error: <p>Виникла помилка при видаленні!!</p>,
+      })
+      .then(result => {
+        setItems([...result.products]);
+      })
+      .catch(error => {
+        console.error('Помилка при видаленні:', error);
+      });
   };
 
   const showLearnList = e => {
@@ -110,28 +111,34 @@ const BarList = () => {
 
   return (
     <>
-      <div>
-        <ButtonGroup className={styles.buttonGroup}>
-          {radios.map((radio, idx) => (
-            <ToggleButton
-              className={styles.toggleButton}
-              key={radio.id}
-              id={`radio-${idx}`}
-              type="radio"
-              variant="secondary"
-              name="radio"
-              value={radio.value}
-              checked={valueList === radio.value}
-              onChange={e => showLearnList(e)}
-            >
-              {radio.name}
-            </ToggleButton>
-          ))}
-        </ButtonGroup>
-        <ul className={styles.listCehGroupBox}>
-          {renderMenuSections(groupedMenu)}
-        </ul>
-      </div>
+      {items.length > 0 ? (
+        <div>
+          <ButtonGroup className={styles.buttonGroup}>
+            {radios.map((radio, idx) => (
+              <ToggleButton
+                className={styles.toggleButton}
+                key={radio.id}
+                id={`radio-${idx}`}
+                type="radio"
+                variant="secondary"
+                name="radio"
+                value={radio.value}
+                checked={valueList === radio.value}
+                onChange={e => showLearnList(e)}
+              >
+                {radio.name}
+              </ToggleButton>
+            ))}
+          </ButtonGroup>
+          <div className={styles.listContainer}>
+            <ul className={styles.listCehGroupBox}>
+              {renderMenuSections(groupedMenu)}
+            </ul>
+          </div>
+        </div>
+      ) : (
+        <div className={styles.noEmpty}>Список пустий</div>
+      )}
       <div style={{ zIndex: '2000' }}>
         <Toaster position="center-top" reverseOrder={false} />
       </div>

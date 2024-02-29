@@ -29,10 +29,10 @@ const PageItem = ({
     setShowModal(false);
   };
 
-  const removePosition = async (id) => {
-    closeModal()
-    await deletePosition(id)
-  }
+  const removePosition = async id => {
+    closeModal();
+    await deletePosition(id);
+  };
 
   return (
     <>

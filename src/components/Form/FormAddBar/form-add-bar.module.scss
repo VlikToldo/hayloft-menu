@@ -1,67 +1,77 @@
-.form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-    border-radius: 5px;
-    padding: 10px;
-    width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
 }
-.titleForm{
-    font-family: var(--family);
-    font-weight: 700;
-    margin-bottom: 15px;
+.titleForm {
+  font-family: var(--family);
+  font-weight: 700;
+  margin-bottom: 15px;
 }
-.boxFormInput{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
+.boxFormInput {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
 }
-.formLabel{
-    font-family: var(--family);
-    font-weight: 400;
-    // font-style: italic;
-    margin-bottom: 5px;
-}
-
-.formInput{
-    font-family: var(--family);
-    border: solid 1px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    height: auto;
-    min-height: 40px;
-    padding: 5px;
+.formLabel {
+  font-family: var(--family);
+  font-weight: 400;
+  // font-style: italic;
+  margin-bottom: 5px;
 }
 
-.errorInput{
-    border: solid 1px red ;
-
+.formInput {
+  font-family: var(--family);
+  border: solid 1px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  height: auto;
+  min-height: 40px;
+  padding: 5px;
 }
 
-.erorrRequired{
-    font-family: var(--family);
-    color: red;
+.errorInput {
+  border: solid 1px red;
 }
 
-.submitBtn{
-    font-family: var(--family);
-    background-color: var(--ACCENT-COLOR);
-    border-color: var(--ACCENT-COLOR) !important;
+.erorrRequired {
+  font-family: var(--family);
+  color: red;
 }
 
-.buttonUpload{
-    font-family: var(--family);;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: solid 1px black;
-    border-radius: 5px;
-    width: 40%;
+.submitBtn {
+  font-family: var(--family);
+  background-color: var(--ACCENT-COLOR);
+  border-color: var(--ACCENT-COLOR) !important;
 }
 
-.spanUpload{
-    font-family: var(--family);;
-    margin-left: 10px;
-    font-size: 15px;
-    color: #aaa;
+.buttonUpload {
+  font-family: var(--family);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: solid 1px black;
+  border-radius: 5px;
+  width: 40%;
 }
+
+.spanUpload {
+  font-family: var(--family);
+  margin-left: 10px;
+  font-size: 15px;
+  color: #aaa;
+}
+
+  @media screen and (min-width: 820px) {
+    .boxForm{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .form {
+      width: 60%;
+    }
+  }
