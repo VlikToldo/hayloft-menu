@@ -20,12 +20,12 @@ const AddProduct = () => {
     <div className={styles.formPageBox}>
       <div className={styles.btnGroupChangeForm}>
         {!show.showFormBar && <button className={styles.btnChangeToBar} onClick={openFormBar}>
-          <img src={svgLeft} alt="qwq" />
+          <img src={svgLeft} alt="Left" />
           <span className={styles.spanGo}>Бар</span>
         </button>}
         {!show.showFormKitchen && <button className={styles.btnChangeTooKitchen} onClick={openFormKitchen}>
           <span className={styles.spanGo}>Кухня</span>
-          <img src={svgRight} alt="qwq" />
+          <img src={svgRight} alt="Right" />
         </button>}
       </div>
 
