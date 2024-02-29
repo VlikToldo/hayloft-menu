@@ -81,8 +81,9 @@ const KitchenList = () => {
 
   const renderKitchenSection = (name, dishes) => {
     return (
-      <div className={styles.cehGroupBox} key={nanoid()}>
+      <div key={nanoid()} className={styles.cehGroupBox} >
         <h2 className={styles.titleCeh}>{name}</h2>
+        <hr/>
         <ul className={listBox}>
           {dishes.map(dish => (
             <li key={dish._id}>

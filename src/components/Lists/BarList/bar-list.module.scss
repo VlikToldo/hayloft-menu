@@ -4,20 +4,22 @@
 .cehGroupBox{
     margin-bottom: 20px;
 }
+// .listContainer{
 
-.listContainer{
-    display: grid;
-    place-items: center;
-}
+// }
 .listBox{
-    grid-template-columns: 49%  49%;
-    display: grid;
-    grid-gap: 10px;
-    grid-auto-rows: minmax(200px, auto);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
 }
+
 .listBox > * {
-    max-width: 220px; 
+    // flex-grow: auto;
+    width: 170px; 
 }
+
 
 .learnListBox{
     grid-template-columns: 100%;
@@ -35,6 +37,10 @@
     bottom: 10px;
     left: 15px;
 }
+// .listContainer{
+//     display: flex;
+//     justify-content: center;
+// }
 .toggleButton{
     font-family: var(--family);
     position: absolute;
@@ -49,3 +55,9 @@
     color: #8c8c8c;
     text-align: center;
 }
+
+@media screen and (min-width: 820px) {
+    .listBox{
+        // grid-template-columns: 25%  25% 25% 25%;
+    }
+  }
