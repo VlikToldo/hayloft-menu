@@ -21,7 +21,7 @@ import {
 import styles from './bar-list.module.scss';
 import { nanoid } from 'nanoid';
 const BarList = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(null);
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -126,11 +126,9 @@ const BarList = () => {
     });
   };
 
-  const groupedMenu = groupMenuByBar(items);
-
   return (
     <>
-      {items.length > 0 ? (
+      {items ? (
         <div>
           <ButtonGroup className={styles.buttonGroup}>
             {radios.map((radio, idx) => (
@@ -151,7 +149,7 @@ const BarList = () => {
           </ButtonGroup>
           <div className={styles.listContainer}>
             <ul className={styles.listCehGroupBox}>
-              {renderMenuSections(groupedMenu)}
+              {renderMenuSections(groupMenuByBar(items))}
             </ul>
           </div>
         </div>

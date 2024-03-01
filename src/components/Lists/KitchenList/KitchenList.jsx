@@ -23,7 +23,7 @@ import {
 import styles from './kitchen-list.module.scss';
 import { nanoid } from 'nanoid';
 const KitchenList = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(null);
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -127,11 +127,9 @@ const KitchenList = () => {
     });
   };
 
-  const groupedMenu = groupMenuByKitchen(items);
-
   return (
     <>
-      {items.length > 0 ? (
+      {items ? (
         <div>
           <ButtonGroup className={styles.buttonGroup}>
             {radios.map((radio, idx) => (
@@ -152,7 +150,7 @@ const KitchenList = () => {
           </ButtonGroup>
           <div className={styles.listContainer}>
             <ul className={styles.listCehGroupBox}>
-              {renderMenuSections(groupedMenu)}
+              {renderMenuSections(groupMenuByKitchen(items))}
             </ul>
           </div>
         </div>
