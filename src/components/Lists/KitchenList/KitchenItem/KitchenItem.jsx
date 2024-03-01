@@ -12,7 +12,7 @@ const PageItem = ({
   location,
   image,
   deletePosition,
-  handleScroll
+  handleScroll,
 }) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -22,17 +22,16 @@ const PageItem = ({
     ? `url(https://backend-loft.onrender.com/${encodeURIComponent(image)})`
     : `url(${defaultPhoto})`;
 
-
   const modalShow = () => {
     setShowModal(true);
   };
   const closeModal = () => {
     setShowModal(false);
   };
-  const removePosition = async (id) => {
-    closeModal()
-    await deletePosition(id)
-  }
+  const removePosition = async id => {
+    closeModal();
+    await deletePosition(id);
+  };
   return (
     <>
       <Card className={styles.Card}>

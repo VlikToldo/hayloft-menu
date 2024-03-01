@@ -10,11 +10,14 @@ import {
   deleteKitchenProduct,
 } from '../../../shared/api/kitchen';
 
-import { changeList, handleScrollPositionKitchen } from '../../../redux/utility/utility-slice';
+import {
+  changeList,
+  handleScrollPositionKitchen,
+} from '../../../redux/utility/utility-slice';
 import {
   selectList,
   selectShowList,
-  selectScrollPositionKitchen
+  selectScrollPositionKitchen,
 } from '../../../redux/utility/utility-selectors';
 
 import styles from './kitchen-list.module.scss';
@@ -40,8 +43,8 @@ const KitchenList = () => {
     const fetchPositions = async () => {
       try {
         const data = await getAllKitchen();
-        setItems([...data]);   
-        window.scrollTo(0, scrollPosition);     
+        setItems([...data]);
+        window.scrollTo(0, scrollPosition);
       } catch (error) {
         console.log(error.message);
       }
@@ -50,9 +53,9 @@ const KitchenList = () => {
   }, [setItems, scrollPosition]);
 
   const handleScroll = () => {
-    dispatch(handleScrollPositionKitchen(window.scrollY))
+    dispatch(handleScrollPositionKitchen(window.scrollY));
   };
-  
+
   const deletePosition = async id => {
     await toast
       .promise(deleteKitchenProduct(id), {
@@ -88,14 +91,18 @@ const KitchenList = () => {
 
   const renderKitchenSection = (name, dishes) => {
     return (
-      <div key={nanoid()+2} className={styles.cehGroupBox} >
+      <div key={nanoid() + 2} className={styles.cehGroupBox}>
         <h2 className={styles.titleCeh}>{name}</h2>
-        <hr/>
+        <hr />
         <ul className={listBox}>
           {dishes.map(dish => (
             <li key={dish._id}>
               {showList ? (
-                <LearnItem {...dish} location={location} handleScroll={handleScroll}/>
+                <LearnItem
+                  {...dish}
+                  location={location}
+                  handleScroll={handleScroll}
+                />
               ) : (
                 <KitchenItem
                   {...dish}

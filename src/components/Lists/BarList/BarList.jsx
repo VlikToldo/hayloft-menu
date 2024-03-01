@@ -6,14 +6,17 @@ import toast, { Toaster } from 'react-hot-toast';
 import BarItem from './BarItem/BarItem';
 import LearnItem from '../LearnItemForList/LearnItemForList';
 
-import { changeList, handleScrollPositionBar } from '../../../redux/utility/utility-slice';
+import {
+  changeList,
+  handleScrollPositionBar,
+} from '../../../redux/utility/utility-slice';
 
 import { getAllBar, deleteBarProduct } from '../../../shared/api/bar';
 
 import {
   selectList,
   selectShowList,
-  selectScrollPositionBar
+  selectScrollPositionBar,
 } from '../../../redux/utility/utility-selectors';
 import styles from './bar-list.module.scss';
 import { nanoid } from 'nanoid';
@@ -39,7 +42,7 @@ const BarList = () => {
       try {
         const data = await getAllBar();
         setItems([...data]);
-        window.scrollTo(0, scrollPosition);  
+        window.scrollTo(0, scrollPosition);
       } catch (error) {
         console.log(error.message);
       }
@@ -47,9 +50,8 @@ const BarList = () => {
     fetchPositions();
   }, [setItems, scrollPosition]);
 
-
   const handleScroll = () => {
-    dispatch(handleScrollPositionBar(window.scrollY))
+    dispatch(handleScrollPositionBar(window.scrollY));
   };
 
   const deletePosition = async id => {
@@ -89,12 +91,16 @@ const BarList = () => {
     return (
       <div key={nanoid() + 1} className={styles.cehGroupBox}>
         <h2 className={styles.titleCeh}>{name}</h2>
-        <hr/>
+        <hr />
         <ul className={listBox}>
           {dishes.map(dish => (
             <li key={dish._id}>
               {showList ? (
-                <LearnItem {...dish} location={location} handleScroll={handleScroll}/>
+                <LearnItem
+                  {...dish}
+                  location={location}
+                  handleScroll={handleScroll}
+                />
               ) : (
                 <BarItem
                   {...dish}

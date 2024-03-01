@@ -13,7 +13,7 @@ const PageItem = ({
   location,
   image,
   deletePosition,
-  handleScroll
+  handleScroll,
 }) => {
   const [showModal, setShowModal] = useState(false);
 
