@@ -44,13 +44,14 @@ const KitchenList = () => {
       try {
         const data = await getAllKitchen();
         setItems([...data]);
+        setTimeout(() => {
+          window.scrollTo(0, scrollPosition);
+        }, 0);  
       } catch (error) {
         console.log(error.message);
       }
     };
-    fetchPositions().then(() => {
-      window.scrollTo(0, scrollPosition);
-    });;
+    fetchPositions()
   }, [setItems, scrollPosition]);
 
   const handleScroll = () => {

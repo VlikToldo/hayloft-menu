@@ -46,10 +46,12 @@ const BarList = () => {
         console.log(error.message);
       }
     };
-    fetchPositions().then(() => {
+    fetchPositions()
+  }, [setItems]);
+
+  window.onload = () => {
     window.scrollTo(0, scrollPosition);
-  });;
-  }, [setItems, scrollPosition]);
+  };
 
   const handleScroll = () => {
     dispatch(handleScrollPositionBar(window.scrollY));
