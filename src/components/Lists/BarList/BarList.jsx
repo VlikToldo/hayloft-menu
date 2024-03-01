@@ -47,6 +47,7 @@ const BarList = () => {
     fetchPositions();
   }, [setItems, scrollPosition]);
 
+
   const handleScroll = () => {
     dispatch(handleScrollPositionBar(window.scrollY))
   };
