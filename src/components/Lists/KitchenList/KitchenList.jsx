@@ -47,7 +47,7 @@ const KitchenList = () => {
       }
     };
     fetchPositions();
-  }, [setItems]);
+  }, [setItems, scrollPosition]);
 
   const handleScroll = () => {
     dispatch(handleScrollPositionKitchen(window.scrollY))
