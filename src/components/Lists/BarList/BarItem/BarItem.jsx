@@ -13,6 +13,7 @@ const PageItem = ({
   location,
   image,
   deletePosition,
+  handleScroll
 }) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -46,7 +47,7 @@ const PageItem = ({
           <Card.Title className={styles.title}>{name}</Card.Title>
           <span className={styles.spanText}>Склад: </span>
           <Card.Text className={styles.text}>{ingredients}</Card.Text>
-          <Link to={`${_id}`} state={{ from: location }}>
+          <Link to={`${_id}`} state={{ from: location }} onClick={handleScroll}>
             <Button className={styles.btnDetailes} variant="primary" size="sm">
               Повна інформація
             </Button>

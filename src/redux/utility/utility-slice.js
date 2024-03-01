@@ -5,7 +5,9 @@ const utilitySlice = createSlice({
   initialState: {
     radioValue: '1',
     showList: false,
-    showLeftMenu: false
+    showLeftMenu: false,
+    scrollPositionKitchen: 0,
+    scrollPositionBar: 0,
   },
   reducers: {
     changeList: {
@@ -20,8 +22,20 @@ const utilitySlice = createSlice({
         state.showLeftMenu = payload;
       },
     },
+    handleScrollPositionKitchen: { 
+      reducer: (state, {payload}) => {
+        console.log(payload);
+        state.scrollPositionKitchen = payload;
+      },
+    },
+    handleScrollPositionBar: { 
+      reducer: (state, {payload}) => {
+        console.log(payload);
+        state.scrollPositionBar = payload;
+      },
+    },
   },
 });
 
-export const { changeList, toggleLeftMenu } = utilitySlice.actions;
+export const { changeList, toggleLeftMenu, handleScrollPositionKitchen, handleScrollPositionBar } = utilitySlice.actions;
 export default utilitySlice.reducer;

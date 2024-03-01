@@ -6,13 +6,14 @@ import toast, { Toaster } from 'react-hot-toast';
 import BarItem from './BarItem/BarItem';
 import LearnItem from '../LearnItemForList/LearnItemForList';
 
-import { changeList } from '../../../redux/utility/utility-slice';
+import { changeList, handleScrollPositionBar } from '../../../redux/utility/utility-slice';
 
 import { getAllBar, deleteBarProduct } from '../../../shared/api/bar';
 
 import {
   selectList,
   selectShowList,
+  selectScrollPositionBar
 } from '../../../redux/utility/utility-selectors';
 import styles from './bar-list.module.scss';
 import { nanoid } from 'nanoid';
@@ -24,6 +25,7 @@ const BarList = () => {
 
   const valueList = useSelector(selectList);
   const showList = useSelector(selectShowList);
+  const scrollPosition = useSelector(selectScrollPositionBar);
 
   const radios = [
     { id: nanoid(), name: 'Картка', value: '1' },
@@ -33,16 +35,21 @@ const BarList = () => {
   const listBox = showList ? styles.learnListBox : styles.listBox;
 
   useEffect(() => {
-    const fetchFilm = async () => {
+    const fetchPositions = async () => {
       try {
         const data = await getAllBar();
         setItems([...data]);
+        window.scrollTo(0, scrollPosition);  
       } catch (error) {
         console.log(error.message);
       }
     };
-    fetchFilm();
+    fetchPositions();
   }, [setItems]);
+
+  const handleScroll = () => {
+    dispatch(handleScrollPositionBar(window.scrollY))
+  };
 
   const deletePosition = async id => {
     await toast
@@ -79,17 +86,19 @@ const BarList = () => {
 
   const renderBarSection = (name, dishes) => {
     return (
-      <div key={nanoid()} className={styles.cehGroupBox}>
+      <div key={nanoid() + 1} className={styles.cehGroupBox}>
         <h2 className={styles.titleCeh}>{name}</h2>
+        <hr/>
         <ul className={listBox}>
           {dishes.map(dish => (
             <li key={dish._id}>
               {showList ? (
-                <LearnItem {...dish} location={location} />
+                <LearnItem {...dish} location={location} handleScroll={handleScroll}/>
               ) : (
                 <BarItem
                   {...dish}
                   deletePosition={deletePosition}
+                  handleScroll={handleScroll}
                   location={location}
                 />
               )}

@@ -1,5 +1,5 @@
 import { Button, Card } from 'react-bootstrap';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './kitchen-item.module.scss';
@@ -12,6 +12,7 @@ const PageItem = ({
   location,
   image,
   deletePosition,
+  handleScroll
 }) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -20,6 +21,7 @@ const PageItem = ({
   const backgroundImage = image
     ? `url(https://backend-loft.onrender.com/${encodeURIComponent(image)})`
     : `url(${defaultPhoto})`;
+
 
   const modalShow = () => {
     setShowModal(true);
@@ -43,7 +45,7 @@ const PageItem = ({
           <Card.Title className={styles.title}>{name}</Card.Title>
           <span className={styles.spanText}>Склад: </span>
           <Card.Text className={styles.text}>{ingredients}</Card.Text>
-          <Link to={`${_id}`} state={{ from: location }}>
+          <Link to={`${_id}`} state={{ from: location }} onClick={handleScroll}>
             <Button className={styles.btnDetailes} size="sm">
               Повна інформація
             </Button>

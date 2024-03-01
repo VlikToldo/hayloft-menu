@@ -8,16 +8,16 @@
 
 // }
 .listBox{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-gap: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .listBox > * {
     // flex-grow: auto;
-    width: 170px; 
+    // width: 170px; 
 }
 
 
