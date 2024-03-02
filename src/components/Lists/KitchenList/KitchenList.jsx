@@ -46,7 +46,7 @@ const KitchenList = () => {
         setItems([...data]);
         setTimeout(() => {
           window.scrollTo(0, scrollPosition);
-        }, 1500);  
+        }, 500);  
       } catch (error) {
         console.log(error.message);
       }

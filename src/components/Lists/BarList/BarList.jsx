@@ -42,16 +42,15 @@ const BarList = () => {
       try {
         const data = await getAllBar();
         setItems([...data]);
+        setTimeout(() => {
+          window.scrollTo(0, scrollPosition);
+        }, 500);  
       } catch (error) {
         console.log(error.message);
       }
     };
     fetchPositions()
   }, [setItems]);
-
-  window.onload = () => {
-    window.scrollTo(0, scrollPosition);
-  };
 
   const handleScroll = () => {
     dispatch(handleScrollPositionBar(window.scrollY));
