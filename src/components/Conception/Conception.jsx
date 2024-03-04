@@ -6,7 +6,7 @@ const Conception = () => {
   return (
     <>
       <div className={style.box}>
-      <img src="https://drive.google.com/uc?export=view&id=1hEGaEDhtWEmENlwfnnYCMGi7VFXuYlw2" />
+      <img src="https://drive.google.com/uc?export=view&id=1hEGaEDhtWEmENlwfnnYCMGi7VFXuYlw2" alt='photo'/>
         <h2 className={style.Title}>КОНЦЕПЦІЯ</h2>
         <p className={style.Text}>
           Ласкаво просимо в Хейлофт 2.0 - оазис природи та вишуканості, де
