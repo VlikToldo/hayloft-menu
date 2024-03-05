@@ -20,7 +20,7 @@ const PageItem = ({
   const defaultPhoto =
     'https://static.tildacdn.com/tild6132-3237-4263-a136-326436306336/_.png';
   const backgroundImage = image
-    ? `url(https://backend-loft.onrender.com/${encodeURIComponent(image)})`
+    ? `url(https://storage.cloud.google.com/hayloftmenubucket/${image})`
     : `url(${defaultPhoto})`;
 
   const modalShow = () => {

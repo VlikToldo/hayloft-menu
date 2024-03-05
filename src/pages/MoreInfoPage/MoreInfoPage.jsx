@@ -54,11 +54,10 @@ const MoreInfoPage = () => {
             <div
               className={styles.imgContainer}
               style={{
-                backgroundImage: `url(https://backend-loft.onrender.com/${encodeURIComponent(
-                  infoProduct.image
-                )})`,
+                backgroundImage: `url(https://storage.cloud.google.com/hayloftmenubucket/${infoProduct.image})`,
               }}
             ></div>
+            
           )}
           <Card.Body className={styles.cardBody}>
             <h2 className={styles.name}> {infoProduct.name} </h2>
