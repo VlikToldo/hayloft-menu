@@ -30,12 +30,9 @@ const MoreInfoPage = () => {
     };
     getProduct();
   }, [productId, location]);
-//    'url(https://static.tildacdn.com/tild6132-3237-4263-a136-326436306336/_.png)';
-
 
   const defaultPhoto =
     `url(https://static.tildacdn.com/tild6132-3237-4263-a136-326436306336/_.png)`;
-   // https://storage.googleapis.com/hayloftmenubucket/1709644351922-916256172_%C3%90%C2%A1%C3%90%C2%BD%C3%90%C2%B8%C3%90%C2%BC%C3%90%C2%BE%C3%90%C2%BA%20%C3%91%C2%8D%C3%90%C2%BA%C3%91%C2%80%C3%90%C2%B0%C3%90%C2%BD%C3%90%C2%B0%202024-02-28%20%C3%90%C2%B2%2015.26.21.png
   return (
     <div className={styles.boxCard}>
       {infoProduct && (

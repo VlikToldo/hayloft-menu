@@ -56,8 +56,8 @@
     text-align: center;
 }
 
-@media screen and (min-width: 820px) {
-    .listBox{
-        // grid-template-columns: 25%  25% 25% 25%;
+@media screen and (max-width: 375px) {
+    .listBox {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     }
   }

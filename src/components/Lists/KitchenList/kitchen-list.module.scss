@@ -50,3 +50,9 @@
     text-align: center;
 }
 
+@media screen and (max-width: 375px) {
+    .listBox {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+  }
+
