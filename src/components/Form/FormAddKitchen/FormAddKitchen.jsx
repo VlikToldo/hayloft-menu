@@ -28,7 +28,7 @@ const FormAddKitchen = () => {
       ...initialState,
     },
     validationSchema: Yup.object({
-      name: Yup.string().required(),
+      name: Yup.string().required('Назва позиції є обов`язковою'),
       ingredients: Yup.string(),
       souse: Yup.string(),
       allergens: Yup.string(),
@@ -92,15 +92,15 @@ const FormAddKitchen = () => {
           </select>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <label className={styles.formLabel}>Найменування</label>
+          <label className={ `${styles.formLabel}  ${formik.touched.name ? styles.errorLable : ''}`}>Найменування</label>
           <input
-            className={styles.formInput}
+            className={`${styles.formInput}  ${formik.touched.name ? styles.errorInput : ''}`}
             name="name"
             onChange={formik.handleChange}
             value={formik.values.name}
           />
           {formik.errors.name && formik.touched.name && (
-            <div className={styles.error}>{formik.errors.name}</div>
+            <div className={styles.erorrRequired}>{formik.errors.name}</div>
           )}
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>

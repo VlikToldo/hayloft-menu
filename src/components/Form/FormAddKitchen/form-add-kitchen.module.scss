@@ -21,6 +21,7 @@
     font-weight: 400;
     // font-style: italic;
     margin-bottom: 5px;
+    transition: all 0.1s ease;
 }
 
 .formInput{
@@ -31,11 +32,15 @@
     height: auto;
     min-height: 40px;
     padding: 5px;
+    transition: all 0.1s ease;
 }
+
+.errorLable{
+    color: red;
+  }
 
 .errorInput{
     border: solid 1px red ;
-
 }
 
 .erorrRequired{
@@ -43,6 +48,7 @@
     font-style: italic;
     color: red;
 }
+
 .submitBtn{
     font-family: var(--family);
     background-color: var(--ACCENT-COLOR);
