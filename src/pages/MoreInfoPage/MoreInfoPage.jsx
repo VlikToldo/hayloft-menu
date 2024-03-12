@@ -31,8 +31,7 @@ const MoreInfoPage = () => {
     getProduct();
   }, [productId, location]);
 
-  const defaultPhoto =
-    `url(https://static.tildacdn.com/tild6132-3237-4263-a136-326436306336/_.png)`;
+  const defaultPhoto = `url(https://static.tildacdn.com/tild6132-3237-4263-a136-326436306336/_.png)`;
   return (
     <div className={styles.boxCard}>
       {infoProduct && (
@@ -56,19 +55,36 @@ const MoreInfoPage = () => {
                 backgroundImage: `url(https://storage.googleapis.com/hayloftmenubucket/${infoProduct.image})`,
               }}
             ></div>
-            
           )}
           <Card.Body className={styles.cardBody}>
             <h2 className={styles.name}> {infoProduct.name} </h2>
             <h4 className={styles.ceh}> {infoProduct.ceh} </h4>
             <hr />
             <ul className={styles.descriptionList}>
-              <li className={styles.description}>
-                Інгрідієнти:{' '}
-                <span className={styles.spanDescription}>
-                  {infoProduct.ingredients}
-                </span>{' '}
-              </li>
+              {infoProduct.amount ? (
+                <li className={styles.description}>
+                  Вихід:{' '}
+                  <span className={styles.spanDescription}>
+                    {infoProduct.amount}гр.
+                  </span>{' '}
+                </li>
+              ) : null}
+              {infoProduct.country ? (
+                <li className={styles.description}>
+                  Країна:{' '}
+                  <span className={styles.spanDescription}>
+                    {infoProduct.country}
+                  </span>{' '}
+                </li>
+              ) : null}
+              {infoProduct.ingredients ? (
+                <li className={styles.description}>
+                  Інгрідієнти:{' '}
+                  <span className={styles.spanDescription}>
+                    {infoProduct.ingredients}
+                  </span>{' '}
+                </li>
+              ) : null}
               {infoProduct.souse ? (
                 <li className={styles.description}>
                   Соуси:{' '}
@@ -90,6 +106,14 @@ const MoreInfoPage = () => {
                   Алкоголь:{' '}
                   <span className={styles.spanDescription}>
                     {infoProduct.alcohol}
+                  </span>
+                </li>
+              ) : null}
+              {infoProduct.description ? (
+                <li className={styles.description}>
+                  Опис:{' '}
+                  <span className={styles.spanDescription}>
+                    {infoProduct.description}
                   </span>
                 </li>
               ) : null}

@@ -17,6 +17,18 @@
   height: 10px;
   z-index: 100;
 }
+
+.spanAmount{
+  position: absolute;
+  top: 130px;
+  right: 5px;
+  z-index: 100;
+  font-family: var(--family);
+  font-weight: 400;
+  font-size: 10px;
+  color: white;
+}
+
 .imgContainer {
   position: relative;
   border-radius: 5px 5px 0 0;

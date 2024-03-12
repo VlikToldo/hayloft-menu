@@ -30,9 +30,36 @@
     border-radius: 5px;
     margin-bottom: 10px;
     height: auto;
+    width: 100%;
     min-height: 40px;
     padding: 5px;
     transition: all 0.1s ease;
+}
+.formInputAmountSpan {
+    position: relative;
+    width: 100%;
+  
+    &::before {
+      content: "гр.";
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      height: 38px;
+      width: 40px;
+      display: flex;
+      background-color: #d4d2d094;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0 5px 5px 0;
+    }
+  }
+.formInputIngredients{
+  height: 80px;
+  line-height: 20px;
+}
+
+.formInputDescription{
+    height: 120px;
 }
 
 .errorLable{

@@ -1,12 +1,24 @@
+
+.filterSelect {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #9c27b0;
+    color: white;
+    padding: 10px;
+    border: none;
+    width: 40px;
+    border-radius: 20px; 
+    cursor: pointer;
+  }
+  
 .listCehGroupBox:last-child{
     margin-bottom: 50px;
 }
 .cehGroupBox{
     margin-bottom: 20px;
 }
-// .listContainer{
 
-// }
 .listBox{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));

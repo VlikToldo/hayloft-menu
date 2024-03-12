@@ -106,11 +106,22 @@ const FormAddKitchen = () => {
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label className={styles.formLabel}>Інгрідієнти</label>
           <textarea
-            className={styles.formInput}
+            className={styles.formInput  + ' ' + styles.formInputIngredients}
             name="ingredients"
             onChange={formik.handleChange}
             value={formik.values.ingredients}
           />
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <label className={styles.formLabel}>Загальний вихід</label>
+          <span className={styles.formInputAmountSpan}>
+          <input
+            className={styles.formInput}
+            name="amount"
+            onChange={formik.handleChange}
+            value={formik.values.amount}
+          />
+          </span>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label className={styles.formLabel}>Соуси</label>
@@ -128,6 +139,15 @@ const FormAddKitchen = () => {
             name="allergens"
             onChange={formik.handleChange}
             value={formik.values.allergens}
+          />
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <label className={styles.formLabel}>Опис</label>
+          <textarea
+            className={styles.formInput   + ' ' + styles.formInputDescription}
+            name="description"
+            onChange={formik.handleChange}
+            value={formik.values.description}
           />
         </div>
         <div style={{ marginTop: '10px' }}>

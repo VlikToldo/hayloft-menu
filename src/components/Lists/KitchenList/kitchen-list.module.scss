@@ -1,58 +1,73 @@
-.listCehGroupBox:last-child{
-    margin-bottom: 50px;
+.filterSelect {
+  position: sticky;
+  top: 100px;
+  left: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #9c27b0;
+  color: white;
+  padding: 10px;
+  border: none;
+  width: 40px;
+  border-radius: 20px; 
+  cursor: pointer;
+  z-index: 1;
 }
-.cehGroupBox{
-    margin-bottom: 20px;
+
+.listCehGroupBox:last-child {
+  margin-bottom: 50px;
+}
+.cehGroupBox {
+  margin-bottom: 20px;
 }
 // .listContainer{
 
 // }
-.listBox{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    grid-gap: 10px;
-    justify-content: center;
-    align-items: center;
+.listBox {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
 .listBox > * {
-
 }
 
-.learnListBox{
-    grid-template-columns: 100%;
-    display: grid;
-    grid-gap: 10px;
+.learnListBox {
+  grid-template-columns: 100%;
+  display: grid;
+  grid-gap: 10px;
 }
-.titleCeh{
-    font-family: var(--family);
-    font-weight: 700;
-    margin-bottom: 10px;
+.titleCeh {
+  font-family: var(--family);
+  font-weight: 700;
+  margin-bottom: 10px;
 }
-.buttonGroup{
-    position: fixed;
-    z-index: 799;
-    bottom: 10px;
-    left: 15px;
+.buttonGroup {
+  position: fixed;
+  z-index: 799;
+  bottom: 10px;
+  left: 15px;
 }
-.toggleButton{
-    font-family: var(--family);
-    position: absolute;
-    padding:1px 30px 1px 30px !important;
-    border-radius: 10px;
+.toggleButton {
+  font-family: var(--family);
+  position: absolute;
+  padding: 1px 30px 1px 30px !important;
+  border-radius: 10px;
 }
 
-.noEmpty{
-    font-family: var(--family);
-    font-size: 22px;
-    font-weight: 500;
-    color: #8c8c8c;
-    text-align: center;
+.noEmpty {
+  font-family: var(--family);
+  font-size: 22px;
+  font-weight: 500;
+  color: #8c8c8c;
+  text-align: center;
 }
 
 @media screen and (max-width: 375px) {
-    .listBox {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    }
+  .listBox {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   }
-
+}

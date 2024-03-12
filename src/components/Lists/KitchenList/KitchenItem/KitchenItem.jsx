@@ -9,6 +9,8 @@ const PageItem = ({
   name,
   _id,
   ingredients,
+  description,
+  amount,
   location,
   image,
   deletePosition,
@@ -38,12 +40,13 @@ const PageItem = ({
         <button className={styles.cardDel} onClick={modalShow}>
           &otimes;
         </button>
+        {amount && <span className={styles.spanAmount}>{amount}гр.</span>}
         <div className={styles.imgContainer} style={{ backgroundImage }}></div>
 
         <Card.Body className={styles.cardBody}>
           <Card.Title className={styles.title}>{name}</Card.Title>
           <span className={styles.spanText}>Склад: </span>
-          <Card.Text className={styles.text}>{ingredients}</Card.Text>
+          <Card.Text className={styles.text}>{ingredients ? ingredients : description}</Card.Text>
           <Link to={`${_id}`} state={{ from: location }} onClick={handleScroll}>
             <Button className={styles.btnDetailes} size="sm">
               Повна інформація

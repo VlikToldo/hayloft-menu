@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { ToggleButton, ButtonGroup } from 'react-bootstrap';
@@ -27,6 +27,7 @@ const KitchenList = () => {
 
   const dispatch = useDispatch();
   const location = useLocation();
+  const selectRef = useRef(null);
 
   const valueList = useSelector(selectList);
   const showList = useSelector(selectShowList);
@@ -35,6 +36,17 @@ const KitchenList = () => {
   const radios = [
     { id: nanoid(), name: 'Картка', value: '1' },
     { id: nanoid(), name: 'Список', value: '2' },
+  ];
+  const cehs = [
+    { value: 'Холодні закуски', label: 'Холодні закуски' },
+    { value: 'Салати', label: 'Салати' },
+    { value: 'Гарячі закуски', label: 'Гарячі закуски' },
+    { value: 'Перші страви', label: 'Перші страви' },
+    { value: 'Burgers', label: 'Бургери' },
+    { value: 'Шашлики та стейки', label: 'Шашлики та стейки' },
+    { value: 'Гарніри', label: 'Гарніри' },
+    { value: 'Дитяче меню', label: 'Дитяче меню' },
+    { value: 'Десерти', label: 'Десерти' },
   ];
 
   const listBox = showList ? styles.learnListBox : styles.listBox;
@@ -46,16 +58,24 @@ const KitchenList = () => {
         setItems([...data]);
         setTimeout(() => {
           window.scrollTo(0, scrollPosition);
-        }, 200);  
+        }, 200);
       } catch (error) {
         console.log(error.message);
       }
     };
-    fetchPositions()
+    fetchPositions();
   }, [setItems, scrollPosition]);
 
   const handleScroll = () => {
     dispatch(handleScrollPositionKitchen(window.scrollY));
+  };
+
+  const handleSelectChange = event => {
+    const { value } = event.target;
+    const selectedElement = document.getElementById(value);
+    if (selectedElement) {
+      selectedElement.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const deletePosition = async id => {
@@ -93,7 +113,7 @@ const KitchenList = () => {
 
   const renderKitchenSection = (name, dishes) => {
     return (
-      <div key={nanoid() + 2} className={styles.cehGroupBox}>
+      <div id={name} key={nanoid() + 2} className={styles.cehGroupBox}>
         <h2 className={styles.titleCeh}>{name}</h2>
         <hr />
         <ul className={listBox}>
@@ -131,6 +151,13 @@ const KitchenList = () => {
     <>
       {items ? (
         <div>
+          <select className={styles.filterSelect} ref={selectRef} onChange={handleSelectChange}>
+            {cehs.map(({ value, label }) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </select>
           <ButtonGroup className={styles.buttonGroup}>
             {radios.map((radio, idx) => (
               <ToggleButton

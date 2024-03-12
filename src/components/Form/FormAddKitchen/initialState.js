@@ -3,8 +3,10 @@ const initialState = {
     ceh: 'Холодні закуски',
     name: '',
     ingredients: '',
+    amount:'',
     souse: '',
     allergens: '',
+    description: '',
     image: ''
   };
   

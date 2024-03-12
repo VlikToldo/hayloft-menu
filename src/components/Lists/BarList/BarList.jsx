@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { ToggleButton, ButtonGroup } from 'react-bootstrap';
@@ -25,6 +25,7 @@ const BarList = () => {
 
   const dispatch = useDispatch();
   const location = useLocation();
+  const selectRef = useRef(null);
 
   const valueList = useSelector(selectList);
   const showList = useSelector(selectShowList);
@@ -33,6 +34,27 @@ const BarList = () => {
   const radios = [
     { id: nanoid(), name: 'Картка', value: '1' },
     { id: nanoid(), name: 'Список', value: '2' },
+  ];
+
+  const cehs = [
+    { value: 'Алкогольні коктейлі', label: 'Алкогольні коктейлі' },
+    { value: 'Віскі', label: 'Віскі' },
+    { value: 'Ром', label: 'Ром' },
+    { value: 'Джин', label: 'Джин' },
+    { value: 'Коньяк та Бренді', label: 'Коньяк та Бренді' },
+    { value: 'Текіла', label: 'Текіла' },
+    { value: 'Вермут', label: 'Вермут' },
+    { value: 'Біттер', label: 'Біттер' },
+    { value: 'Абсент', label: 'Абсент' },
+    { value: 'Лікери', label: 'Лікери' },
+    { value: 'Настоянки', label: 'Настоянки' },
+    { value: 'Пиво', label: 'Пиво' },
+    { value: 'Вино червоне', label: 'Вино червоне' },
+    { value: 'Вино біле', label: 'Вино біле' },
+    { value: 'Вино безалкогольне', label: 'Вино безалкогольне' },
+    { value: 'Ігристе', label: 'Ігристе' },
+    { value: 'Софти', label: 'Софти' },
+    { value: 'Лимонади та коктейлі Б/а', label: 'Лимонади та коктейлі Б/а' },
   ];
 
   const listBox = showList ? styles.learnListBox : styles.listBox;
@@ -44,14 +66,20 @@ const BarList = () => {
         setItems([...data]);
         setTimeout(() => {
           window.scrollTo(0, scrollPosition);
-        }, 200);  
+        }, 200);
       } catch (error) {
         console.log(error.message);
       }
     };
     fetchPositions();
   }, [setItems, scrollPosition]);
-
+  const handleSelectChange = event => {
+    const { value } = event.target;
+    const selectedElement = document.getElementById(value);
+    if (selectedElement) {
+      selectedElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   const handleScroll = () => {
     dispatch(handleScrollPositionBar(window.scrollY));
   };
@@ -91,7 +119,7 @@ const BarList = () => {
 
   const renderBarSection = (name, dishes) => {
     return (
-      <div key={nanoid() + 1} className={styles.cehGroupBox}>
+      <div id={name} key={nanoid() + 1} className={styles.cehGroupBox}>
         <h2 className={styles.titleCeh}>{name}</h2>
         <hr />
         <ul className={listBox}>
@@ -129,6 +157,13 @@ const BarList = () => {
     <>
       {items ? (
         <div>
+          <select className={styles.filterSelect} ref={selectRef} onChange={handleSelectChange}>
+            {cehs.map(({ value, label }) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </select>
           <ButtonGroup className={styles.buttonGroup}>
             {radios.map((radio, idx) => (
               <ToggleButton

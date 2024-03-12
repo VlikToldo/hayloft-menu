@@ -14,17 +14,24 @@ const FormAddBar = () => {
 
   const cehs = [
     { value: 'Алкогольні коктейлі', label: 'Алкогольні коктейлі' },
-    { value: 'Міцні напої', label: 'Міцні напої' },
+    { value: 'Віскі', label: 'Віскі' },
+    { value: 'Ром', label: 'Ром' },
+    { value: 'Джин', label: 'Джин' },
+    { value: 'Коньяк та Бренді', label: 'Коньяк та Бренді' },
+    { value: 'Текіла', label: 'Текіла' },
+    { value: 'Вермут', label: 'Вермут' },
+    { value: 'Біттер', label: 'Біттер' },
+    { value: 'Абсент', label: 'Абсент' },
+    { value: 'Лікери', label: 'Лікери' },
     { value: 'Настоянки', label: 'Настоянки' },
     { value: 'Пиво', label: 'Пиво' },
     { value: 'Вино червоне', label: 'Вино червоне' },
     { value: 'Вино біле', label: 'Вино біле' },
+    { value: 'Вино безалкогольне', label: 'Вино безалкогольне' },
     { value: 'Ігристе', label: 'Ігристе' },
     { value: 'Софти', label: 'Софти' },
     { value: 'Лимонади та коктейлі Б/а', label: 'Лимонади та коктейлі Б/а' },
   ];
-
-
 
   const formik = useFormik({
     initialValues: {
@@ -57,7 +64,7 @@ const FormAddBar = () => {
         error: <p>Виникла помилка при збережені!!</p>,
       });
       resetForm();
-      setSelectedFile(null)
+      setSelectedFile(null);
     },
   });
 
@@ -71,6 +78,38 @@ const FormAddBar = () => {
     formik.setFieldValue('image', file);
     setSelectedFile(file);
   };
+
+  const checkCehsWine = () => {
+    switch (formik.values.ceh) {
+      case 'Ігристе':
+        return true;
+      case 'Вино червоне':
+        return true;
+      case 'Вино біле':
+        return true;
+      case 'Віскі':
+        return true;
+      case 'Ром':
+        return true;
+      case 'Джин':
+        return true;
+      case 'Текіла':
+        return true;
+      case 'Коньяк та Бренді':
+        return true;
+      case 'Абсент':
+        return true;
+      case 'Вермут':
+        return true;
+      case 'Біттер':
+        return true;
+      case 'Лікери':
+        return true;
+
+      default:
+        return false;
+    }
+  };
   return (
     <div className={styles.boxForm}>
       <form
@@ -79,7 +118,7 @@ const FormAddBar = () => {
         encType="multipart/form-data"
       >
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <label className={styles.formLabel}>Оберіть цех:</label>
+          <label className={styles.formLabel}>Оберіть категорію:</label>
           <select
             className={styles.formInput}
             name="ceh"
@@ -94,9 +133,17 @@ const FormAddBar = () => {
           </select>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <label className={`${styles.formLabel}  ${formik.touched.name ? styles.errorLable : ''}`}>Найменування</label>
+          <label
+            className={`${styles.formLabel}  ${
+              formik.touched.name ? styles.errorLable : ''
+            }`}
+          >
+            Найменування
+          </label>
           <input
-            className={`${styles.formInput}  ${formik.touched.name ? styles.errorInput : ''}`}
+            className={`${styles.formInput}  ${
+              formik.touched.name ? styles.errorInput : ''
+            }`}
             name="name"
             onChange={formik.handleChange}
             value={formik.values.name}
@@ -105,22 +152,55 @@ const FormAddBar = () => {
             <div className={styles.erorrRequired}>{formik.errors.name}</div>
           )}
         </div>
+        {checkCehsWine() && (
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <label className={styles.formLabel}>Країна</label>
+            <input
+              className={styles.formInput}
+              name="country"
+              onChange={formik.handleChange}
+              value={formik.values.country}
+            />
+          </div>
+        )}
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label className={styles.formLabel}>Інгрідієнти</label>
           <textarea
-            className={styles.formInput}
+            className={styles.formInput + ' ' + styles.formInputIngredients}
             name="ingredients"
             onChange={formik.handleChange}
             value={formik.values.ingredients}
           />
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <label className={styles.formLabel}>Алкоголь</label>
-          <input
-            className={styles.formInput}
-            name="alcohol"
+          <label className={styles.formLabel}>Загальний вихід</label>
+          <span className={styles.formInputAmountSpan}>
+            <input
+              className={styles.formInput}
+              name="amount"
+              onChange={formik.handleChange}
+              value={formik.values.amount}
+            />
+          </span>
+        </div>
+        {formik.values.ceh === 'Алкогольні коктейлі' && (
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <label className={styles.formLabel}>Алкоголь</label>
+            <input
+              className={styles.formInput}
+              name="alcohol"
+              onChange={formik.handleChange}
+              value={formik.values.alcohol}
+            />
+          </div>
+        )}
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <label className={styles.formLabel}>Опис</label>
+          <textarea
+            className={styles.formInput + ' ' + styles.formInputDescription}
+            name="description"
             onChange={formik.handleChange}
-            value={formik.values.alcohol}
+            value={formik.values.description}
           />
         </div>
         <div style={{ marginTop: '10px' }}>
