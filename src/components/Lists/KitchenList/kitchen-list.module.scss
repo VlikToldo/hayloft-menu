@@ -1,7 +1,12 @@
 .filterSelect {
-  position: sticky;
-  top: 100px;
-  left: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  white-space: nowrap;
+  margin-left: 5px;
+  text-align: center;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -9,7 +14,8 @@
   color: white;
   padding: 10px;
   border: none;
-  width: 40px;
+  max-width: auto;
+  height: 38px;
   border-radius: 20px; 
   cursor: pointer;
   z-index: 1;
@@ -48,14 +54,17 @@
 .buttonGroup {
   position: fixed;
   z-index: 799;
-  bottom: 10px;
+  bottom: 15px;
   left: 15px;
 }
 .toggleButton {
+  display: flex;
+  align-items: center;
   font-family: var(--family);
   position: absolute;
   padding: 1px 30px 1px 30px !important;
-  border-radius: 10px;
+  border-radius: 20px;
+  height: 38px;
 }
 
 .noEmpty {
@@ -69,5 +78,11 @@
 @media screen and (max-width: 375px) {
   .listBox {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .filterSelect{
+      max-width: 100px;
   }
 }

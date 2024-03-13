@@ -153,7 +153,7 @@ const KitchenList = () => {
         <div>
           <select className={styles.filterSelect} ref={selectRef} onChange={handleSelectChange}>
             {cehs.map(({ value, label }) => (
-              <option key={value} value={value}>
+              <option title='Фільтр' key={value} value={value}>
                 {label}
               </option>
             ))}
