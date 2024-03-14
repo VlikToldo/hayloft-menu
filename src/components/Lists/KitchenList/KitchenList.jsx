@@ -67,7 +67,7 @@ const KitchenList = () => {
   }, [setItems, scrollPosition]);
 
   const handleScroll = () => {
-    dispatch(handleScrollPositionKitchen(window.scrollY));
+    dispatch(handleScrollPositionKitchen(window.scrollY - 20));
   };
 
   const handleSelectChange = event => {

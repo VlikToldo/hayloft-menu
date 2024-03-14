@@ -1,12 +1,16 @@
 .filterSelect {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
+  text-align: center;
   text-overflow: ellipsis; 
   white-space: nowrap;
   margin-left: 5px;
-  text-align: center;
   position: fixed;
   bottom: 15px;
-  right: 15px;
+  right: 16px;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -55,7 +59,7 @@
   position: fixed;
   z-index: 799;
   bottom: 15px;
-  left: 15px;
+  left: 16px;
 }
 .toggleButton {
   display: flex;
@@ -84,5 +88,8 @@
 @media screen and (max-width: 500px) {
   .filterSelect{
       max-width: 100px;
+  }
+  .toggleButton {
+    padding: 1px 20px 1px 20px !important;
   }
 }

@@ -81,7 +81,7 @@ const BarList = () => {
     }
   };
   const handleScroll = () => {
-    dispatch(handleScrollPositionBar(window.scrollY));
+    dispatch(handleScrollPositionBar(window.scrollY - 20));
   };
 
   const deletePosition = async id => {
