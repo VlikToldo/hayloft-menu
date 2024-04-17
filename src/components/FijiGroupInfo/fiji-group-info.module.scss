@@ -1,0 +1,12 @@
+.box {
+  font-family: var(--family);
+  height: 50vh;
+  margin-bottom: 20px;
+}
+
+.firstBox {
+  background-image: url('./svg/fiji.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

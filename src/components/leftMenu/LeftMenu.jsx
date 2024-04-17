@@ -38,7 +38,7 @@ function ResponsiveExample() {
     dispatch(toggleLeftMenu(true));
   };
 
-  //Свайп влво для закриття
+  //Свайп в ліво для закриття
   const handleTouchStart = event => {
     setStartX(event.touches[0].clientX);
   };
@@ -82,6 +82,13 @@ function ResponsiveExample() {
             >
               Концепція
             </NavLink>
+            {/* <NavLink
+              onClick={() => handleClose()}
+              className={styles.title}
+              to="fiji-group"
+            >
+              Fiji Group
+            </NavLink> */}
             <NavLink
               className={styles.title}
               onClick={() => setOpen(!open)}

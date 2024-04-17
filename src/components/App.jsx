@@ -9,6 +9,7 @@ const MoreInfoPage = lazy(() => import('../pages/MoreInfoPage/MoreInfoPage'));
 const KitchenList = lazy(() => import('./Lists/KitchenList/KitchenList'));
 const BarList = lazy(() => import('./Lists/BarList/BarList'));
 const AddProduct = lazy(() => import('../pages/AddProduct/AddProduct'));
+const FijiGroup = lazy(() => import('../pages/FijiGroupPage/FijiGroupPage'));
 
 export const App = () => {
   return (
@@ -22,6 +23,7 @@ export const App = () => {
           <Route path="kitchen/:productId" element={<MoreInfoPage />} />
         </Route>
         <Route path="add-product" element={<AddProduct />} />
+        <Route path="fiji-group" element={<FijiGroup />} />
       </Route>
     </Routes>
   );
