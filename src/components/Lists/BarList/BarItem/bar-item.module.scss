@@ -52,13 +52,14 @@
   font-family: var(--family);
   font-weight: 700;
   font-size: 0.9em;
-  line-height: 1.2em;
-  height: 1.6em;
+  line-height: 1.4em;
+  height: 2.6em; 
   margin-bottom: 5px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 2; 
   overflow: hidden;
+  text-overflow: ellipsis; 
   max-width: 100%;
 }
 .spanText {
