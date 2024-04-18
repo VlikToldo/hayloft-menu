@@ -47,7 +47,7 @@ const FormAddKitchen = () => {
     onSubmit: (values, { resetForm }) => {
       const formData = new FormData();
       Object.entries(values).forEach(([key, value]) => {
-          formData.append(key, value);
+        formData.append(key, value);
       });
       toast.promise(addKitchenProduct(formData), {
         loading: 'Додаєм...',
@@ -55,7 +55,7 @@ const FormAddKitchen = () => {
         error: <p>Виникла помилка при збережені!!</p>,
       });
       resetForm();
-      setSelectedFile(null)
+      setSelectedFile(null);
     },
   });
 
@@ -92,9 +92,17 @@ const FormAddKitchen = () => {
           </select>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <label className={ `${styles.formLabel}  ${formik.touched.name ? styles.errorLable : ''}`}>Найменування</label>
+          <label
+            className={`${styles.formLabel}  ${
+              formik.touched.name ? styles.errorLable : ''
+            }`}
+          >
+            Найменування
+          </label>
           <input
-            className={`${styles.formInput}  ${formik.touched.name ? styles.errorInput : ''}`}
+            className={`${styles.formInput}  ${
+              formik.touched.name ? styles.errorInput : ''
+            }`}
             name="name"
             onChange={formik.handleChange}
             value={formik.values.name}
@@ -106,7 +114,7 @@ const FormAddKitchen = () => {
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label className={styles.formLabel}>Інгрідієнти</label>
           <textarea
-            className={styles.formInput  + ' ' + styles.formInputIngredients}
+            className={styles.formInput + ' ' + styles.formInputIngredients}
             name="ingredients"
             onChange={formik.handleChange}
             value={formik.values.ingredients}
@@ -115,12 +123,12 @@ const FormAddKitchen = () => {
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label className={styles.formLabel}>Загальний вихід</label>
           <span className={styles.formInputAmountSpan}>
-          <input
-            className={styles.formInput}
-            name="amount"
-            onChange={formik.handleChange}
-            value={formik.values.amount}
-          />
+            <input
+              className={styles.formInput}
+              name="amount"
+              onChange={formik.handleChange}
+              value={formik.values.amount}
+            />
           </span>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -144,7 +152,7 @@ const FormAddKitchen = () => {
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label className={styles.formLabel}>Опис</label>
           <textarea
-            className={styles.formInput   + ' ' + styles.formInputDescription}
+            className={styles.formInput + ' ' + styles.formInputDescription}
             name="description"
             onChange={formik.handleChange}
             value={formik.values.description}
@@ -166,7 +174,15 @@ const FormAddKitchen = () => {
             >
               Обрати фото
             </button>
-          ) : null}
+          ) : (
+            <button
+              className={styles.buttonUpload}
+              type="button"
+              onClick={handlePick}
+            >
+              Змінити фото
+            </button>
+          )}
           <span className={styles.spanUpload}>
             {selectedFile ? (
               <img

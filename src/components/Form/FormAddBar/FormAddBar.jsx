@@ -219,7 +219,15 @@ const FormAddBar = () => {
             >
               Обрати фото
             </button>
-          ) : null}
+          ) : (
+            <button
+              className={styles.buttonUpload}
+              type="button"
+              onClick={handlePick}
+            >
+              Змінити фото
+            </button>
+          )}
           <span className={styles.spanUpload}>
             {selectedFile ? (
               <img
