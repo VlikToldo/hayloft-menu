@@ -8,7 +8,6 @@ const instance = axios.create({
 
 export const getAllKitchen = async () => {
   const { data: result } = await instance.get('');
-  console.log(result);
   return result;
 };
 
@@ -19,7 +18,15 @@ export const getProductKitchen = async productId => {
 
 export const addKitchenProduct = async data => {
   const { data: result } = await instance.post('/', data);
-  console.log(result);
+  return result;
+};
+
+export const updateKitchenProduct = async (productId, data) => {
+  const { data: result } = await instance.put(`/${productId}`, data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
   return result;
 };
 

@@ -2,8 +2,7 @@ import axios from 'axios';
 
 const instance = axios.create({
   baseURL: 'https://backend-loft.onrender.com/api/bar',
-  
-  // 'http://localhost:3001/api/bar'
+  // baseURL: 'http://localhost:3001/api/bar'
 });
 
 export const getAllBar = async () => {
@@ -22,7 +21,15 @@ export const addBarProduct = async data => {
       'Content-Type': 'multipart/form-data',
     },
   });
-  console.log(result);
+  return result;
+};
+
+export const updateBarProduct = async (productId, data) => {
+  const { data: result } = await instance.put(`/${productId}`, data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
   return result;
 };
 

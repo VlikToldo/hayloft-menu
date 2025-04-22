@@ -18,19 +18,16 @@ const utilitySlice = createSlice({
     },
     toggleLeftMenu: { 
       reducer: (state, {payload}) => {
-        console.log(payload);
         state.showLeftMenu = payload;
       },
     },
     handleScrollPositionKitchen: { 
       reducer: (state, {payload}) => {
-        console.log(payload);
         state.scrollPositionKitchen = payload;
       },
     },
     handleScrollPositionBar: { 
       reducer: (state, {payload}) => {
-        console.log(payload);
         state.scrollPositionBar = payload;
       },
     },

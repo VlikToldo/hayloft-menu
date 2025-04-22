@@ -6,9 +6,9 @@ import * as Yup from 'yup';
 import toast, { Toaster } from 'react-hot-toast';
 import { useState, useRef } from 'react';
 
-import { addBarProduct } from '../../../shared/api/bar';
+import { addBarProduct, updateBarProduct } from '../../../shared/api/bar';
 
-const FormAddBar = () => {
+const FormAddBar = ({ editData = null, onUpdate }) => {
   const filePickerBar = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -18,6 +18,7 @@ const FormAddBar = () => {
     { value: 'Ром', label: 'Ром' },
     { value: 'Джин', label: 'Джин' },
     { value: 'Коньяк та Бренді', label: 'Коньяк та Бренді' },
+    { value: 'Горілка', label: 'Горілка' },
     { value: 'Текіла', label: 'Текіла' },
     { value: 'Вермут', label: 'Вермут' },
     { value: 'Біттер', label: 'Біттер' },
@@ -36,35 +37,48 @@ const FormAddBar = () => {
   const formik = useFormik({
     initialValues: {
       ...initialState,
+      ...editData,
     },
+    enableReinitialize: true,
     validationSchema: Yup.object({
       name: Yup.string().required('Назва позиції є обов`язковою'),
       ingredients: Yup.string(),
       alcohol: Yup.string(),
       image: Yup.mixed()
-        .test(
-          'FILE_SIZE',
-          'Розмір фото не підходить',
-          value => !value || value.size < 10 * 1024 * 1024
-        )
-        .test(
-          'FILE_TYPE',
-          'Скоріш за все це не фотографія (',
-          value => !value || ['image/png', 'image/jpeg'].includes(value.type)
-        ),
-    }),
-    onSubmit: (values, { resetForm }) => {
+      .test('FILE_SIZE', 'Розмір фото не підходить', value => {
+        if (typeof value !== 'string')
+          return !value || value.size < 10 * 1024 * 1024; // Якщо це лінк — ок
+        return true;
+      })
+      .test('FILE_TYPE', 'Скоріш за все це не фотографія (', value => {
+        if (typeof value !== 'string')
+          return !value || ['image/png', 'image/jpeg'].includes(value.type);
+        return true;
+      }),
+    }), 
+    onSubmit: async (values, { resetForm }) => {
       const formData = new FormData();
       Object.entries(values).forEach(([key, value]) => {
         formData.append(key, value);
       });
-      toast.promise(addBarProduct(formData), {
-        loading: 'Додаєм...',
-        success: <p>Збережено</p>,
-        error: <p>Виникла помилка при збережені!!</p>,
-      });
-      resetForm();
-      setSelectedFile(null);
+
+      const request = editData
+        ? updateBarProduct(editData._id, formData)
+        : addBarProduct(formData);
+
+      try {
+        await toast.promise(request, {
+          loading: editData ? 'Оновлюємо...' : 'Додаємо...',
+          success: <p>{editData ? 'Оновлено' : 'Збережено'}</p>,
+          error: <p>Сталася помилка!</p>,
+        });
+
+        resetForm();
+        setSelectedFile(null);
+        onUpdate();
+      } catch (error) {
+        console.error('Помилка при збереженні/оновленні:', error);
+      }
     },
   });
 
@@ -246,6 +260,13 @@ const FormAddBar = () => {
         <Button className={styles.submitBtn} type="submit">
           Додати
         </Button>
+        {editData && <Button
+          onClick={onUpdate}
+          className={styles.stopBtn}
+          variant="secondary"
+        >
+          Відмінити
+        </Button>}
       </form>
       <div>
         <Toaster position="top-center" reverseOrder={false} />

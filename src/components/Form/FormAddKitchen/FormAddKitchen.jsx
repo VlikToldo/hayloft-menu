@@ -6,9 +6,12 @@ import * as Yup from 'yup';
 import toast, { Toaster } from 'react-hot-toast';
 import { useState, useRef } from 'react';
 
-import { addKitchenProduct } from '../../../shared/api/kitchen';
+import {
+  addKitchenProduct,
+  updateKitchenProduct,
+} from '../../../shared/api/kitchen';
 
-const FormAddKitchen = () => {
+const FormAddKitchen = ({ editData = null, onUpdate }) => {
   const filePickerKitchen = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const cehs = [
@@ -26,6 +29,7 @@ const FormAddKitchen = () => {
   const formik = useFormik({
     initialValues: {
       ...initialState,
+      ...editData,
     },
     validationSchema: Yup.object({
       name: Yup.string().required('Назва позиції є обов`язковою'),
@@ -33,29 +37,40 @@ const FormAddKitchen = () => {
       souse: Yup.string(),
       allergens: Yup.string(),
       image: Yup.mixed()
-        .test(
-          'FILE_SIZE',
-          'Розмір фото не підходить',
-          value => !value || value.size < 10 * 1024 * 1024
-        )
-        .test(
-          'FILE_TYPE',
-          'Скоріш за все це не фотографія (',
-          value => !value || ['image/png', 'image/jpeg'].includes(value.type)
-        ),
+        .test('FILE_SIZE', 'Розмір фото не підходить', value => {
+          if (typeof value !== 'string')
+            return !value || value.size < 10 * 1024 * 1024; // Якщо це лінк — ок
+          return true;
+        })
+        .test('FILE_TYPE', 'Скоріш за все це не фотографія (', value => {
+          if (typeof value !== 'string')
+            return !value || ['image/png', 'image/jpeg'].includes(value.type);
+          return true;
+        }),
     }),
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: async (values, { resetForm }) => {
       const formData = new FormData();
       Object.entries(values).forEach(([key, value]) => {
         formData.append(key, value);
       });
-      toast.promise(addKitchenProduct(formData), {
-        loading: 'Додаєм...',
-        success: <p>Збережено</p>,
-        error: <p>Виникла помилка при збережені!!</p>,
-      });
-      resetForm();
-      setSelectedFile(null);
+
+      const request = editData
+        ? updateKitchenProduct(editData._id, formData) // треба створити цю функцію
+        : addKitchenProduct(formData);
+
+      try {
+        await toast.promise(request, {
+          loading: editData ? 'Оновлюємо...' : 'Додаємо...',
+          success: <p>{editData ? 'Оновлено' : 'Збережено'}</p>,
+          error: <p>Сталася помилка!</p>,
+        });
+
+        resetForm();
+        setSelectedFile(null);
+        onUpdate();
+      } catch (error) {
+        console.error('Помилка при збереженні/оновленні:', error);
+      }
     },
   });
 
@@ -201,6 +216,13 @@ const FormAddKitchen = () => {
         <Button className={styles.submitBtn} type="submit">
           Додати
         </Button>
+        {editData && <Button
+          onClick={onUpdate}
+          className={styles.stopBtn}
+          variant="secondary"
+        >
+          Відмінити
+        </Button>}
       </form>
       <div>
         <Toaster position="top-center" reverseOrder={false} />

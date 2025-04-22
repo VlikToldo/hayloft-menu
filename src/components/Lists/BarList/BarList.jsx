@@ -42,6 +42,7 @@ const BarList = () => {
     { value: 'Ром', label: 'Ром' },
     { value: 'Джин', label: 'Джин' },
     { value: 'Коньяк та Бренді', label: 'Коньяк та Бренді' },
+    { value: 'Горілка', label: 'Горілка' },
     { value: 'Текіла', label: 'Текіла' },
     { value: 'Вермут', label: 'Вермут' },
     { value: 'Біттер', label: 'Біттер' },

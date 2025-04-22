@@ -82,6 +82,10 @@
     border-color: var(--ACCENT-COLOR) !important;
 }
 
+.stopBtn{
+  margin-top: 10px;
+}
+
 .buttonUpload{
     font-family: var(--family);;
     padding: 10px;
@@ -99,12 +103,13 @@
 }
 
 
-  @media screen and (min-width: 820px) {
-    .boxForm{
-        display: flex;
-        justify-content: center;
-    }
-    .form {
-      width: 60%;
-    }
+@media screen and (min-width: 820px) {
+  .boxForm {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
+  .form {
+    width: 60%;
+  }
+}

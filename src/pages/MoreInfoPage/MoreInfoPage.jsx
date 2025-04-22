@@ -4,16 +4,19 @@ import Card from 'react-bootstrap/Card';
 import { getProductBar } from '../../shared/api/bar';
 import { getProductKitchen } from '../../shared/api/kitchen';
 import svgLeft from '../AddProduct/image/left.svg';
+import ApdBarForm from '../../components/Form/FormAddBar/FormAddBar';
+import ApdKitchenForm from '../../components/Form/FormAddKitchen/FormAddKitchen';
 
 import styles from './more-info-page.module.scss';
 
 const MoreInfoPage = () => {
   const [infoProduct, setInfoProduct] = useState(null);
   const { productId } = useParams();
+  const [editOpen, setEditOpen] = useState(false);
+
   const location = useLocation();
 
   const backLink = useRef(location.state?.from ?? '/');
-
   useEffect(() => {
     window.scrollTo(0, 0);
     const getProduct = async () => {
@@ -29,20 +32,32 @@ const MoreInfoPage = () => {
       }
     };
     getProduct();
-  }, [productId, location]);
+  }, [productId, location, editOpen, setEditOpen]);
+
+  const updatEditOpen = () => {
+    setEditOpen(!editOpen);
+  };
 
   const defaultPhoto = `url(https://static.tildacdn.com/tild6132-3237-4263-a136-326436306336/_.png)`;
+
   return (
     <div className={styles.boxCard}>
-      {infoProduct && (
+      {infoProduct && !editOpen && (
         <Card className={styles.Card}>
-          <Link className={styles.backLink} to={backLink.current}>
-            <img src={svgLeft} alt="Left" />
-            <span className={styles.spanGo}>Повернутися до списку</span>
-          </Link>
-          {/* <button className={styles.backBtn}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              
+            }}
+          >
+            <Link className={styles.backLink} to={backLink.current}>
+              <img src={svgLeft} alt="Left" />
+              <span className={styles.spanGo}>Повернутися до списку</span>
+            </Link>
+            <div className={styles.edit} onClick={updatEditOpen}>Редагувати</div>
+          </div>
 
-      </button> */}
           {!infoProduct.image ? (
             <div
               className={styles.imgContainer}
@@ -120,6 +135,18 @@ const MoreInfoPage = () => {
             </ul>
           </Card.Body>
         </Card>
+      )}
+      {infoProduct && infoProduct.type === 'bar' && editOpen && (
+        <ApdBarForm
+          editData={infoProduct}
+          onUpdate={updatEditOpen}
+        ></ApdBarForm>
+      )}
+      {infoProduct && infoProduct.type === 'kitchen' && editOpen && (
+        <ApdKitchenForm
+          editData={infoProduct}
+          onUpdate={updatEditOpen}
+        ></ApdKitchenForm>
       )}
     </div>
   );

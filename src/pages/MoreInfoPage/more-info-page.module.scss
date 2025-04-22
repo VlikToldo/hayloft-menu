@@ -21,6 +21,30 @@
   border-color: var(--ACCENT-COLOR) !important;
 }
 
+.edit{
+  position: absolute;
+  top: -30px;
+  right: 0;
+  display: inline-block;
+  text-align: center;
+  padding: 5px 16px 8px 16px;
+  font-size: 14px;
+  color: #333;  
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    background-color: #e6e6e6;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  &:active {
+    background-color: #dcdcdc;
+  }
+}
+
 .spanGo{
   font-family: var(--family);
   font-weight: 300;
