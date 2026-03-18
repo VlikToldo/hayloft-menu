@@ -13,7 +13,13 @@ const FormAddBar = ({ editData = null, onUpdate }) => {
   const [selectedFile, setSelectedFile] = useState(null);
 
   const cehs = [
-    { value: 'Алкогольні коктейлі', label: 'Алкогольні коктейлі' },
+    { value: 'Rom Cocktails', label: 'Rom Cocktails' },
+    { value: 'Whiskey Cocktails', label: 'Whiskey Cocktails' },
+    { value: 'Gin Cocktails', label: 'Gin Cocktails' },
+    { value: 'Tequila Cocktails', label: 'Tequila Cocktails' },
+    { value: 'Vodka & Pisco Cocktails', label: 'Vodka & Pisco Cocktails' },
+    { value: 'Easy & Sparkling Cocktails', label: 'Easy & Sparkling Cocktails' },
+    { value: 'Лимонади та коктейлі Б/а', label: 'Лимонади та коктейлі Б/а' },
     { value: 'Віскі', label: 'Віскі' },
     { value: 'Ром', label: 'Ром' },
     { value: 'Джин', label: 'Джин' },
@@ -31,7 +37,6 @@ const FormAddBar = ({ editData = null, onUpdate }) => {
     { value: 'Вино безалкогольне', label: 'Вино безалкогольне' },
     { value: 'Ігристе', label: 'Ігристе' },
     { value: 'Софти', label: 'Софти' },
-    { value: 'Лимонади та коктейлі Б/а', label: 'Лимонади та коктейлі Б/а' },
   ];
 
   const formik = useFormik({
@@ -94,9 +99,22 @@ const FormAddBar = ({ editData = null, onUpdate }) => {
   };
 
   const checkCehsWine = () => {
+
     switch (formik.values.ceh) {
-      case 'Ігристе':
+      case 'Rom Cocktails':
         return true;
+      case 'Whiskey Cocktails':
+        return true;
+      case 'Gin Cocktails':
+        return true;
+      case 'Tequila Cocktails':
+        return true;
+      case 'Vodka & Pisco Cocktails':
+        return true;
+      case 'Easy & Sparkling Cocktails':
+        return true;
+      case 'Ігристе':
+        return true;       
       case 'Вино червоне':
         return true;
       case 'Вино біле':
@@ -116,6 +134,8 @@ const FormAddBar = ({ editData = null, onUpdate }) => {
       case 'Вермут':
         return true;
       case 'Біттер':
+        return true;
+      case 'Горілка':
         return true;
       case 'Лікери':
         return true;
@@ -139,6 +159,9 @@ const FormAddBar = ({ editData = null, onUpdate }) => {
             onChange={formik.handleChange}
             value={formik.values.ceh}
           >
+            <option value=''>
+              Обрати категорію
+            </option>
             {cehs.map((ceh, index) => (
               <option key={index} value={ceh.value}>
                 {ceh.label}

@@ -96,6 +96,16 @@
   width: 100% !important;
   cursor: pointer;
   background-color: var(--ACCENT-COLOR);
+  transition: all 0.5s ease;
+  &:hover,
+  :focus {
+        border-bottom: none;
+        border-radius: 5px;
+        color: var(--TEXT-ICONS-COLOR);
+        border-color: var(--DARK-PRIMARY-COLOR);
+        background-color: var(--DARK-PRIMARY-COLOR);
+        box-shadow: 0 0 3px 1px;
+    }
 }
 
 .modalBox {

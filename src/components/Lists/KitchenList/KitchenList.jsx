@@ -40,13 +40,15 @@ const KitchenList = () => {
   const cehs = [
     { value: 'Холодні закуски', label: 'Холодні закуски' },
     { value: 'Салати', label: 'Салати' },
-    { value: 'Гарячі закуски', label: 'Гарячі закуски' },
     { value: 'Перші страви', label: 'Перші страви' },
-    { value: 'Burgers', label: 'Бургери' },
+    { value: 'Гарячі закуски', label: 'Гарячі закуски' },
+    { value: 'Основні страви', label: 'Основні страви' },
     { value: 'Шашлики та стейки', label: 'Шашлики та стейки' },
+    { value: 'Burgers', label: 'Бургери' },
     { value: 'Гарніри', label: 'Гарніри' },
     { value: 'Дитяче меню', label: 'Дитяче меню' },
     { value: 'Десерти', label: 'Десерти' },
+    { value: 'Соуси', label: 'Соуси' },
   ];
 
   const listBox = showList ? styles.learnListBox : styles.listBox;
@@ -100,15 +102,27 @@ const KitchenList = () => {
   };
 
   const groupMenuByKitchen = menuItems => {
-    const groupedMenu = {};
-    menuItems.forEach(item => {
-      const { ceh } = item;
-      if (!groupedMenu[ceh]) {
-        groupedMenu[ceh] = [];
-      }
+  // спочатку створюємо порожній об'єкт для всіх цехів у порядку cehs
+  const groupedMenu = {};
+  cehs.forEach(({ value }) => {
+    groupedMenu[value] = [];
+  });
+
+  // додаємо страви в потрібні цехи
+  menuItems.forEach(item => {
+    const { ceh } = item;
+    if (groupedMenu[ceh]) {
       groupedMenu[ceh].push(item);
-    });
-    return groupedMenu;
+    } 
+  });
+// 3Видаляємо порожні секції
+    Object.keys(groupedMenu).forEach(key => {
+    if (groupedMenu[key].length === 0) {
+      delete groupedMenu[key];
+    }
+  });
+
+  return groupedMenu;
   };
 
   const renderKitchenSection = (name, dishes) => {
@@ -151,7 +165,8 @@ const KitchenList = () => {
     <>
       {items ? (
         <div>
-          <select className={styles.filterSelect} ref={selectRef} onChange={handleSelectChange}>
+          <select className={styles.filterSelect} value={""} ref={selectRef} onChange={handleSelectChange}>
+            <option value="">Категорія</option>
             {cehs.map(({ value, label }) => (
               <option title='Фільтр' key={value} value={value}>
                 {label}

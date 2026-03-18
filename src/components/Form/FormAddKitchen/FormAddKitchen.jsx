@@ -17,13 +17,15 @@ const FormAddKitchen = ({ editData = null, onUpdate }) => {
   const cehs = [
     { value: 'Холодні закуски', label: 'Холодні закуски' },
     { value: 'Салати', label: 'Салати' },
-    { value: 'Гарячі закуски', label: 'Гарячі закуски' },
     { value: 'Перші страви', label: 'Перші страви' },
-    { value: 'Burgers', label: 'Бургери' },
+    { value: 'Гарячі закуски', label: 'Гарячі закуски' },
+    { value: 'Основні страви', label: 'Основні страви' },
     { value: 'Шашлики та стейки', label: 'Шашлики та стейки' },
+    { value: 'Burgers', label: 'Бургери' },
     { value: 'Гарніри', label: 'Гарніри' },
     { value: 'Дитяче меню', label: 'Дитяче меню' },
     { value: 'Десерти', label: 'Десерти' },
+    { value: 'Соуси', label: 'Соуси' },
   ];
 
   const formik = useFormik({
@@ -99,6 +101,9 @@ const FormAddKitchen = ({ editData = null, onUpdate }) => {
             onChange={formik.handleChange}
             value={formik.values.ceh}
           >
+            <option value=''>
+              Обрати категорію
+            </option>
             {cehs.map((ceh, index) => (
               <option key={index} value={ceh.value}>
                 {ceh.label}

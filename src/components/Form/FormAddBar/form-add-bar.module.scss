@@ -82,6 +82,12 @@
   font-family: var(--family);
   background-color: var(--ACCENT-COLOR);
   border-color: var(--ACCENT-COLOR) !important;
+  &:hover,
+  :focus {
+        color: var(--TEXT-ICONS-COLOR);
+        border-color: var(--DARK-PRIMARY-COLOR);
+        background-color: var(--DARK-PRIMARY-COLOR);
+    }
 }
 
 .stopBtn{

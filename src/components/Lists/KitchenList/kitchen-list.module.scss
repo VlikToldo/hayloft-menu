@@ -14,7 +14,7 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-color: #9c27b0;
+    background-color: var(--LIGHT-PRIMARY-COLOR);
   color: white;
   padding: 10px;
   border: none;
@@ -23,6 +23,15 @@
   border-radius: 20px; 
   cursor: pointer;
   z-index: 799;
+  transition: all 0.5s ease;
+  &:hover,
+  :focus {
+        border: none;
+        color: var(--TEXT-ICONS-COLOR);
+        border-color: var(--DARK-PRIMARY-COLOR);
+        background-color: var(--DARK-PRIMARY-COLOR);
+        box-shadow: 0 0 3px 1px;
+    }
 }
 
 .listCehGroupBox:last-child {

@@ -30,6 +30,7 @@
     text-align: center;
     border-bottom: solid 1px;
     padding: 5px 5px 5px 3px ;
+     transition: all 0.5s ease;
     &:hover,
     :focus {
         border-bottom: none;

@@ -37,6 +37,13 @@ const BarList = () => {
   ];
 
   const cehs = [
+    { value: 'Rom Cocktails', label: 'Rom Cocktails' },
+    { value: 'Whiskey Cocktails', label: 'Whiskey Cocktails' },
+    { value: 'Gin Cocktails', label: 'Gin Cocktails' },
+    { value: 'Tequila Cocktails', label: 'Tequila Cocktails' },
+    { value: 'Vodka & Pisco Cocktails', label: 'Vodka & Pisco Cocktails' },
+    { value: 'Easy & Sparkling Cocktails', label: 'Easy & Sparkling Cocktails' },
+    { value: 'Лимонади та коктейлі Б/а', label: 'Лимонади та коктейлі Б/а' },
     { value: 'Алкогольні коктейлі', label: 'Алкогольні коктейлі' },
     { value: 'Віскі', label: 'Віскі' },
     { value: 'Ром', label: 'Ром' },
@@ -55,7 +62,6 @@ const BarList = () => {
     { value: 'Вино безалкогольне', label: 'Вино безалкогольне' },
     { value: 'Ігристе', label: 'Ігристе' },
     { value: 'Софти', label: 'Софти' },
-    { value: 'Лимонади та коктейлі Б/а', label: 'Лимонади та коктейлі Б/а' },
   ];
 
   const listBox = showList ? styles.learnListBox : styles.listBox;
@@ -79,7 +85,7 @@ const BarList = () => {
     const selectedElement = document.getElementById(value);
     if (selectedElement) {
       selectedElement.scrollIntoView({ behavior: 'smooth' });
-    }
+    } 
   };
   const handleScroll = () => {
     dispatch(handleScrollPositionBar(window.scrollY - 20));
@@ -106,17 +112,29 @@ const BarList = () => {
       : dispatch(changeList({ value: e.currentTarget.value, showList: true }));
   };
 
-  const groupMenuByBar = menuItems => {
-    const groupedMenu = {};
-    menuItems.forEach(item => {
-      const { ceh } = item;
-      if (!groupedMenu[ceh]) {
-        groupedMenu[ceh] = [];
-      }
+const groupMenuByBar = (menuItems) => {
+  // спочатку створюємо порожній об'єкт для всіх цехів у порядку cehs
+  const groupedMenu = {};
+  cehs.forEach(({ value }) => {
+    groupedMenu[value] = [];
+  });
+
+  // додаємо страви в потрібні цехи
+  menuItems.forEach(item => {
+    const { ceh } = item;
+    if (groupedMenu[ceh]) {
       groupedMenu[ceh].push(item);
-    });
-    return groupedMenu;
-  };
+    } 
+  });
+// 3Видаляємо порожні секції
+    Object.keys(groupedMenu).forEach(key => {
+    if (groupedMenu[key].length === 0) {
+      delete groupedMenu[key];
+    }
+  });
+
+  return groupedMenu;
+};
 
   const renderBarSection = (name, dishes) => {
     return (
@@ -158,7 +176,8 @@ const BarList = () => {
     <>
       {items ? (
         <div>
-          <select className={styles.filterSelect} ref={selectRef} onChange={handleSelectChange}>
+          <select className={styles.filterSelect} value={""} ref={selectRef} onChange={handleSelectChange}>
+            <option value="">Категорія</option>
             {cehs.map(({ value, label }) => (
               <option key={value} value={value}>
                 {label}

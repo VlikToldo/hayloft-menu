@@ -1,6 +1,6 @@
 const initialState = {
     type: 'kitchen',
-    ceh: 'Холодні закуски',
+    ceh: '',
     name: '',
     ingredients: '',
     amount:'',

@@ -53,7 +53,7 @@ const PageItem = ({
           <span className={styles.spanText}>Склад: </span>
           <Card.Text className={styles.text}>{ingredients ? ingredients : description}</Card.Text>
           <Link to={`${_id}`} state={{ from: location }} onClick={handleScroll}>
-            <Button className={styles.btnDetailes} variant="primary" size="sm">
+            <Button className={styles.btnDetailes}  size="sm">
               Повна інформація
             </Button>
           </Link>

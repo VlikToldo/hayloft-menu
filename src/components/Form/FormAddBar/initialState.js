@@ -1,6 +1,6 @@
 const initialState = {
     type: 'bar',
-    ceh: 'Алкогольні коктейлі',
+    ceh: '',
     name: '',
     country: '',
     ingredients: '',
