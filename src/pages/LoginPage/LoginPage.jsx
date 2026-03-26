@@ -23,6 +23,7 @@ const LoginPage = () => {
     email: '',
     password: '',
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -95,12 +96,21 @@ const LoginPage = () => {
                 <Form.Group className="mb-4">
                   <Form.Label>Пароль</Form.Label>
                   <Form.Control
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
                     placeholder="Введіть пароль"
                     required
+                    disabled={isLoading}
+                  />
+                  <Form.Check
+                    className={styles.passwordToggle}
+                    type="checkbox"
+                    id="show-login-password"
+                    label="Показати пароль"
+                    checked={showPassword}
+                    onChange={e => setShowPassword(e.target.checked)}
                     disabled={isLoading}
                   />
                 </Form.Group>

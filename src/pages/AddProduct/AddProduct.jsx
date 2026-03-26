@@ -52,6 +52,7 @@ const AddProduct = () => {
       setEditType(null);
     }
   }, [location.search, navigate]);
+
   const openFormBar = () => {
     setShow({ showFormBar: true, showFormKitchen: false });
     setEditData(null);
@@ -94,11 +95,6 @@ const AddProduct = () => {
             <span className={styles.spanGo}>Кухня</span>
             <img src={svgRight} alt="Right" />
           </button>
-        )}
-        {isEditing && (
-          <div className={styles.editModeHint}>
-            Режим редагування {editType === 'bar' ? 'Бар' : 'Кухня'}
-          </div>
         )}
       </div>
 

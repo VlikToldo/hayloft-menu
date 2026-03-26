@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
@@ -20,6 +20,8 @@ import style from './navbar.module.scss';
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isHeaderCollapsed, setIsHeaderCollapsed] = useState(false);
+  const lastScrollY = useRef(0);
   const user = useSelector(selectUser);
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const isAdmin = useSelector(selectIsAdmin);
@@ -33,9 +35,33 @@ const Navbar = () => {
     navigate('/');
   };
 
+  useEffect(() => {
+    const onScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY <= 0) {
+        setIsHeaderCollapsed(false);
+      } else if (currentScrollY > lastScrollY.current && currentScrollY > 20) {
+        setIsHeaderCollapsed(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
+
   return (
     <div className={style.divBox}>
-      <header className={style.header}>
+      <header
+        className={`${style.header} ${
+          isHeaderCollapsed ? style.headerCollapsed : ''
+        }`}
+      >
         <nav className={style.navHeader}>
           <ul className={style.navList}>
             <NavLink className={style.navLink} to="/">
@@ -51,7 +77,6 @@ const Navbar = () => {
                     {isAdmin && <span className={style.adminBadge}>Адмін</span>}
                   </span>
                   <Button
-                    variant="outline-light"
                     size="sm"
                     onClick={handleLogout}
                     className={style.logoutBtn}
@@ -81,7 +106,7 @@ const Navbar = () => {
               )}
             </div>
 
-            <div onClick={handleShow} style={{ cursor: 'pointer' }}>
+            <div className={style.burgerButton} onClick={handleShow}>
               <img src={svgBurger} alt="SVG Burger" />
             </div>
           </ul>

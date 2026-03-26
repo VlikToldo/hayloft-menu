@@ -6,6 +6,7 @@
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 20px;
   margin: 0 auto;
+  max-width: 100%;
 }
 
 .card {
@@ -23,10 +24,12 @@
 
   @media (min-width: 768px) {
     padding: 40px 35px;
+    width: 350px;
   }
 
   @media (min-width: 1024px) {
     padding: 45px 40px;
+    width: 500px;
   }
 }
 
@@ -80,6 +83,12 @@
 .alert {
   margin-bottom: 20px;
   border-radius: 8px;
+}
+
+.passwordToggle {
+  margin-top: 10px;
+  color: #666;
+  font-size: 0.9rem;
 }
 
 .submitBtn {

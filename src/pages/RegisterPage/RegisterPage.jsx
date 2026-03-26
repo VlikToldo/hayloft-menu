@@ -25,6 +25,8 @@ const RegisterPage = () => {
     password: '',
     confirmPassword: '',
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -118,7 +120,7 @@ const RegisterPage = () => {
                 <Form.Group className="mb-3">
                   <Form.Label>Пароль</Form.Label>
                   <Form.Control
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
@@ -127,12 +129,21 @@ const RegisterPage = () => {
                     disabled={isLoading}
                     minLength={6}
                   />
+                  <Form.Check
+                    className={styles.passwordToggle}
+                    type="checkbox"
+                    id="show-register-password"
+                    label="Показати пароль"
+                    checked={showPassword}
+                    onChange={e => setShowPassword(e.target.checked)}
+                    disabled={isLoading}
+                  />
                 </Form.Group>
 
                 <Form.Group className="mb-4">
                   <Form.Label>Підтвердіть пароль</Form.Label>
                   <Form.Control
-                    type="password"
+                    type={showConfirmPassword ? 'text' : 'password'}
                     name="confirmPassword"
                     value={formData.confirmPassword}
                     onChange={handleChange}
@@ -140,6 +151,15 @@ const RegisterPage = () => {
                     required
                     disabled={isLoading}
                     minLength={6}
+                  />
+                  <Form.Check
+                    className={styles.passwordToggle}
+                    type="checkbox"
+                    id="show-register-confirm-password"
+                    label="Показати пароль"
+                    checked={showConfirmPassword}
+                    onChange={e => setShowConfirmPassword(e.target.checked)}
+                    disabled={isLoading}
                   />
                 </Form.Group>
 

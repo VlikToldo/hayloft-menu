@@ -1,11 +1,13 @@
 import { useEffect, useState, useRef } from 'react';
 import { useParams, useLocation, Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Card from 'react-bootstrap/Card';
 import { getProductBar } from '../../shared/api/bar';
 import { getProductKitchen } from '../../shared/api/kitchen';
 import svgLeft from '../AddProduct/image/left.svg';
 import ApdBarForm from '../../components/Form/FormAddBar/FormAddBar';
 import ApdKitchenForm from '../../components/Form/FormAddKitchen/FormAddKitchen';
+import { selectIsAdmin } from '../../redux/auth/auth-selectors';
 
 import styles from './more-info-page.module.scss';
 
@@ -13,6 +15,7 @@ const MoreInfoPage = () => {
   const [infoProduct, setInfoProduct] = useState(null);
   const { productId } = useParams();
   const [editOpen, setEditOpen] = useState(false);
+  const isAdmin = useSelector(selectIsAdmin);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -63,9 +66,11 @@ const MoreInfoPage = () => {
               <img src={svgLeft} alt="Left" />
               <span className={styles.spanGo}>Повернутися до списку</span>
             </Link>
-            <div className={styles.edit} onClick={openEdit}>
-              Редагувати
-            </div>
+            {isAdmin && (
+              <div className={styles.edit} onClick={openEdit}>
+                Редагувати
+              </div>
+            )}
           </div>
 
           {!infoProduct.image ? (
@@ -146,10 +151,10 @@ const MoreInfoPage = () => {
           </Card.Body>
         </Card>
       )}
-      {infoProduct && infoProduct.type === 'bar' && editOpen && (
+      {isAdmin && infoProduct && infoProduct.type === 'bar' && editOpen && (
         <ApdBarForm editData={infoProduct} onUpdate={closeEdit}></ApdBarForm>
       )}
-      {infoProduct && infoProduct.type === 'kitchen' && editOpen && (
+      {isAdmin && infoProduct && infoProduct.type === 'kitchen' && editOpen && (
         <ApdKitchenForm
           editData={infoProduct}
           onUpdate={closeEdit}

@@ -46,7 +46,12 @@ const PageItem = ({
       <Card className={styles.Card}>
         {isAdmin && (
           <>
-            <button className={styles.cardDel} onClick={modalShow}>
+            <button
+              className={styles.cardDel}
+              onClick={modalShow}
+              aria-label="Видалити позицію"
+              title="Видалити"
+            >
               &otimes;
             </button>
             <Link
