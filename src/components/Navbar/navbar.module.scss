@@ -135,6 +135,12 @@ h2 {
   border-color: var(--DARK-PRIMARY-COLOR);
 }
 
+@media screen and (max-width: 767px) {
+  .logoutBtn {
+    display: none !important;
+  }
+}
+
 .authButtons {
   display: flex;
   gap: 8px;

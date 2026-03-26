@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const API_URL = 'https://backend-loft.onrender.com/api/auth';
-const API_URL = 'http://localhost:3001/api/auth';
+const API_URL = 'https://backend-loft.onrender.com/api/auth';
+// const API_URL = 'http://localhost:3001/api/auth';
 
 const authInstance = axios.create({
   baseURL: API_URL,
@@ -56,23 +56,12 @@ export const getToken = () => {
 // Функція для отримання refresh токена
 export const getRefreshToken = () => {
   const data = localStorage.getItem('refreshTokenData');
-  if (!data) {
-    console.log('no refreshTokenData in localStorage');
-    return null;
-  }
+  if (!data) return null;
   const parsed = JSON.parse(data);
-  console.log(
-    'refreshToken expire',
-    new Date(parsed.expire),
-    'now',
-    new Date(Date.now())
-  );
   if (Date.now() > parsed.expire) {
-    console.log('refreshToken expired');
     localStorage.removeItem('refreshTokenData');
     return null;
   }
-  console.log('refreshToken valid');
   return parsed.token;
 };
 
@@ -85,31 +74,25 @@ export const setRefreshToken = token => {
 // Функція для рефреш токена
 export const refreshToken = async () => {
   try {
-    console.log('refreshToken called');
     const refreshToken = getRefreshToken();
     if (!refreshToken) {
-      console.log('no refreshToken');
       throw new Error('No refresh token');
     }
 
-    console.log('sending refresh request');
     const { data: result } = await authInstance.post('/refresh', {
       refreshToken,
     });
 
     if (result.token) {
-      console.log('new token received');
       localStorage.setItem('authToken', result.token);
     }
 
     if (result.refreshToken) {
-      console.log('new refreshToken received');
       setRefreshToken(result.refreshToken);
     }
 
     return result.token;
   } catch (error) {
-    console.log('refreshToken error', error);
     logout();
     throw error;
   }
@@ -117,18 +100,34 @@ export const refreshToken = async () => {
 
 // Функція для перевірки автентифікації
 export const isAuthenticated = () => {
-  const token = getToken();
-  console.log('isAuthenticated check, token exists:', !!token);
-  return !!token;
+  return !!getToken();
 };
 
 // Функція для отримання інформації про користувача
 export const getCurrentUser = async () => {
+  const token = getToken();
+  if (!token) {
+    throw new Error('No auth token');
+  }
+
   try {
-    const { data: result } = await authInstance.get('/me');
+    const { data: result } = await authInstance.get('/me', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return result;
   } catch (error) {
-    logout();
+    if (error.response?.status === 401) {
+      const newToken = await refreshToken();
+      const { data: result } = await authInstance.get('/me', {
+        headers: {
+          Authorization: `Bearer ${newToken}`,
+        },
+      });
+      return result;
+    }
+
     throw error;
   }
 };

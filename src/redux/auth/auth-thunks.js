@@ -40,17 +40,14 @@ export const registerUser = (email, password, name) => async dispatch => {
 // Thunk для ініціалізації користувача при завантаженні додатку
 export const initializeUser = () => async dispatch => {
   try {
-    console.log('initializeUser called');
     if (isAuthenticated()) {
-      console.log('isAuthenticated true, calling getCurrentUser');
       const user = await getCurrentUser();
-      console.log('getCurrentUser success', user);
       dispatch(setUser(user));
-    } else {
-      console.log('isAuthenticated false');
     }
   } catch (error) {
-    console.log('initializeUser error', error);
-    dispatch(logout());
+    const status = error.response?.status;
+    if (status === 401 || status === 403) {
+      dispatch(logout());
+    }
   }
 };
