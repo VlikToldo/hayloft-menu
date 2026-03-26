@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'https://backend-loft.onrender.com/api/auth';
-// const API_URL = 'http://localhost:3001/api/auth';
+// const API_URL = 'https://backend-loft.onrender.com/api/auth';
+const API_URL = 'http://localhost:3001/api/auth';
 
 const authInstance = axios.create({
   baseURL: API_URL,

@@ -2,8 +2,8 @@ import axios from 'axios';
 import { getToken, refreshToken, logout } from './auth';
 
 const baseInstance = axios.create({
-    baseURL: 'https://backend-loft.onrender.com/api',
-//   baseURL: 'http://localhost:3001/api',
+  // baseURL: 'https://backend-loft.onrender.com/api',
+  baseURL: 'http://localhost:3001/api',
 });
 
 // Інтерцептор для додавання токена до кожного запиту
