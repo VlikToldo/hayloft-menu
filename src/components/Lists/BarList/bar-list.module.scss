@@ -1,110 +1,122 @@
 .filterSelect {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    text-align: center;
-    text-overflow: ellipsis; 
-    white-space: nowrap;
-    margin-left: 5px;
-    position: fixed;
-    bottom: 15px;
-    right: 16px;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: var(--LIGHT-PRIMARY-COLOR);
-    color: white;
-    padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 5px;
+  position: fixed;
+  bottom: 15px;
+  right: 16px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: var(--LIGHT-PRIMARY-COLOR);
+  color: white;
+  padding: 10px;
+  border: none;
+  max-width: auto;
+  height: 38px;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.5s ease;
+  &:hover,
+  :focus {
     border: none;
-    max-width: auto;
-    height: 38px;
-    border-radius: 20px; 
-    cursor: pointer;
-    z-index: 1000;
-    transition: all 0.5s ease;
-    &:hover,
-    :focus {
-        border: none;
-        color: var(--TEXT-ICONS-COLOR);
-        border-color: var(--DARK-PRIMARY-COLOR);
-        background-color: var(--DARK-PRIMARY-COLOR);
-        box-shadow: 0 0 3px 1px;
-    }
+    color: var(--TEXT-ICONS-COLOR);
+    border-color: var(--DARK-PRIMARY-COLOR);
+    background-color: var(--DARK-PRIMARY-COLOR);
+    box-shadow: 0 0 3px 1px;
   }
-  
-.listCehGroupBox:last-child{
-    margin-bottom: 50px;
-}
-.cehGroupBox{
-    margin-bottom: 20px;
 }
 
-.listBox{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    grid-gap: 10px;
-    justify-content: center;
-    align-items: center;
+.listCehGroupBox:last-child {
+  margin-bottom: 50px;
+}
+.cehGroupBox {
+  margin-bottom: 20px;
+}
+
+.listBox {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
 .listBox > * {
-    // flex-grow: auto;
-    // width: 170px; 
+  // flex-grow: auto;
+  // width: 170px;
 }
 
-
-.learnListBox{
-    grid-template-columns: 100%;
-    display: grid;
-    grid-gap: 10px;
+.learnListBox {
+  grid-template-columns: 100%;
+  display: grid;
+  grid-gap: 10px;
 }
-.titleCeh{
-    font-family: var(--family);
-    font-weight: 700;
-    margin-bottom: 10px;
+.titleCeh {
+  font-family: var(--family);
+  font-weight: 700;
+  margin-bottom: 10px;
 }
-.buttonGroup{
-    position: fixed;
-    z-index: 799;
-    bottom: 15px;
-    left: 16px;
+.buttonGroup {
+  position: fixed;
+  z-index: 799;
+  bottom: 15px;
+  left: 16px;
 }
 // .listContainer{
 //     display: flex;
 //     justify-content: center;
 // }
-.toggleButton{
-    display: flex;
-    align-items: center;
-    font-family: var(--family);
-    position: absolute;
-    padding: 1px 30px 1px 30px !important;
-    border-radius: 20px;
-    height: 38px;
+.toggleButton {
+  display: flex;
+  align-items: center;
+  font-family: var(--family);
+  position: absolute;
+  padding: 1px 30px 1px 30px !important;
+  border-radius: 20px;
+  height: 38px;
 }
 
-.noEmpty{
-    font-family: var(--family);
-    font-size: 22px;
-    font-weight: 500;
-    color: #8c8c8c;
-    text-align: center;
+.noEmpty {
+  font-family: var(--family);
+  font-size: 22px;
+  font-weight: 500;
+  color: #8c8c8c;
+  text-align: center;
+}
+
+.exportButton {
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: none;
+  min-width: 86px;
+  font-weight: 500;
+  color: #fff;
+  background-color: var(--LIGHT-PRIMARY-COLOR);
+  margin-bottom: 20px;
+  transition: all 0.2s ease;
 }
 
 @media screen and (max-width: 375px) {
-    .listBox {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    }
+  .listBox {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .filterSelect {
+    max-width: 100px;
   }
 
-  @media screen and (max-width: 500px) {
-    .filterSelect{
-        max-width: 100px;
-    }
-
-    .toggleButton {
-        padding: 1px 20px 1px 20px !important;
-      }
+  .toggleButton {
+    padding: 1px 20px 1px 20px !important;
   }
+}

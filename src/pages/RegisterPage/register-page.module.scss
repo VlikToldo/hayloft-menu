@@ -1,0 +1,132 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  max-width: 700px;
+}
+
+.cardBody {
+  padding: 30px;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    padding: 40px 35px;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 45px 40px;
+  }
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  color: #af4035;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 15px;
+  padding: 0;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #92000a;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.title {
+  color: #92000a;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+
+  @media (min-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.subtitle {
+  color: #666;
+  font-size: 0.95rem;
+  margin: 0;
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
+}
+
+.alert {
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.submitBtn {
+  width: 100%;
+  background-color: var(--DARK-PRIMARY-COLOR);
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-weight: 600;
+  color: var(--TEXT-ICONS-COLOR);
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background-color: #af4035;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(146, 0, 10, 0.3);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+.footer {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+
+  p {
+    color: #666;
+    margin: 0;
+    font-size: 0.9rem;
+  }
+}
+
+.link {
+  color: #92000a;
+  text-decoration: none;
+  font-weight: 600;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

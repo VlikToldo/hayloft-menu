@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { Nav, Collapse, Offcanvas } from 'react-bootstrap';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { Nav, Collapse, Offcanvas, Button } from 'react-bootstrap';
 
 import { toggleLeftMenu } from '../../redux/utility/utility-slice';
 import { selectShowLeftMenu } from '../../redux/utility/utility-selectors';
+import { selectIsAuthenticated, selectIsAdmin, logout } from '../../redux/auth';
 
 import styles from './LeftMenu.module.scss';
 
 const sidebarStyle = {
-  backgroundColor: ' white',
-  width: '100%',
+  backgroundColor: 'white',
+  width: '80vw',
+  maxWidth: '450px',
+  minWidth: '280px',
 };
 
 const launchButton = {
@@ -29,7 +32,10 @@ function ResponsiveExample() {
   const [open, setOpen] = useState(false);
 
   const showLeftMenu = useSelector(selectShowLeftMenu);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const isAdmin = useSelector(selectIsAdmin);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleClose = () => {
     dispatch(toggleLeftMenu(false));
@@ -119,13 +125,61 @@ function ResponsiveExample() {
                 </div>
               </div>
             </Collapse>
-            <NavLink
-              onClick={() => handleClose()}
-              className={styles.title}
-              to="add-product"
-            >
-              Додати позицію
-            </NavLink>
+
+            {/* Вкладка для авторизації/адмін панелі */}
+            {isAuthenticated && isAdmin ? (
+              <>
+                <NavLink
+                  onClick={() => handleClose()}
+                  className={styles.title}
+                  to="add-product"
+                >
+                  ➕ Додати позицію
+                </NavLink>
+                <Button
+                  variant="danger"
+                  size="sm"
+                  onClick={() => {
+                    dispatch(logout());
+                    handleClose();
+                    navigate('/');
+                  }}
+                  className={styles.logoutBtn}
+                >
+                  Вийти
+                </Button>
+              </>
+            ) : isAuthenticated ? (
+              <Button
+                variant="danger"
+                size="sm"
+                onClick={() => {
+                  dispatch(logout());
+                  handleClose();
+                  navigate('/');
+                }}
+                className={styles.logoutBtn}
+              >
+                Вийти
+              </Button>
+            ) : (
+              <>
+                <NavLink
+                  onClick={() => handleClose()}
+                  className={styles.title}
+                  to="login"
+                >
+                  📝 Увійти
+                </NavLink>
+                <NavLink
+                  onClick={() => handleClose()}
+                  className={styles.title}
+                  to="register"
+                >
+                  ➕ Реєстрація
+                </NavLink>
+              </>
+            )}
           </Nav>
         </Offcanvas.Body>
       </Offcanvas>

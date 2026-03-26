@@ -51,7 +51,7 @@
   width: 100%;
 
   &::before {
-    content: "гр.";
+    content: 'гр.';
     position: absolute;
     top: 1px;
     right: 1px;
@@ -84,13 +84,13 @@
   border-color: var(--ACCENT-COLOR) !important;
   &:hover,
   :focus {
-        color: var(--TEXT-ICONS-COLOR);
-        border-color: var(--DARK-PRIMARY-COLOR);
-        background-color: var(--DARK-PRIMARY-COLOR);
-    }
+    color: var(--TEXT-ICONS-COLOR);
+    border-color: var(--DARK-PRIMARY-COLOR);
+    background-color: var(--DARK-PRIMARY-COLOR);
+  }
 }
 
-.stopBtn{
+.stopBtn {
   margin-top: 10px;
 }
 

@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { ToggleButton, ButtonGroup } from 'react-bootstrap';
+import * as XLSX from 'xlsx';
 import toast, { Toaster } from 'react-hot-toast';
 import BarItem from './BarItem/BarItem';
 import LearnItem from '../LearnItemForList/LearnItemForList';
@@ -42,7 +43,10 @@ const BarList = () => {
     { value: 'Gin Cocktails', label: 'Gin Cocktails' },
     { value: 'Tequila Cocktails', label: 'Tequila Cocktails' },
     { value: 'Vodka & Pisco Cocktails', label: 'Vodka & Pisco Cocktails' },
-    { value: 'Easy & Sparkling Cocktails', label: 'Easy & Sparkling Cocktails' },
+    {
+      value: 'Easy & Sparkling Cocktails',
+      label: 'Easy & Sparkling Cocktails',
+    },
     { value: 'Лимонади та коктейлі Б/а', label: 'Лимонади та коктейлі Б/а' },
     { value: 'Алкогольні коктейлі', label: 'Алкогольні коктейлі' },
     { value: 'Віскі', label: 'Віскі' },
@@ -85,7 +89,7 @@ const BarList = () => {
     const selectedElement = document.getElementById(value);
     if (selectedElement) {
       selectedElement.scrollIntoView({ behavior: 'smooth' });
-    } 
+    }
   };
   const handleScroll = () => {
     dispatch(handleScrollPositionBar(window.scrollY - 20));
@@ -106,35 +110,60 @@ const BarList = () => {
       });
   };
 
+  const exportBarToExcel = () => {
+    if (!items || items.length === 0) {
+      toast.error('Немає даних для експорту');
+      return;
+    }
+
+    const data = items.map(item => ({
+      type: item.type || 'bar',
+      ceh: item.ceh || '',
+      name: item.name || '',
+      country: item.country || '',
+      ingredients: item.ingredients || '',
+      amount: item.amount || '',
+      alcohol: item.alcohol || '',
+      description: item.description || '',
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Bar');
+    XLSX.writeFile(workbook, 'bar-export.xlsx');
+
+    toast.success('Експортовано в bar-export.xlsx');
+  };
+
   const showLearnList = e => {
     e.currentTarget.value === '1'
       ? dispatch(changeList({ value: e.currentTarget.value, showList: false }))
       : dispatch(changeList({ value: e.currentTarget.value, showList: true }));
   };
 
-const groupMenuByBar = (menuItems) => {
-  // спочатку створюємо порожній об'єкт для всіх цехів у порядку cehs
-  const groupedMenu = {};
-  cehs.forEach(({ value }) => {
-    groupedMenu[value] = [];
-  });
+  const groupMenuByBar = menuItems => {
+    // спочатку створюємо порожній об'єкт для всіх цехів у порядку cehs
+    const groupedMenu = {};
+    cehs.forEach(({ value }) => {
+      groupedMenu[value] = [];
+    });
 
-  // додаємо страви в потрібні цехи
-  menuItems.forEach(item => {
-    const { ceh } = item;
-    if (groupedMenu[ceh]) {
-      groupedMenu[ceh].push(item);
-    } 
-  });
-// 3Видаляємо порожні секції
+    // додаємо страви в потрібні цехи
+    menuItems.forEach(item => {
+      const { ceh } = item;
+      if (groupedMenu[ceh]) {
+        groupedMenu[ceh].push(item);
+      }
+    });
+    // 3Видаляємо порожні секції
     Object.keys(groupedMenu).forEach(key => {
-    if (groupedMenu[key].length === 0) {
-      delete groupedMenu[key];
-    }
-  });
+      if (groupedMenu[key].length === 0) {
+        delete groupedMenu[key];
+      }
+    });
 
-  return groupedMenu;
-};
+    return groupedMenu;
+  };
 
   const renderBarSection = (name, dishes) => {
     return (
@@ -176,7 +205,17 @@ const groupMenuByBar = (menuItems) => {
     <>
       {items ? (
         <div>
-          <select className={styles.filterSelect} value={""} ref={selectRef} onChange={handleSelectChange}>
+          <div className={styles.uploadRow}>
+            <button className={styles.exportButton} onClick={exportBarToExcel}>
+              Скачати Excel бару
+            </button>
+          </div>
+          <select
+            className={styles.filterSelect}
+            value={''}
+            ref={selectRef}
+            onChange={handleSelectChange}
+          >
             <option value="">Категорія</option>
             {cehs.map(({ value, label }) => (
               <option key={value} value={value}>

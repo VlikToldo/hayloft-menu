@@ -33,6 +33,7 @@ const FormAddKitchen = ({ editData = null, onUpdate }) => {
       ...initialState,
       ...editData,
     },
+    enableReinitialize: true,
     validationSchema: Yup.object({
       name: Yup.string().required('Назва позиції є обов`язковою'),
       ingredients: Yup.string(),
@@ -101,9 +102,7 @@ const FormAddKitchen = ({ editData = null, onUpdate }) => {
             onChange={formik.handleChange}
             value={formik.values.ceh}
           >
-            <option value=''>
-              Обрати категорію
-            </option>
+            <option value="">Обрати категорію</option>
             {cehs.map((ceh, index) => (
               <option key={index} value={ceh.value}>
                 {ceh.label}
@@ -221,13 +220,15 @@ const FormAddKitchen = ({ editData = null, onUpdate }) => {
         <Button className={styles.submitBtn} type="submit">
           Додати
         </Button>
-        {editData && <Button
-          onClick={onUpdate}
-          className={styles.stopBtn}
-          variant="secondary"
-        >
-          Відмінити
-        </Button>}
+        {editData && (
+          <Button
+            onClick={onUpdate}
+            className={styles.stopBtn}
+            variant="secondary"
+          >
+            Відмінити
+          </Button>
+        )}
       </form>
       <div>
         <Toaster position="top-center" reverseOrder={false} />

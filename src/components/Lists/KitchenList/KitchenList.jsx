@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { ToggleButton, ButtonGroup } from 'react-bootstrap';
+import * as XLSX from 'xlsx';
 import toast, { Toaster } from 'react-hot-toast';
 import KitchenItem from './KitchenItem/KitchenItem';
 import LearnItem from '../LearnItemForList/LearnItemForList';
@@ -101,28 +102,53 @@ const KitchenList = () => {
       : dispatch(changeList({ value: e.currentTarget.value, showList: true }));
   };
 
-  const groupMenuByKitchen = menuItems => {
-  // спочатку створюємо порожній об'єкт для всіх цехів у порядку cehs
-  const groupedMenu = {};
-  cehs.forEach(({ value }) => {
-    groupedMenu[value] = [];
-  });
-
-  // додаємо страви в потрібні цехи
-  menuItems.forEach(item => {
-    const { ceh } = item;
-    if (groupedMenu[ceh]) {
-      groupedMenu[ceh].push(item);
-    } 
-  });
-// 3Видаляємо порожні секції
-    Object.keys(groupedMenu).forEach(key => {
-    if (groupedMenu[key].length === 0) {
-      delete groupedMenu[key];
+  const exportKitchenToExcel = () => {
+    if (!items || items.length === 0) {
+      toast.error('Немає даних для експорту');
+      return;
     }
-  });
 
-  return groupedMenu;
+    const data = items.map(item => ({
+      type: item.type || 'kitchen',
+      ceh: item.ceh || '',
+      name: item.name || '',
+      ingredients: item.ingredients || '',
+      amount: item.amount || '',
+      souse: item.souse || '',
+      allergens: item.allergens || '',
+      description: item.description || '',
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Kitchen');
+    XLSX.writeFile(workbook, 'kitchen-export.xlsx');
+
+    toast.success('Експортовано в kitchen-export.xlsx');
+  };
+
+  const groupMenuByKitchen = menuItems => {
+    // спочатку створюємо порожній об'єкт для всіх цехів у порядку cehs
+    const groupedMenu = {};
+    cehs.forEach(({ value }) => {
+      groupedMenu[value] = [];
+    });
+
+    // додаємо страви в потрібні цехи
+    menuItems.forEach(item => {
+      const { ceh } = item;
+      if (groupedMenu[ceh]) {
+        groupedMenu[ceh].push(item);
+      }
+    });
+    // 3Видаляємо порожні секції
+    Object.keys(groupedMenu).forEach(key => {
+      if (groupedMenu[key].length === 0) {
+        delete groupedMenu[key];
+      }
+    });
+
+    return groupedMenu;
   };
 
   const renderKitchenSection = (name, dishes) => {
@@ -165,10 +191,23 @@ const KitchenList = () => {
     <>
       {items ? (
         <div>
-          <select className={styles.filterSelect} value={""} ref={selectRef} onChange={handleSelectChange}>
+          <div className={styles.uploadRow}>
+            <button
+              className={styles.exportButton}
+              onClick={exportKitchenToExcel}
+            >
+              Скачати Excel кухні
+            </button>
+          </div>
+          <select
+            className={styles.filterSelect}
+            value={''}
+            ref={selectRef}
+            onChange={handleSelectChange}
+          >
             <option value="">Категорія</option>
             {cehs.map(({ value, label }) => (
-              <option title='Фільтр' key={value} value={value}>
+              <option title="Фільтр" key={value} value={value}>
                 {label}
               </option>
             ))}

@@ -18,8 +18,10 @@ h2 {
   color: #fff;
   background-color: #ffffff;
   // background-image: url(./image/gradient-dynamic-purple-lines-background_23-2148995757.avif);
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  box-shadow:
+    0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 }
 
 .spanTitle {
@@ -58,8 +60,87 @@ h2 {
   text-align: center;
   color: var(--DARK-PRIMARY-COLOR);
 }
+
 .spanBlack {
   color: black;
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--DARK-PRIMARY-COLOR);
+  font-size: 14px;
+}
+
+.userName {
+  font-weight: 500;
+}
+
+.adminBadge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.logoutBtn {
+  font-size: 12px;
+  padding: 4px 12px;
+  background-color: var(--LIGHT-PRIMARY-COLOR);
+  border: 1px solid var(--PRIMARY-COLOR);
+  color: #fff;
+  min-width: 80px;
+  transition: all 0.2s ease;
+}
+
+.logoutBtn:hover,
+.logoutBtn:focus {
+  background-color: var(--PRIMARY-COLOR);
+  border-color: var(--DARK-PRIMARY-COLOR);
+}
+
+.authButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.authBtn {
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: none;
+  min-width: 86px;
+  font-weight: 500;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+
+.loginBtn {
+  background-color: var(--DARK-PRIMARY-COLOR);
+}
+
+.loginBtn:hover,
+.loginBtn:focus {
+  background-color: var(--PRIMARY-COLOR);
+}
+
+.registerBtn {
+  background-color: var(--ACCENT-COLOR);
+}
+
+.registerBtn:hover,
+.registerBtn:focus {
+  background-color: #d65531;
 }
 
 .main {

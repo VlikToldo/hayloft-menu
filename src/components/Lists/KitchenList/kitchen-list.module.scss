@@ -5,7 +5,7 @@
   align-items: center;
   overflow: hidden;
   text-align: center;
-  text-overflow: ellipsis; 
+  text-overflow: ellipsis;
   white-space: nowrap;
   margin-left: 5px;
   position: fixed;
@@ -14,24 +14,24 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-    background-color: var(--LIGHT-PRIMARY-COLOR);
+  background-color: var(--LIGHT-PRIMARY-COLOR);
   color: white;
   padding: 10px;
   border: none;
   max-width: auto;
   height: 38px;
-  border-radius: 20px; 
+  border-radius: 20px;
   cursor: pointer;
   z-index: 799;
   transition: all 0.5s ease;
   &:hover,
   :focus {
-        border: none;
-        color: var(--TEXT-ICONS-COLOR);
-        border-color: var(--DARK-PRIMARY-COLOR);
-        background-color: var(--DARK-PRIMARY-COLOR);
-        box-shadow: 0 0 3px 1px;
-    }
+    border: none;
+    color: var(--TEXT-ICONS-COLOR);
+    border-color: var(--DARK-PRIMARY-COLOR);
+    background-color: var(--DARK-PRIMARY-COLOR);
+    box-shadow: 0 0 3px 1px;
+  }
 }
 
 .listCehGroupBox:last-child {
@@ -88,6 +88,19 @@
   text-align: center;
 }
 
+.exportButton {
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: none;
+  min-width: 86px;
+  font-weight: 500;
+  color: #fff;
+  background-color: var(--LIGHT-PRIMARY-COLOR);
+  margin-bottom: 20px;
+  transition: all 0.2s ease;
+}
+
 @media screen and (max-width: 375px) {
   .listBox {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -95,8 +108,8 @@
 }
 
 @media screen and (max-width: 500px) {
-  .filterSelect{
-      max-width: 100px;
+  .filterSelect {
+    max-width: 100px;
   }
   .toggleButton {
     padding: 1px 20px 1px 20px !important;

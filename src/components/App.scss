@@ -2,48 +2,51 @@
 @import 'modern-normalize/modern-normalize';
 
 :root {
-  --family:'Roboto', sans-serif;
-  --DARK-PRIMARY-COLOR: #92000A;
-  --LIGHT-PRIMARY-COLOR:#AF4035;
-  --PRIMARY-COLOR:#560319;
-  --ACCENT-COLOR: #AF4035;
-  --PRIMARY-TEXT:#212121;
-  --SECONDARY-TEXT:#757575;
-  --TEXT-ICONS-COLOR: #FFFFFF;
-  --DIVIDER-COLOR:#BDBDBD;
+  --family: 'Roboto', sans-serif;
+  --DARK-PRIMARY-COLOR: #92000a;
+  --LIGHT-PRIMARY-COLOR: #af4035;
+  --PRIMARY-COLOR: #560319;
+  --ACCENT-COLOR: #af4035;
+  --PRIMARY-TEXT: #212121;
+  --SECONDARY-TEXT: #757575;
+  --TEXT-ICONS-COLOR: #ffffff;
+  --DIVIDER-COLOR: #bdbdbd;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Roboto',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family:
+    source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 // hr{
 //   margin: 0;
 // }
 
-li{
+li {
   font-family: 'Roboto', sans-serif;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-ul{
+ul {
   margin: 0;
   padding: 0;
 }
-h1, h2, h3, h4, h5, h6, p{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
 }
-

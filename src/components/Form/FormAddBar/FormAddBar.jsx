@@ -18,7 +18,10 @@ const FormAddBar = ({ editData = null, onUpdate }) => {
     { value: 'Gin Cocktails', label: 'Gin Cocktails' },
     { value: 'Tequila Cocktails', label: 'Tequila Cocktails' },
     { value: 'Vodka & Pisco Cocktails', label: 'Vodka & Pisco Cocktails' },
-    { value: 'Easy & Sparkling Cocktails', label: 'Easy & Sparkling Cocktails' },
+    {
+      value: 'Easy & Sparkling Cocktails',
+      label: 'Easy & Sparkling Cocktails',
+    },
     { value: 'Лимонади та коктейлі Б/а', label: 'Лимонади та коктейлі Б/а' },
     { value: 'Віскі', label: 'Віскі' },
     { value: 'Ром', label: 'Ром' },
@@ -50,17 +53,17 @@ const FormAddBar = ({ editData = null, onUpdate }) => {
       ingredients: Yup.string(),
       alcohol: Yup.string(),
       image: Yup.mixed()
-      .test('FILE_SIZE', 'Розмір фото не підходить', value => {
-        if (typeof value !== 'string')
-          return !value || value.size < 10 * 1024 * 1024; // Якщо це лінк — ок
-        return true;
-      })
-      .test('FILE_TYPE', 'Скоріш за все це не фотографія (', value => {
-        if (typeof value !== 'string')
-          return !value || ['image/png', 'image/jpeg'].includes(value.type);
-        return true;
-      }),
-    }), 
+        .test('FILE_SIZE', 'Розмір фото не підходить', value => {
+          if (typeof value !== 'string')
+            return !value || value.size < 10 * 1024 * 1024; // Якщо це лінк — ок
+          return true;
+        })
+        .test('FILE_TYPE', 'Скоріш за все це не фотографія (', value => {
+          if (typeof value !== 'string')
+            return !value || ['image/png', 'image/jpeg'].includes(value.type);
+          return true;
+        }),
+    }),
     onSubmit: async (values, { resetForm }) => {
       const formData = new FormData();
       Object.entries(values).forEach(([key, value]) => {
@@ -99,7 +102,6 @@ const FormAddBar = ({ editData = null, onUpdate }) => {
   };
 
   const checkCehsWine = () => {
-
     switch (formik.values.ceh) {
       case 'Rom Cocktails':
         return true;
@@ -114,7 +116,7 @@ const FormAddBar = ({ editData = null, onUpdate }) => {
       case 'Easy & Sparkling Cocktails':
         return true;
       case 'Ігристе':
-        return true;       
+        return true;
       case 'Вино червоне':
         return true;
       case 'Вино біле':
@@ -159,9 +161,7 @@ const FormAddBar = ({ editData = null, onUpdate }) => {
             onChange={formik.handleChange}
             value={formik.values.ceh}
           >
-            <option value=''>
-              Обрати категорію
-            </option>
+            <option value="">Обрати категорію</option>
             {cehs.map((ceh, index) => (
               <option key={index} value={ceh.value}>
                 {ceh.label}
@@ -283,13 +283,15 @@ const FormAddBar = ({ editData = null, onUpdate }) => {
         <Button className={styles.submitBtn} type="submit">
           Додати
         </Button>
-        {editData && <Button
-          onClick={onUpdate}
-          className={styles.stopBtn}
-          variant="secondary"
-        >
-          Відмінити
-        </Button>}
+        {editData && (
+          <Button
+            onClick={onUpdate}
+            className={styles.stopBtn}
+            variant="secondary"
+          >
+            Відмінити
+          </Button>
+        )}
       </form>
       <div>
         <Toaster position="top-center" reverseOrder={false} />

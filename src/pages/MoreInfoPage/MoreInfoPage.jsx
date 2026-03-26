@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { useParams, useLocation, Link } from 'react-router-dom';
+import { useParams, useLocation, Link, useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import { getProductBar } from '../../shared/api/bar';
 import { getProductKitchen } from '../../shared/api/kitchen';
@@ -15,27 +15,36 @@ const MoreInfoPage = () => {
   const [editOpen, setEditOpen] = useState(false);
 
   const location = useLocation();
+  const navigate = useNavigate();
 
-  const backLink = useRef(location.state?.from ?? '/');
+  const backLink = useRef(location.state?.from?.pathname ?? '/');
   useEffect(() => {
     window.scrollTo(0, 0);
     const getProduct = async () => {
       try {
-        const data =
-          location.state?.from.pathname === '/menu/kitchen'
-            ? await getProductKitchen(productId)
-            : await getProductBar(productId);
+        const fromPath = location.state?.from?.pathname;
+        const isKitchen =
+          fromPath === '/menu/kitchen' ||
+          location.pathname.includes('/menu/kitchen');
 
-        setInfoProduct({ ...data });
+        const data = isKitchen
+          ? await getProductKitchen(productId)
+          : await getProductBar(productId);
+
+        setInfoProduct({ ...data, type: isKitchen ? 'kitchen' : 'bar' });
       } catch (error) {
         console.log(error.message);
       }
     };
     getProduct();
-  }, [productId, location, editOpen, setEditOpen]);
+  }, [productId, location]);
 
-  const updatEditOpen = () => {
-    setEditOpen(!editOpen);
+  const openEdit = () => {
+    setEditOpen(true);
+  };
+
+  const closeEdit = () => {
+    navigate(backLink.current);
   };
 
   const defaultPhoto = `url(https://static.tildacdn.com/tild6132-3237-4263-a136-326436306336/_.png)`;
@@ -48,14 +57,15 @@ const MoreInfoPage = () => {
             style={{
               display: 'flex',
               flexDirection: 'row',
-              
             }}
           >
             <Link className={styles.backLink} to={backLink.current}>
               <img src={svgLeft} alt="Left" />
               <span className={styles.spanGo}>Повернутися до списку</span>
             </Link>
-            <div className={styles.edit} onClick={updatEditOpen}>Редагувати</div>
+            <div className={styles.edit} onClick={openEdit}>
+              Редагувати
+            </div>
           </div>
 
           {!infoProduct.image ? (
@@ -137,15 +147,12 @@ const MoreInfoPage = () => {
         </Card>
       )}
       {infoProduct && infoProduct.type === 'bar' && editOpen && (
-        <ApdBarForm
-          editData={infoProduct}
-          onUpdate={updatEditOpen}
-        ></ApdBarForm>
+        <ApdBarForm editData={infoProduct} onUpdate={closeEdit}></ApdBarForm>
       )}
       {infoProduct && infoProduct.type === 'kitchen' && editOpen && (
         <ApdKitchenForm
           editData={infoProduct}
-          onUpdate={updatEditOpen}
+          onUpdate={closeEdit}
         ></ApdKitchenForm>
       )}
     </div>
