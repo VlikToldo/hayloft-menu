@@ -51,13 +51,19 @@
   align-items: center;
 }
 
-.listBox > * {
-}
-
 .learnListBox {
-  grid-template-columns: 100%;
   display: grid;
   grid-gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 500px));
+  justify-content: center;
+  align-items: stretch;
+}
+
+.learnListBox > * {
+  width: 100%;
+  max-width: 500px;
+  justify-self: center;
+  height: 100%;
 }
 .titleCeh {
   font-family: var(--family);
@@ -113,5 +119,14 @@
   }
   .toggleButton {
     padding: 1px 20px 1px 20px !important;
+  }
+
+  .learnListBox {
+    grid-template-columns: 100%;
+  }
+
+  .learnListBox > * {
+    width: 100%;
+    max-width: 100%;
   }
 }

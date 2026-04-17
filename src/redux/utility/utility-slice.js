@@ -1,13 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const utilitySlice = createSlice({
-  name: "utility",
+  name: 'utility',
   initialState: {
     radioValue: '1',
     showList: false,
     showLeftMenu: false,
     scrollPositionKitchen: 0,
     scrollPositionBar: 0,
+    repetitionMode: false,
   },
   reducers: {
     changeList: {
@@ -16,23 +17,34 @@ const utilitySlice = createSlice({
         state.showList = payload.showList;
       },
     },
-    toggleLeftMenu: { 
-      reducer: (state, {payload}) => {
+    toggleLeftMenu: {
+      reducer: (state, { payload }) => {
         state.showLeftMenu = payload;
       },
     },
-    handleScrollPositionKitchen: { 
-      reducer: (state, {payload}) => {
+    handleScrollPositionKitchen: {
+      reducer: (state, { payload }) => {
         state.scrollPositionKitchen = payload;
       },
     },
-    handleScrollPositionBar: { 
-      reducer: (state, {payload}) => {
+    handleScrollPositionBar: {
+      reducer: (state, { payload }) => {
         state.scrollPositionBar = payload;
+      },
+    },
+    toggleRepetitionMode: {
+      reducer: state => {
+        state.repetitionMode = !state.repetitionMode;
       },
     },
   },
 });
 
-export const { changeList, toggleLeftMenu, handleScrollPositionKitchen, handleScrollPositionBar } = utilitySlice.actions;
+export const {
+  changeList,
+  toggleLeftMenu,
+  handleScrollPositionKitchen,
+  handleScrollPositionBar,
+  toggleRepetitionMode,
+} = utilitySlice.actions;
 export default utilitySlice.reducer;

@@ -28,6 +28,36 @@ code {
 //   margin: 0;
 // }
 
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 70px;
+  right: 16px;
+  z-index: 800;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--LIGHT-PRIMARY-COLOR);
+  background-color: transparent;
+  color: var(--LIGHT-PRIMARY-COLOR);
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  opacity: 0.95;
+
+  &:hover {
+    background-color: var(--LIGHT-PRIMARY-COLOR);
+    color: #fff;
+    box-shadow: 0 0 12px rgba(175, 64, 53, 0.4);
+    opacity: 1;
+  }
+}
+
 li {
   font-family: 'Roboto', sans-serif;
   list-style: none;

@@ -49,15 +49,19 @@
   align-items: center;
 }
 
-.listBox > * {
-  // flex-grow: auto;
-  // width: 170px;
-}
-
 .learnListBox {
-  grid-template-columns: 100%;
   display: grid;
   grid-gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 500px));
+  justify-content: center;
+  align-items: stretch;
+}
+
+.learnListBox > * {
+  width: 100%;
+  max-width: 500px;
+  justify-self: center;
+  height: 100%;
 }
 .titleCeh {
   font-family: var(--family);
@@ -96,13 +100,126 @@
   font-size: 12px;
   padding: 6px 14px;
   border-radius: 8px;
-  border: none;
+  border: 2px solid var(--LIGHT-PRIMARY-COLOR);
   min-width: 86px;
   font-weight: 500;
-  color: #fff;
-  background-color: var(--LIGHT-PRIMARY-COLOR);
+  color: var(--LIGHT-PRIMARY-COLOR);
+  background-color: transparent;
   margin-bottom: 20px;
   transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--LIGHT-PRIMARY-COLOR);
+    color: #fff;
+  }
+}
+
+.repetitionButton {
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 2px solid var(--LIGHT-PRIMARY-COLOR);
+  min-width: 86px;
+  font-weight: 500;
+  color: var(--LIGHT-PRIMARY-COLOR);
+  background-color: transparent;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--LIGHT-PRIMARY-COLOR);
+    color: #fff;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.repetitionButtonActive {
+  background-color: var(--LIGHT-PRIMARY-COLOR);
+  color: #fff;
+}
+
+.animationOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background: rgba(5, 0, 20, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  pointer-events: all;
+  animation: overlayFade 1.6s ease-in-out forwards;
+}
+
+@keyframes overlayFade {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  78% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.scanLine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--LIGHT-PRIMARY-COLOR, #7b2ff7) 50%,
+    transparent 100%
+  );
+  box-shadow: 0 0 16px 4px var(--LIGHT-PRIMARY-COLOR, #7b2ff7);
+  animation: scanDown 1.4s ease-in-out forwards;
+}
+
+@keyframes scanDown {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+.overlayText {
+  font-family: var(--family);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--LIGHT-PRIMARY-COLOR, #7b2ff7);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  animation: textPulse 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes textPulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
 }
 
 @media screen and (max-width: 375px) {
@@ -118,5 +235,14 @@
 
   .toggleButton {
     padding: 1px 20px 1px 20px !important;
+  }
+
+  .learnListBox {
+    grid-template-columns: 100%;
+  }
+
+  .learnListBox > * {
+    width: 100%;
+    max-width: 100%;
   }
 }

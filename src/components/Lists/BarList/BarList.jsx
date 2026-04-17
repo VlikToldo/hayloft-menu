@@ -10,6 +10,7 @@ import LearnItem from '../LearnItemForList/LearnItemForList';
 import {
   changeList,
   handleScrollPositionBar,
+  toggleRepetitionMode,
 } from '../../../redux/utility/utility-slice';
 
 import { getAllBar, deleteBarProduct } from '../../../shared/api/bar';
@@ -18,11 +19,24 @@ import {
   selectList,
   selectShowList,
   selectScrollPositionBar,
+  selectRepetitionMode,
 } from '../../../redux/utility/utility-selectors';
 import styles from './bar-list.module.scss';
 import { nanoid } from 'nanoid';
+
+const COCKTAIL_CEHS = new Set([
+  'Rom Cocktails',
+  'Whiskey Cocktails',
+  'Gin Cocktails',
+  'Tequila Cocktails',
+  'Vodka & Pisco Cocktails',
+  'Easy & Sparkling Cocktails',
+  'Лимонади та коктейлі Б/а',
+]);
+
 const BarList = () => {
   const [items, setItems] = useState(null);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -31,6 +45,7 @@ const BarList = () => {
   const valueList = useSelector(selectList);
   const showList = useSelector(selectShowList);
   const scrollPosition = useSelector(selectScrollPositionBar);
+  const repetitionMode = useSelector(selectRepetitionMode);
 
   const radios = [
     { id: nanoid(), name: 'Картка', value: '1' },
@@ -110,6 +125,14 @@ const BarList = () => {
       });
   };
 
+  const handleToggleRepetitionMode = () => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      setIsAnimating(false);
+      dispatch(toggleRepetitionMode());
+    }, 1600);
+  };
+
   const exportBarToExcel = () => {
     if (!items || items.length === 0) {
       toast.error('Немає даних для експорту');
@@ -178,6 +201,7 @@ const BarList = () => {
                   {...dish}
                   location={location}
                   handleScroll={handleScroll}
+                  repetitionMode={repetitionMode && COCKTAIL_CEHS.has(dish.ceh)}
                 />
               ) : (
                 <BarItem
@@ -205,9 +229,26 @@ const BarList = () => {
     <>
       {items ? (
         <div>
+          {isAnimating && (
+            <div className={styles.animationOverlay}>
+              <div className={styles.scanLine} />
+              <p className={styles.overlayText}>
+                {repetitionMode ? 'Режим вимкнено' : 'Режим повторення'}
+              </p>
+            </div>
+          )}
           <div className={styles.uploadRow}>
             <button className={styles.exportButton} onClick={exportBarToExcel}>
               Скачати Excel бару
+            </button>
+            <button
+              className={`${styles.repetitionButton} ${
+                repetitionMode ? styles.repetitionButtonActive : ''
+              }`}
+              onClick={handleToggleRepetitionMode}
+              disabled={isAnimating}
+            >
+              {repetitionMode ? 'Вийти з режиму' : 'Режим повторення'}
             </button>
           </div>
           <select
